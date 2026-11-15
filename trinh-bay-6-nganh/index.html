@@ -1,0 +1,531 @@
+<!doctype html>
+<!-- Trang ngoài của trang trình bày bộ lọc 6 ngành (build-trinh-bay-nhieu-nganh.py thay /*CFG*/ bằng số của từng ngành).
+     Thanh trên: chọn ngành, bật tắt cột, Luật, Quy trình order, Thử order, Ghi chú. Dải luật theo số của ngành đang xem.
+     2 cột: mỗi cột là trang danh mục chép giao diện web (iframe), bảng Lọc mở sẵn, lớp ghi chú cot.js nói chuyện qua postMessage. -->
+<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Bộ lọc 6 ngành hàng</title>
+<style>
+:root { --ink:#101828; --mut:#667085; --line:#e4e7ec; --bg:#eef0f3; --card:#fff; --tim:#6d28d9;
+  --gop:#f59e0b; --gop-bg:#fff3e0; --moi:#12b76a; --moi-bg:#ecfdf3; --an:#c4c8cf; --an-bg:#f2f4f7; }
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; background: var(--bg); color: var(--ink); font: 15px/1.45 Inter, system-ui, -apple-system, "Segoe UI", sans-serif; }
+body { display: flex; flex-direction: column; overflow-x: hidden; overflow-y: auto; }
+.top { display: flex; align-items: center; gap: 8px 12px; flex-wrap: wrap; padding: 8px 16px; background: #fff; border-bottom: 1px solid var(--line); }
+.top h1 { font-size: 18px; margin: 0 4px 0 0; white-space: nowrap; }
+.sp { flex: 1; }
+.tabs { display: flex; gap: 6px; flex-wrap: wrap; }
+.tab { font: 600 14px Inter, system-ui, sans-serif; border: 1px solid #d0d5dd; background: #fff; color: var(--ink); border-radius: 999px; padding: 5px 13px; cursor: pointer; white-space: nowrap; }
+.tab:hover { background: #f9fafb; } .tab.on { background: var(--tim); border-color: var(--tim); color: #fff; }
+.tog { display: flex; gap: 6px; flex-wrap: wrap; }
+.tg { font: 600 13.5px Inter, system-ui, sans-serif; border: 1px solid #d0d5dd; background: #fff; color: #98a2b3; border-radius: 999px; padding: 5px 12px 5px 9px; cursor: pointer; white-space: nowrap; }
+.tg::before { content: ""; display: inline-block; width: 13px; height: 13px; border-radius: 4px; border: 1.5px solid #d0d5dd; margin-right: 7px; vertical-align: -2px; }
+.tg[aria-pressed="true"] { color: var(--ink); border-color: #b9a5f0; background: #f6f2ff; }
+.tg[aria-pressed="true"]::before { background: var(--tim); border-color: var(--tim); box-shadow: inset 0 0 0 2px #fff; }
+.btn { font: 600 14px Inter, system-ui, sans-serif; border: 1px solid #d0d5dd; background: #fff; color: var(--ink); border-radius: 8px; padding: 7px 14px; cursor: pointer; white-space: nowrap; }
+.btn:hover { background: #f9fafb; } .btn.on { background: var(--ink); color: #fff; border-color: var(--ink); }
+.btn.chinh { background: var(--tim); border-color: var(--tim); color: #fff; } .btn.chinh:hover { background: #5b21b6; }
+.lk { font: 600 13px Inter, system-ui, sans-serif; color: var(--tim); background: none; border: 0; padding: 0; cursor: pointer; white-space: nowrap; }
+.lk:hover { text-decoration: underline; }
+/* dải luật */
+.lq { display: grid; grid-template-columns: minmax(210px, .95fr) repeat(5, minmax(0, 1fr)); gap: 8px; padding: 8px 8px 0; }
+body.an-lq .lq { display: none; }
+.lq-c { position: relative; background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 10px 12px 11px; min-width: 0; font-size: 13.5px; line-height: 1.4; }
+.lq-c + .lq-c:not(.lq-moc)::before { content: ""; position: absolute; left: -8px; top: 50%; width: 8px; height: 2px; background: #cdbdf7; }
+.lq-h { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 14.5px; line-height: 1.25; margin-bottom: 6px; }
+.lq-n { flex: none; width: 22px; height: 22px; border-radius: 50%; background: var(--tim); color: #fff; font-size: 12.5px; display: grid; place-items: center; }
+.lq-c ul { margin: 0; padding: 0; list-style: none; }
+.lq-c li { margin: 3px 0; padding-left: 12px; position: relative; color: #344054; }
+.lq-c li::before { content: ""; position: absolute; left: 0; top: .6em; width: 5px; height: 5px; border-radius: 50%; background: #98a2b3; }
+.lq-so { color: #53389e; background: #f4ebff; border-radius: 5px; padding: 0 5px; white-space: nowrap; }
+.lq-vd { margin-top: 7px; display: flex; flex-wrap: wrap; gap: 4px; align-items: center; font-size: 12px; color: var(--mut); }
+.lq-chip { display: inline-block; font-size: 12px; font-weight: 600; color: #344054; background: #fff; border: 1px solid #d0d5dd; border-radius: 6px; padding: 1px 7px; white-space: nowrap; max-width: 100%; overflow: hidden; text-overflow: ellipsis; }
+.lq-chip.cum { border-color: #84adff; background: #eff6ff; color: #1849a9; }
+.lq-chip.khac { border-color: var(--gop); background: var(--gop-bg); color: #b45309; }
+.lq-moc { background: #faf8ff; border-color: #cdbdf7; display: flex; flex-direction: column; }
+.lq-t { font-size: 11.5px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: var(--mut); }
+.lq-big { font-size: 30px; font-weight: 800; line-height: 1.1; color: #53389e; margin: 2px 0 1px; }
+.lq-big small { font-size: 13.5px; font-weight: 600; color: #344054; margin-left: 4px; }
+.lq-f { font-size: 13px; color: #344054; }
+.lq-cm { margin-top: 6px; padding-top: 6px; border-top: 1px dashed #cdbdf7; }
+.lq-moc .lk { margin-top: auto; padding-top: 6px; align-self: flex-start; }
+/* chú giải */
+.sub { display: flex; gap: 4px 16px; flex-wrap: wrap; align-items: center; padding: 8px 18px 0; font-size: 12.5px; color: #475467; }
+.sw { display: inline-block; width: 22px; height: 14px; border-radius: 4px; border: 1.5px solid #d0d5dd; background: #fff; vertical-align: -2px; margin-right: 5px; }
+.sw.gop { background: var(--gop-bg); border-color: var(--gop); } .sw.moi { background: var(--moi-bg); border-color: var(--moi); }
+.sw.an { background: var(--an-bg); border-color: var(--an); border-style: dashed; }
+.so { display: inline-block; font: 700 11px/1 Inter, system-ui, sans-serif; padding: 2px 6px; border-radius: 999px; border: 1px solid #d0d5dd; color: #475467; background: #fff; margin-right: 5px; vertical-align: 1px; }
+.so.it { color: #b45309; border-color: var(--gop); }
+.hint { color: var(--mut); }
+/* 2 cột */
+.cols { flex: 1 0 auto; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: auto minmax(460px, 1fr); gap: 0 8px; padding: 8px; }
+.col { display: grid; grid-row: span 2; grid-template-rows: subgrid; min-width: 0; min-height: 0; background: var(--card); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+.col.tat { display: none; }
+.head { padding: 7px 10px 8px 14px; border-bottom: 1px solid var(--line); }
+.h1r { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px; align-items: start; }
+.ten { display: flex; align-items: baseline; gap: 0 10px; flex-wrap: wrap; }
+.head h2 { margin: 0; font-size: 17px; white-space: nowrap; }
+.mota { font-size: 13.5px; color: #344054; font-weight: 600; }
+.head .b-full { padding: 3px 10px; font-size: 12.5px; }
+.h2r { display: flex; align-items: baseline; gap: 2px 14px; flex-wrap: wrap; margin-top: 2px; }
+.stat { white-space: nowrap; font-size: 13px; color: var(--mut); }
+.stat b { font-size: 17px; color: var(--ink); margin-right: 4px; }
+.frame { position: relative; min-height: 0; overflow: hidden; background: #fff; }
+.frame iframe { position: absolute; left: 0; top: 0; border: 0; width: 1200px; transform-origin: 0 0; background: #fff; }
+body.full .cols { grid-template-columns: 1fr !important; }
+body.full .col:not(.big) { display: none; }
+/* bảng kéo lên */
+.drawer { position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; max-height: 86vh; overflow: auto; background: #fff; border-top: 1px solid var(--line);
+  box-shadow: 0 -10px 30px rgba(16,24,40,.18); transform: translateY(105%); transition: transform .2s ease; padding: 16px 20px 22px; }
+.drawer.open { transform: none; }
+.dh { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 12px; }
+.drawer h3 { margin: 0; font-size: 19px; }
+.pill { display: inline-block; background: #f4ebff; color: #53389e; font-weight: 600; border-radius: 999px; padding: 4px 12px; font-size: 14px; }
+.c10 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.card { border: 1px solid var(--line); border-radius: 12px; padding: 12px 16px; min-width: 0; }
+.card h4 { margin: 0 0 8px; font-size: 16px; }
+.cthuc { font-size: 15px; font-weight: 700; margin: 6px 0; }
+.card table { border-collapse: collapse; width: 100%; font-size: 13.5px; }
+.card th, .card td { text-align: left; padding: 5px 6px; border-bottom: 1px solid var(--line); }
+.card td.r, .card th.r { text-align: right; white-space: nowrap; }
+.kq { font-weight: 700; border-radius: 999px; padding: 2px 10px; font-size: 12.5px; white-space: nowrap; }
+.kq.du { background: var(--moi-bg); color: #067647; } .kq.chua { background: var(--gop-bg); color: #b45309; }
+.gap-to { font-size: 26px; font-weight: 800; color: #b45309; }
+.card ul, .card ol { margin: 6px 0 0; padding-left: 18px; font-size: 14px; }
+.card li { margin: 3px 0; }
+.ghi { font-size: 12.5px; color: var(--mut); margin-top: 8px; }
+.thanh { display: grid; grid-template-columns: 62px minmax(0, 1fr) auto; gap: 8px; align-items: center; font-size: 13.5px; margin-top: 5px; }
+.thanh .tn { color: var(--mut); }
+.thanh .tv { display: block; height: 12px; border-radius: 6px; background: #f2f4f7; overflow: hidden; }
+.thanh .tv b { display: block; height: 100%; min-width: 4px; border-radius: 6px; background: var(--gop); }
+.thanh .tv b.lt { background: var(--tim); }
+.thanh .ts b { font-size: 16px; }
+.vdct { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.vdct-b { border: 1px solid var(--line); border-left: 4px solid #12b76a; border-radius: 8px; padding: 7px 10px; font-size: 13px; background: #fcfffd; }
+.vdct-b.chua { border-left-color: var(--gop); background: #fffcf5; }
+.vdct-t { font-weight: 700; font-size: 13.5px; margin-bottom: 3px; }
+.vdct-b ol { margin: 0; padding-left: 18px; font-size: 13px; }
+.vdct-n { margin-top: 5px; padding-top: 5px; border-top: 1px dashed var(--line); color: #475467; font-size: 12.5px; }
+/* sơ đồ quy trình order */
+.fc-lg { display: flex; gap: 6px 14px; flex-wrap: wrap; font-size: 13px; color: #344054; margin-bottom: 12px; }
+.ai { display: inline-block; font-size: 11.5px; font-weight: 700; border-radius: 999px; padding: 1px 8px; margin-right: 4px; white-space: nowrap; }
+.ai.seo { background: #f4ebff; color: #53389e; } .ai.kb { background: #eff6ff; color: #1849a9; } .ai.nh { background: #ecfdf3; color: #067647; }
+.fc { display: grid; grid-template-columns: minmax(0, 400px) 120px minmax(0, 300px); justify-content: center; }
+.fc-n { border: 1.5px solid #d0d5dd; border-radius: 12px; background: #fff; padding: 9px 14px; font-size: 14px; line-height: 1.4; }
+.fc-n .bb { font-size: 11.5px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: var(--mut); margin-right: 6px; }
+.fc-n .tt { font-weight: 700; font-size: 15px; }
+.fc-n .ss { color: #475467; font-size: 13px; margin-top: 2px; }
+.fc-n.d { border-color: var(--gop); background: #fffaeb; border-radius: 22px; text-align: center; }
+.fc-n.d .tt::before { content: "?"; display: inline-grid; place-items: center; width: 20px; height: 20px; border-radius: 50%; background: var(--gop); color: #fff; font-size: 12.5px; margin-right: 7px; vertical-align: 1px; }
+.fc-n.ok { border-color: #12b76a; background: #ecfdf3; }
+.fc-n.end { border-style: dashed; background: #f9fafb; color: #475467; }
+.fc-n.bad { border-color: #f97066; background: #fef3f2; }
+.fc-n .lk { margin-top: 5px; }
+.fc-v { position: relative; height: 34px; }
+.fc-v::before { content: ""; position: absolute; left: 50%; top: 0; bottom: 7px; width: 2px; background: #98a2b3; }
+.fc-v::after { content: ""; position: absolute; left: calc(50% - 5px); bottom: 0; border: 6px solid transparent; border-top: 7px solid #98a2b3; border-bottom: 0; }
+.fc-v span, .fc-h span { position: absolute; font-size: 12px; font-weight: 700; color: #475467; background: #fff; padding: 0 4px; }
+.fc-v span { left: calc(50% + 8px); top: 8px; }
+.fc-h { position: relative; align-self: center; height: 20px; }
+.fc-h::before { content: ""; position: absolute; left: 0; right: 7px; top: 9px; height: 2px; background: #98a2b3; }
+.fc-h::after { content: ""; position: absolute; right: 0; top: 4px; border: 6px solid transparent; border-left: 7px solid #98a2b3; border-right: 0; }
+.fc-h span { left: 50%; transform: translateX(-50%); top: -10px; }
+.fc-dk { grid-column: 1 / -1; margin: 22px auto 0; max-width: 820px; width: 100%; border-top: 1px dashed #d0d5dd; padding-top: 14px; }
+.fc-dk .fc-n { border-style: dashed; border-color: #b9a5f0; }
+/* thử order */
+.vds { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
+.vd-b { font: 600 13.5px Inter, system-ui, sans-serif; border: 1px solid #d0d5dd; background: #fff; border-radius: 8px; padding: 6px 12px; cursor: pointer; }
+.vd-b small { font-weight: 500; color: var(--mut); margin-left: 6px; }
+.vd-b.on { border-color: var(--tim); background: #f6f2ff; }
+.qt-form { display: flex; gap: 10px 14px; flex-wrap: wrap; align-items: flex-end; margin-bottom: 12px; }
+.qt-form label { display: flex; flex-direction: column; gap: 4px; font-size: 13px; font-weight: 600; color: #344054; }
+.qt-form input, .qt-form select { font: 500 14px Inter, system-ui, sans-serif; border: 1px solid #d0d5dd; border-radius: 8px; padding: 7px 10px; min-width: 120px; background: #fff; color: var(--ink); }
+.qt-form #qt-ten { min-width: 200px; } .qt-form input[type=number] { width: 120px; min-width: 0; }
+.qt-form input[type=range] { min-width: 220px; padding: 0; accent-color: var(--tim); }
+.cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.card .mt { font-size: 13.5px; color: #344054; font-weight: 600; margin-bottom: 6px; }
+.card .c { font-size: 17px; font-weight: 700; margin-top: 4px; }
+.card .t { font-size: 13.5px; color: #344054; white-space: pre-line; margin-top: 2px; }
+.card .tag { display: inline-block; margin-top: 8px; font-size: 12.5px; font-weight: 700; border-radius: 999px; padding: 3px 10px; background: #f2f4f7; color: #475467; }
+.card .tag.them { background: #fef3f2; color: #b42318; }
+.qt-ct { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px 20px; margin-top: 12px; font-size: 13.5px; color: #344054; }
+.qt-ct h4 { margin: 0 0 6px; font-size: 15px; color: var(--ink); } .qt-ct ol, .qt-ct ul { margin: 0; padding-left: 18px; } .qt-ct li { margin: 3px 0; } .qt-ct p { margin: 0; }
+.qt-row { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-bottom: 8px; } .qt-row b { margin-right: 4px; }
+.qt-chip { border: 1px solid #abefc6; background: var(--moi-bg); border-radius: 8px; padding: 3px 8px; font-weight: 600; }
+.qt-row.khac .qt-chip { border-color: #fedf89; background: var(--gop-bg); }
+.qt-chip small { display: block; font-weight: 500; color: var(--mut); font-size: 11.5px; }
+.qt-chip.moi { outline: 2px solid var(--tim); }
+@media (prefers-reduced-motion: reduce) { .drawer { transition: none; } }
+@media (max-width: 1250px) { .lq { grid-template-columns: repeat(3, minmax(0, 1fr)); } .lq-c + .lq-c:not(.lq-moc)::before { display: none; } .c10, .qt-ct { grid-template-columns: 1fr; } .vdct { grid-template-columns: 1fr; } }
+@media (max-width: 900px) {
+  body { overflow: auto; height: auto; } html { height: auto; }
+  .cols { grid-template-columns: 1fr !important; grid-template-rows: none; gap: 8px; } .col { height: 86vh; grid-row: auto; grid-template-rows: auto minmax(0, 1fr); }
+  .lq, .cards { grid-template-columns: 1fr; }
+  .fc { grid-template-columns: 1fr; } .fc-h { height: auto; margin: 6px 0 4px 18px; } .fc-h::before, .fc-h::after { display: none; }
+  .fc-h span { position: static; transform: none; padding: 0; } .fc-h span::before { content: "↳ "; } .fc-gap { display: none; }
+  .hint { display: none; }
+}
+</style></head>
+<body>
+<div class="top">
+  <h1>Bộ lọc theo luật Quy_Trình</h1>
+  <div class="tabs" id="tabs" role="tablist" aria-label="Chọn ngành hàng"></div>
+  <span class="sp"></span>
+  <div class="tog" id="tog" role="group" aria-label="Chọn cột để xem"></div>
+  <button class="btn on" id="b-lq">Luật: hiện</button>
+  <button class="btn" id="b-qtr">Quy trình order</button>
+  <button class="btn chinh" id="b-thu">Thử order</button>
+  <button class="btn on" id="b-ghi">Ghi chú: bật</button>
+</div>
+<div class="lq" id="lq"></div>
+<div class="sub">
+  <span><i class="sw"></i>Giữ</span>
+  <span><i class="sw gop"></i>Vào nhóm Khác / gộp</span>
+  <span><i class="sw moi"></i>Mới (web chưa có)</span>
+  <span><i class="sw an"></i>Không hiện</span>
+  <span><i class="so">780</i>Số ở góc: lượt tìm/tháng</span>
+  <span><i class="so it">50</i>Màu cam: dưới mốc <b id="moc-lg"></b> lượt</span>
+  <span class="sp"></span>
+  <span class="hint">Rê chuột vào 1 giá trị để xem lý do. Bấm 1 giá trị là cột kia cuộn tới giá trị tương ứng</span>
+</div>
+<div class="cols" id="cols">
+  <section class="col" data-ban="hien-tai"><div class="head">
+    <div class="h1r"><div class="ten"><h2>Hiện tại</h2><span class="mota">Web đang chạy</span></div><button class="btn b-full">Phóng to</button></div>
+    <div class="h2r" data-dem></div></div>
+    <div class="frame"><iframe title="Bộ lọc hiện tại trên web"></iframe></div></section>
+  <section class="col" data-ban="moi"><div class="head">
+    <div class="h1r"><div class="ten"><h2>Sau khi áp luật</h2><span class="mota">Quy_Trình 15/11, mốc theo ngành</span></div><button class="btn b-full">Phóng to</button></div>
+    <div class="h2r" data-dem></div></div>
+    <div class="frame"><iframe title="Bộ lọc sau khi áp luật"></iframe></div></section>
+</div>
+
+<div class="drawer" id="d-ct" aria-hidden="true">
+  <div class="dh"><h3>Vì sao mốc chia thêm 10</h3><span class="pill" id="ct-pill"></span><span class="sp"></span><button class="btn b-dong">Đóng</button></div>
+  <div class="c10" id="ctg"></div>
+</div>
+<div class="drawer" id="d-qtr" aria-hidden="true">
+  <div class="dh"><h3>Quy trình order bộ lọc giữa SEO, Khai báo và Ngành hàng</h3><span class="sp"></span><button class="btn b-dong">Đóng</button></div>
+  <div class="fc-lg"></div>
+  <div class="fc" id="fc"></div>
+</div>
+<div class="drawer" id="d-thu" aria-hidden="true">
+  <div class="dh"><h3>Thử order 1 giá trị</h3><span class="pill" id="thu-pill"></span><span class="sp"></span><button class="btn b-dong">Đóng</button></div>
+  <div class="vds" id="vds"></div>
+  <div class="qt-form" id="qt-form">
+    <label>Tên giá trị<input id="qt-ten" type="text" value="Giá trị mới"></label>
+    <label>Thuộc tính<select id="qt-bl"></select></label>
+    <label>Lượt tìm/tháng<input id="qt-lt" type="number" min="0" step="10" value="500"></label>
+    <label>&nbsp;<input id="qt-rg" type="range" min="0" max="5000" step="10" value="500" aria-label="Kéo lượt tìm/tháng"></label>
+  </div>
+  <div class="cards" id="thu-kq"></div>
+  <div class="qt-ct" id="qt-ct"></div>
+</div>
+
+<script>
+const CFG = [{"slug": "laptop", "nganh": "Laptop", "url": "https://www.thegioididong.com/laptop", "moc": 205, "moc_tho": 204.9, "tong": 174130, "so_gt": 85, "nen": "bộ 2 cấp đã trình", "duoi": 38, "duoi_lt": 2160, "so_may": 453, "cot": {"hien-tai": "nganh/laptop/cot-hien-tai.html?v=949dd5de", "moi": "nganh/laptop/cot-pa3.html?v=09b9c1fe"}, "dem": {"hien-tai": {"bo_loc": 15, "dau": 86, "khung": 0}, "moi": {"bo_loc": 11, "dau": 51, "khung": 32}}, "vd": [{"ten": "Gaming", "lt": 60080, "dat": true}, {"ten": "90 - 120 Hz", "lt": 220, "dat": true}, {"ten": "Full HD", "lt": 210, "dat": true}, {"ten": "Ryzen AI Max 300", "lt": 190, "dat": false}, {"ten": "12 GB", "lt": 30, "dat": false}], "vd_tren": {"ten": "Full HD", "lt": 210, "dat": true}, "vd_duoi": {"ten": "Ryzen AI Max 300", "lt": 190, "dat": false}, "the": {"so_bo_loc": 11, "cum": ["AMD", "Intel", "Qualcomm"], "khac": ["Tiện ích khác", "RAM khác", "Ổ cứng khác"], "xep": ["Dưới 14 inch", "Từ 14 - 15 inch", "Từ 15 - 16 inch"]}, "thu": [{"ten": "Nhu cầu sử dụng", "lt": 103820, "co_web": true, "khong_lam": "", "so_do": false, "gt": [{"ten": "Gaming", "lt": 60080, "cum": "", "web": true}, {"ten": "Văn phòng", "lt": 14410, "cum": "", "web": true}, {"ten": "Sinh viên", "lt": 12810, "cum": "", "web": true}, {"ten": "Mỏng nhẹ", "lt": 8820, "cum": "", "web": true}, {"ten": "Đồ hoạ", "lt": 4910, "cum": "", "web": true}, {"ten": "Kỹ thuật", "lt": 4350, "cum": "", "web": true}, {"ten": "Laptop AI", "lt": 2600, "cum": "", "web": true}, {"ten": "Cao cấp", "lt": 1490, "cum": "", "web": true}]}, {"ten": "Khoảng giá", "lt": 15740, "co_web": true, "khong_lam": "", "so_do": true, "gt": [{"ten": "10 - 15 triệu", "lt": 4090, "cum": "", "web": true}, {"ten": "15 - 20 triệu", "lt": 4920, "cum": "", "web": true}, {"ten": "20 - 25 triệu", "lt": 5000, "cum": "", "web": true}, {"ten": "25 - 30 triệu", "lt": 620, "cum": "", "web": true}, {"ten": "Trên 30 triệu", "lt": 1110, "cum": "", "web": true}]}, {"ten": "Kích thước màn hình", "lt": 16010, "co_web": true, "khong_lam": "", "so_do": true, "gt": [{"ten": "Dưới 14 inch", "lt": 5680, "cum": "", "web": true}, {"ten": "Từ 14 - 15 inch", "lt": 3720, "cum": "", "web": true}, {"ten": "Từ 15 - 16 inch", "lt": 4600, "cum": "", "web": true}, {"ten": "Trên 16 inch", "lt": 2010, "cum": "", "web": true}]}, {"ten": "CPU", "lt": 12160, "co_web": true, "khong_lam": "", "so_do": false, "gt": [{"ten": "Ultra 5", "lt": 280, "cum": "Intel", "web": true}, {"ten": "Ultra 7", "lt": 390, "cum": "Intel", "web": true}, {"ten": "Ultra 9", "lt": 270, "cum": "Intel", "web": true}, {"ten": "Ultra X7", "lt": 120, "cum": "Intel", "web": true}, {"ten": "Ultra X9", "lt": 40, "cum": "Intel", "web": true}, {"ten": "Core i3", "lt": 450, "cum": "Intel", "web": true}, {"ten": "Core i5", "lt": 2070, "cum": "Intel", "web": true}, {"ten": "Core i7", "lt": 2760, "cum": "Intel", "web": true}, {"ten": "Core i9", "lt": 1510, "cum": "Intel", "web": true}, {"ten": "Core 3", "lt": 20, "cum": "Intel", "web": true}, {"ten": "Core 5", "lt": 40, "cum": "Intel", "web": true}, {"ten": "Core 7", "lt": 30, "cum": "Intel", "web": true}, {"ten": "Core 9", "lt": 0, "cum": "Intel", "web": true}, {"ten": "Ryzen 3", "lt": 10, "cum": "AMD", "web": true}, {"ten": "Ryzen 5", "lt": 320, "cum": "AMD", "web": true}, {"ten": "Ryzen 7", "lt": 570, "cum": "AMD", "web": true}, {"ten": "Ryzen 9", "lt": 280, "cum": "AMD", "web": true}, {"ten": "Ryzen AI 200", "lt": 0, "cum": "AMD", "web": true}, {"ten": "Ryzen AI 300", "lt": 150, "cum": "AMD", "web": true}, {"ten": "Ryzen AI 400", "lt": 0, "cum": "AMD", "web": true}, {"ten": "Ryzen AI Max 300", "lt": 190, "cum": "AMD", "web": true}, {"ten": "Snapdragon X", "lt": 360, "cum": "Qualcomm", "web": true}, {"ten": "Snapdragon X Plus", "lt": 50, "cum": "Qualcomm", "web": true}, {"ten": "Snapdragon X Elite", "lt": 150, "cum": "Qualcomm", "web": true}, {"ten": "RTX Spark", "lt": 480, "cum": "NVIDIA", "web": true}]}, {"ten": "Card đồ hoạ", "lt": 10300, "co_web": true, "khong_lam": "", "so_do": false, "gt": [{"ten": "RTX 5050", "lt": 560, "cum": "Card rời", "web": false}, {"ten": "RTX 5060", "lt": 940, "cum": "Card rời", "web": false}, {"ten": "RTX 5070", "lt": 600, "cum": "Card rời", "web": false}, {"ten": "RTX 4050", "lt": 630, "cum": "Card rời", "web": false}, {"ten": "RTX 4060", "lt": 1150, "cum": "Card rời", "web": false}, {"ten": "RTX 3050", "lt": 1000, "cum": "Card rời", "web": false}, {"ten": "Card rời", "lt": 5390, "cum": "Card rời", "web": true}, {"ten": "Card tích hợp", "lt": 30, "cum": "", "web": true}]}, {"ten": "RAM", "lt": 2190, "co_web": true, "khong_lam": "", "so_do": true, "gt": [{"ten": "8 GB", "lt": 330, "cum": "", "web": true}, {"ten": "12 GB", "lt": 30, "cum": "", "web": true}, {"ten": "16 GB", "lt": 790, "cum": "", "web": true}, {"ten": "24 GB", "lt": 50, "cum": "", "web": true}, {"ten": "32 GB", "lt": 780, "cum": "", "web": true}, {"ten": "36 GB", "lt": 0, "cum": "Từ 36 GB", "web": true}, {"ten": "48 GB", "lt": 0, "cum": "Từ 36 GB", "web": true}, {"ten": "64 GB", "lt": 180, "cum": "Từ 36 GB", "web": true}, {"ten": "128 GB", "lt": 30, "cum": "Từ 36 GB", "web": true}, {"ten": "192 GB", "lt": 0, "cum": "Từ 36 GB", "web": true}]}, {"ten": "Ổ cứng", "lt": 1110, "co_web": true, "khong_lam": "", "so_do": true, "gt": [{"ten": "SSD 256 GB", "lt": 130, "cum": "", "web": true}, {"ten": "SSD 512 GB", "lt": 350, "cum": "", "web": true}, {"ten": "SSD 1 TB", "lt": 570, "cum": "", "web": true}, {"ten": "SSD 2 TB", "lt": 60, "cum": "SSD từ 2 TB", "web": true}, {"ten": "SSD 3 TB", "lt": 0, "cum": "SSD từ 2 TB", "web": true}, {"ten": "SSD 6 TB", "lt": 0, "cum": "SSD từ 2 TB", "web": true}]}, {"ten": "Độ phân giải", "lt": 1120, "co_web": true, "khong_lam": "", "so_do": true, "gt": [{"ten": "Full HD", "lt": 210, "cum": "", "web": true}, {"ten": "2K - 3K", "lt": 190, "cum": "", "web": true}, {"ten": "4K", "lt": 720, "cum": "", "web": true}]}, {"ten": "Tần số quét", "lt": 440, "co_web": true, "khong_lam": "", "so_do": true, "gt": [{"ten": "Dưới 90 Hz", "lt": 0, "cum": "", "web": false}, {"ten": "90 - 120 Hz", "lt": 220, "cum": "", "web": true}, {"ten": "144 - 165 Hz", "lt": 170, "cum": "", "web": true}, {"ten": "180 Hz", "lt": 0, "cum": "Từ 180 Hz", "web": true}, {"ten": "240 Hz", "lt": 40, "cum": "Từ 180 Hz", "web": true}, {"ten": "250 Hz", "lt": 0, "cum": "Từ 180 Hz", "web": true}, {"ten": "300 Hz", "lt": 0, "cum": "Từ 180 Hz", "web": true}]}, {"ten": "Công nghệ màn hình", "lt": 600, "co_web": true, "khong_lam": "", "so_do": false, "gt": [{"ten": "Màn hình OLED", "lt": 490, "cum": "", "web": true}, {"ten": "100% sRGB", "lt": 90, "cum": "", "web": true}, {"ten": "Chống chói", "lt": 20, "cum": "", "web": true}]}, {"ten": "Tiện ích", "lt": 6110, "co_web": true, "khong_lam": "", "so_do": false, "gt": [{"ten": "Cảm ứng", "lt": 3980, "cum": "", "web": true}, {"ten": "Gập 360 độ", "lt": 2300, "cum": "", "web": true}, {"ten": "Có bàn phím số", "lt": 150, "cum": "", "web": true}, {"ten": "Có đèn bàn phím", "lt": 180, "cum": "", "web": true}, {"ten": "Bảo mật vân tay", "lt": 10, "cum": "", "web": true}, {"ten": "Bảo mật khuôn mặt", "lt": 0, "cum": "", "web": true}]}]}, {"slug": "dien-thoai", "nganh": "Điện thoại", "url": "https://www.thegioididong.com/dtdd", "moc": 274, "moc_tho": 274.4, "tong": 137200, "so_gt": 50, "nen": "giá trị đang có trên web", "duoi": 26, "duoi_lt": 870, "so_may": 175, "cot": {"hien-tai": "nganh/dien-thoai/cot-hien-tai.html?v=9c3203ff", "moi": "nganh/dien-thoai/cot-moi.html?v=27577ff7"}, "dem": {"hien-tai": {"bo_loc": 9, "dau": 50, "khung": 0}, "moi": {"bo_loc": 14, "dau": 64, "khung": 13}}, "vd": [{"ten": "Chơi game / Cấu hình cao", "lt": 19120, "dat": true}, {"ten": "Điện thoại AI", "lt": 340, "dat": true}, {"ten": "Sạc siêu nhanh (từ 60W)", "lt": 320, "dat": true}, {"ten": "12 GB", "lt": 200, "dat": false}, {"ten": "1.5K", "lt": 0, "dat": false}], "vd_tren": {"ten": "Sạc siêu nhanh (từ 60W)", "lt": 320, "dat": true}, "vd_duoi": {"ten": "12 GB", "lt": 200, "dat": false}, "the": {"so_bo_loc": 14, "cum": [], "khac": ["Chip xử lý khác", "Màu sắc khác", "Công nghệ màn hình khác"], "xep": ["Dưới 2 triệu", "Từ 2 - 4 triệu", "Từ 4 - 7 triệu"]}, "thu": [{"ten": "Khoảng giá", "lt": 50470, "co_web": true, "khong_lam": "", "so_do": true, "gt": [{"ten": "Dưới 2 triệu", "lt": 11240, "cum": "", "web": true}, {"ten": "Từ 2 - 4 triệu", "lt": 13330, "cum": "", "web": true}, {"ten": "Từ 4 - 7 triệu", "lt": 13730, "cum": "", "web": true}, {"ten": "Từ 7 - 13 triệu", "lt": 7910, "cum": "", "web": true}, {"ten": "Từ 13 - 20 triệu", "lt": 3800, "cum": "", "web": true}, {"ten": "Trên 20 triệu", "lt": 460, "cum": "", "web": true}]}, {"ten": "Nhu cầu", "lt": 51380, "co_web": true, "khong_lam": "", "so_do": false, "gt": [{"ten": "Chơi game / Cấu hình cao", "lt": 19120, "cum": "", "web": true}, {"ten": "Pin khủng trên 7000 mAh", "lt": 13580, "cum": "", "web": true}, {"ten": "Chụp ảnh / quay phim", "lt": 8920, "cum": "", "web": true}, {"ten": "Livestream", "lt": 340, "cum": "", "web": true}, {"ten": "Mỏng nhẹ", "lt": 1170, "cum": "", "web": true}, {"ten": "Người già / người lớn tuổi", "lt": 2460, "cum": "", "web": false}, {"ten": "Học sinh / trẻ em", "lt": 3350, "cum": "", "web": false}, {"ten": "Siêu bền / chống va đập", "lt": 3340, "cum": "", "web": false}]}, {"ten": "Tiêu chí chung (mới, tốt nhất, chính hãng)", "lt": 0, "co_web": false, "khong_lam": "Web có sắp xếp Mới; không phải thuộc tính lọc", "so_do": false, "gt": []}, {"ten": "Loại sản phẩm", "lt": 28000, "co_web": true, "khong_lam": "", "so_do": false, "gt": [{"ten": "Android", "lt": 10700, "cum": "", "web": true}, {"ten": "iPhone (iOS)", "lt": 80, "cum": "", "web": true}, {"ten": "Điện thoại AI", "lt": 340, "cum": "", "web": true}, {"ten": "Điện thoại gập", "lt": 8970, "cum": "", "web": true}, {"ten": "Điện thoại phổ thông", "lt": 7990, "cum": "", "web": true}]}, {"ten": "Kiểu dáng / kích thước", "lt": 10870, "co_web": false, "khong_lam": "", "so_do": false, "gt": [{"ten": "Nhỏ gọn / mini", "lt": 7330, "cum": "", "web": false}, {"ten": "Màn hình lớn", "lt": 1830, "cum": "", "web": false}, {"ten": "2 màn hình", "lt": 250, "cum": "", "web": false}, {"ten": "Nắp trượt / bật nắp", "lt": 520, "cum": "", "web": false}, {"ten": "Độc lạ", "lt": 510, "cum": "", "web": false}, {"ten": "Thiết kế đẹp", "lt": 580, "cum": "", "web": false}]}, {"ten": "Màu sắc", "lt": 1440, "co_web": false, "khong_lam": "", "so_do": false, "gt": [{"ten": "Hồng", "lt": 580, "cum": "", "web": false}, {"ten": "Đen", "lt": 80, "cum": "", "web": false}, {"ten": "Trắng", "lt": 70, "cum": "", "web": false}, {"ten": "Xanh", "lt": 220, "cum": "", "web": false}, {"ten": "Tím", "lt": 100, "cum": "", "web": false}, {"ten": "Vàng / gold", "lt": 90, "cum": "", "web": false}, {"ten": "Đỏ", "lt": 150, "cum": "", "web": false}, {"ten": "Cam", "lt": 150, "cum": "", "web": false}]}, {"ten": "Chất liệu", "lt": 630, "co_web": false, "khong_lam": "", "so_do": false, "gt": [{"ten": "Titan", "lt": 40, "cum": "", "web": false}, {"ten": "Mạ vàng / kim cương", "lt": 30, "cum": "", "web": false}, {"ten": "Trong suốt", "lt": 560, "cum": "", "web": false}]}, {"ten": "Xuất xứ / thị trường", "lt": 0, "co_web": false, "khong_lam": "TGDĐ chỉ bán hàng chính hãng Việt Nam; xuất xứ không phải bộ lọc", "so_do": false, "gt": []}, {"ten": "Độ phân giải", "lt": 20, "co_web": true, "khong_lam": "", "so_do": false, "gt": [{"ten": "QQVGA", "lt": 0, "cum": "", "web": true}, {"ten": "QVGA", "lt": 0, "cum": "", "web": true}, {"ten": "HD+", "lt": 0, "cum": "", "web": true}, {"ten": "Full HD+", "lt": 0, "cum": "", "web": true}, {"ten": "1.5K", "lt": 0, "cum": "", "web": true}, {"ten": "1.5K+", "lt": 0, "cum": "", "web": true}, {"ten": "2K+", "lt": 20, "cum": "", "web": true}, {"ten": "QXGA+", "lt": 0, "cum": "", "web": true}, {"ten": "Retina (iPhone)", "lt": 0, "cum": "", "web": true}]}, {"ten": "Tần số quét", "lt": 90, "co_web": true, "khong_lam": "", "so_do": true, "gt": [{"ten": "60 Hz", "lt": 0, "cum": "", "web": true}, {"ten": "90 Hz", "lt": 0, "cum": "", "web": true}, {"ten": "120 Hz", "lt": 60, "cum": "", "web": true}, {"ten": "144 Hz", "lt": 30, "cum": "", "web": true}, {"ten": "165 Hz", "lt": 0, "cum": "", "web": true}, {"ten": "185 Hz", "lt": 0, "cum": "", "web": true}]}, {"ten": "Công nghệ màn hình", "lt": 930, "co_web": false, "khong_lam": "", "so_do": false, "gt": [{"ten": "OLED / AMOLED", "lt": 140, "cum": "", "web": false}, {"ten": "LCD / IPS", "lt": 70, "cum": "", "web": false}, {"ten": "Màn hình cong", "lt": 520, "cum": "", "web": false}, {"ten": "Tràn viền / không viền", "lt": 230, "cum": "", "web": false}, {"ten": "Màn hình chống chói / bảo vệ mắt", "lt": 50, "cum": "", "web": false}]}, {"ten": "Camera", "lt": 2450, "co_web": true, "khong_lam": "", "so_do": false, "gt": [{"ten": "Chỉnh ảnh AI", "lt": 0, "cum": "", "web": true}, {"ten": "Zoom quang / tiềm vọng", "lt": 430, "cum": "", "web": false}, {"ten": "Nhiều camera", "lt": 1210, "cum": "", "web": false}, {"ten": "Camera ẩn / không camera", "lt": 510, "cum": "", "web": false}]}, {"ten": "Pin & sạc", "lt": 1080, "co_web": true, "khong_lam": "", "so_do": false, "gt": [{"ten": "Sạc nhanh (từ 20W)", "lt": 640, "cum": "", "web": true}, {"ten": "Sạc siêu nhanh (từ 60W)", "lt": 320, "cum": "", "web": true}, {"ten": "Sạc không dây", "lt": 180, "cum": "", "web": true}]}, {"ten": "RAM", "lt": 510, "co_web": true, "khong_lam": "", "so_do": true, "gt": [{"ten": "3 GB", "lt": 0, "cum": "", "web": true}, {"ten": "4 GB", "lt": 0, "cum": "", "web": true}, {"ten": "6 GB", "lt": 0, "cum": "", "web": true}, {"ten": "8 GB", "lt": 130, "cum": "", "web": true}, {"ten": "12 GB", "lt": 200, "cum": "", "web": true}, {"ten": "16 GB", "lt": 120, "cum": "", "web": true}]}, {"ten": "Dung lượng lưu trữ", "lt": 7270, "co_web": true, "khong_lam": "", "so_do": true, "gt": [{"ten": "64 GB", "lt": 50, "cum": "", "web": true}, {"ten": "128 GB", "lt": 4410, "cum": "", "web": true}, {"ten": "256 GB", "lt": 1170, "cum": "", "web": true}, {"ten": "512 GB", "lt": 780, "cum": "", "web": true}, {"ten": "1 TB", "lt": 450, "cum": "", "web": true}, {"ten": "Bộ nhớ lớn (không số)", "lt": 360, "cum": "", "web": false}]}, {"ten": "Chip xử lý", "lt": 2620, "co_web": false, "khong_lam": "", "so_do": false, "gt": [{"ten": "Snapdragon 8 Elite / 8 Gen", "lt": 1650, "cum": "Snapdragon", "web": false}, {"ten": "Snapdragon 8xx (cũ)", "lt": 60, "cum": "Snapdragon", "web": false}, {"ten": "Snapdragon (chung)", "lt": 550, "cum": "Snapdragon", "web": false}, {"ten": "Dimensity 9000 trở lên", "lt": 110, "cum": "Dimensity", "web": false}, {"ten": "Helio", "lt": 20, "cum": "", "web": false}, {"ten": "Chip mạnh (không tên)", "lt": 260, "cum": "", "web": false}]}, {"ten": "Kết nối", "lt": 9290, "co_web": true, "khong_lam": "", "so_do": false, "gt": [{"ten": "Hỗ trợ 5G", "lt": 2040, "cum": "", "web": true}, {"ten": "Công nghệ NFC", "lt": 3840, "cum": "", "web": true}, {"ten": "4G", "lt": 1710, "cum": "", "web": false}, {"ten": "2 SIM / eSIM", "lt": 1630, "cum": "", "web": false}]}, {"ten": "Tiện ích", "lt": 1800, "co_web": true, "khong_lam": "", "so_do": false, "gt": [{"ten": "Kháng nước / bụi", "lt": 1080, "cum": "", "web": true}, {"ten": "Bảo mật khuôn mặt 3D", "lt": 0, "cum": "", "web": true}, {"ten": "Loa to / âm thanh", "lt": 320, "cum": "", "web": false}]}]}, {"slug": "tai-nghe", "nganh": "Tai nghe", "url": "https://www.thegioididong.com/tai-nghe", "moc": 547, "moc_tho": 547.3, "tong": 175150, "so_gt": 32, "nen": "giá trị đang có trên web", "duoi": 17, "duoi_lt": 1840, "so_may": 380, "cot": {"hien-tai": "nganh/tai-nghe/cot-hien-tai.html?v=936094db", "moi": "nganh/tai-nghe/cot-moi.html?v=517705c0"}, "dem": {"hien-tai": {"bo_loc": 7, "dau": 32, "khung": 0}, "moi": {"bo_loc": 11, "dau": 34, "khung": 3}}, "vd": [{"ten": "Bluetooth / không dây", "lt": 90620, "dat": true}, {"ten": "Lightning", "lt": 1480, "dat": true}, {"ten": "USB", "lt": 560, "dat": true}, {"ten": "Từ 200.000đ - 500.000đ", "lt": 470, "dat": false}, {"ten": "Từ 2 - 4 triệu", "lt": 0, "dat": false}], "vd_tren": {"ten": "USB", "lt": 560, "dat": true}, "vd_duoi": {"ten": "Từ 200.000đ - 500.000đ", "lt": 470, "dat": false}, "the": {"so_bo_loc": 11, "cum": [], "khac": ["Khoảng giá khác"], "xep": ["Dưới 200.000đ", "Từ 200.000đ - 500.000đ", "Từ 500.000đ - 1 triệu"]}, "thu": [{"ten": "Khoảng giá", "lt": 4760, "co_web": true, "khong_lam": "", "so_do": true, "gt": [{"ten": "Dưới 200.000đ", "lt": 300, "cum": "", "web": true}, {"ten": "Từ 200.000đ - 500.000đ", "lt": 470, "cum": "", "web": true}, {"ten": "Từ 500.000đ - 1 triệu", "lt": 3780, "cum": "", "web": true}, {"ten": "Từ 1 - 2 triệu", "lt": 190, "cum": "", "web": true}, {"ten": "Từ 2 - 4 triệu", "lt": 0, "cum": "", "web": true}, {"ten": "Trên 4 triệu", "lt": 20, "cum": "", "web": true}]}, {"ten": "Nhu cầu sử dụng", "lt": 16370, "co_web": true, "khong_lam": "", "so_do": false, "gt": [{"ten": "Gaming", "lt": 9240, "cum": "", "web": true}, {"ten": "Thể thao", "lt": 2710, "cum": "", "web": true}, {"ten": "Ngủ", "lt": 870, "cum": "", "web": false}, {"ten": "Kiểm âm / phòng thu", "lt": 2180, "cum": "", "web": false}, {"ten": "Học tập / văn phòng / tổng đài", "lt": 560, "cum": "", "web": false}]}, {"ten": "Đánh giá chung", "lt": 0, "co_web": false, "khong_lam": "Khen chung / sắp xếp có sẵn, không phải thuộc tính lọc", "so_do": false, "gt": []}, {"ten": "Kiểu đeo", "lt": 32660, "co_web": true, "khong_lam": "", "so_do": false, "gt": [{"ten": "True Wireless", "lt": 2400, "cum": "", "web": true}, {"ten": "Chụp tai", "lt": 19230, "cum": "", "web": true}, {"ten": "1 bên", "lt": 410, "cum": "", "web": true}, {"ten": "Nhét tai (in-ear)", "lt": 7680, "cum": "", "web": false}, {"ten": "Mở tai / kẹp tai (open-ear)", "lt": 2500, "cum": "", "web": false}, {"ten": "Đeo cổ (neckband)", "lt": 680, "cum": "", "web": false}]}, {"ten": "Màu sắc & kiểu dáng", "lt": 1150, "co_web": false, "khong_lam": "", "so_do": false, "gt": [{"ten": "Màu sắc", "lt": 370, "cum": "", "web": false}, {"ten": "Dễ thương / tai mèo", "lt": 60, "cum": "", "web": false}, {"ten": "Nhỏ gọn / mini", "lt": 720, "cum": "", "web": false}]}, {"ten": "Công nghệ", "lt": 9530, "co_web": true, "khong_lam": "", "so_do": false, "gt": [{"ten": "Dẫn truyền qua xương", "lt": 1870, "cum": "", "web": true}, {"ten": "Dẫn truyền qua khí", "lt": 0, "cum": "", "web": true}, {"ten": "AI - Phiên dịch", "lt": 7660, "cum": "", "web": true}]}, {"ten": "Chống ồn", "lt": 4370, "co_web": true, "khong_lam": "", "so_do": false, "gt": [{"ten": "Chống ồn ANC", "lt": 4350, "cum": "", "web": true}, {"ten": "Chống ồn ENC", "lt": 20, "cum": "", "web": true}]}, {"ten": "Âm thanh", "lt": 570, "co_web": true, "khong_lam": "", "so_do": false, "gt": [{"ten": "Âm thanh 7.1", "lt": 120, "cum": "", "web": true}]}, {"ten": "Thời lượng pin tai nghe", "lt": 380, "co_web": true, "khong_lam": "", "so_do": true, "gt": [{"ten": "Dưới 4 tiếng", "lt": 0, "cum": "", "web": true}, {"ten": "4 - 6 tiếng", "lt": 0, "cum": "", "web": true}, {"ten": "6 - 8 tiếng", "lt": 0, "cum": "", "web": true}, {"ten": "8 tiếng trở lên", "lt": 0, "cum": "", "web": true}]}, {"ten": "Cổng sạc", "lt": 0, "co_web": true, "khong_lam": "", "so_do": false, "gt": [{"ten": "Type-C", "lt": 0, "cum": "", "web": true}, {"ten": "Micro USB", "lt": 0, "cum": "", "web": true}]}, {"ten": "Sạc không dây", "lt": 0, "co_web": true, "khong_lam": "", "so_do": false, "gt": [{"ten": "Sạc không dây", "lt": 0, "cum": "", "web": true}]}, {"ten": "Kiểu kết nối", "lt": 111680, "co_web": true, "khong_lam": "", "so_do": false, "gt": [{"ten": "Bluetooth / không dây", "lt": 90620, "cum": "", "web": true}, {"ten": "Có dây", "lt": 21340, "cum": "", "web": true}]}, {"ten": "Jack cắm", "lt": 6520, "co_web": true, "khong_lam": "", "so_do": false, "gt": [{"ten": "3.5 mm", "lt": 1730, "cum": "", "web": true}, {"ten": "Type-C", "lt": 2790, "cum": "", "web": true}, {"ten": "Lightning", "lt": 1480, "cum": "", "web": true}, {"ten": "USB", "lt": 560, "cum": "", "web": true}]}, {"ten": "Thiết bị dùng kèm", "lt": 5920, "co_web": false, "khong_lam": "", "so_do": false, "gt": [{"ten": "Máy tính / laptop", "lt": 5440, "cum": "", "web": false}, {"ten": "Điện thoại", "lt": 480, "cum": "", "web": false}]}, {"ten": "Tiện ích", "lt": 3980, "co_web": true, "khong_lam": "", "so_do": false, "gt": [{"ten": "Chống nước", "lt": 310, "cum": "", "web": true}, {"ten": "Có mic đàm thoại", "lt": 3550, "cum": "", "web": true}]}]}, {"slug": "adapter-sac", "nganh": "Adapter sạc", "url": "https://www.thegioididong.com/adapter-sac", "moc": 78, "moc_tho": 78.0, "tong": 18730, "so_gt": 24, "nen": "giá trị đang có trên web", "duoi": 10, "duoi_lt": 50, "so_may": 198, "cot": {"hien-tai": "nganh/adapter-sac/cot-hien-tai.html?v=b45b0079", "moi": "nganh/adapter-sac/cot-moi.html?v=1c6d5f0f"}, "dem": {"hien-tai": {"bo_loc": 6, "dau": 24, "khung": 0}, "moi": {"bo_loc": 6, "dau": 24, "khung": 3}}, "vd": [{"ten": "Adapter chuyển đổi", "lt": 4410, "dat": true}, {"ten": "Sạc xe hơi", "lt": 120, "dat": true}, {"ten": "Tự điều chỉnh dòng điện", "lt": 80, "dat": true}, {"ten": "3 cổng", "lt": 30, "dat": false}, {"ten": "Trên 500.000đ", "lt": 0, "dat": false}], "vd_tren": {"ten": "Tự điều chỉnh dòng điện", "lt": 80, "dat": true}, "vd_duoi": {"ten": "3 cổng", "lt": 30, "dat": false}, "the": {"so_bo_loc": 6, "cum": [], "khac": ["Số cổng sạc khác"], "xep": ["Sạc dưới 20W", "Sạc nhanh từ 20 - dưới 45W", "Sạc nhanh từ 45 - dưới 70W"]}, "thu": [{"ten": "Khoảng giá", "lt": 0, "co_web": true, "khong_lam": "", "so_do": true, "gt": [{"ten": "Dưới 100.000đ", "lt": 0, "cum": "", "web": true}, {"ten": "Từ 100.000đ - 300.000đ", "lt": 0, "cum": "", "web": true}, {"ten": "Từ 300.000đ - 500.000đ", "lt": 0, "cum": "", "web": true}, {"ten": "Trên 500.000đ", "lt": 0, "cum": "", "web": true}]}, {"ten": "Nhu cầu chung", "lt": 0, "co_web": false, "khong_lam": "Từ chung chung; web đã có sắp xếp Nổi bật / Bán chạy / Mới nhất", "so_do": false, "gt": []}, {"ten": "Loại sản phẩm", "lt": 7190, "co_web": true, "khong_lam": "", "so_do": false, "gt": [{"ten": "Sạc điện thoại / tablet", "lt": 1120, "cum": "", "web": true}, {"ten": "Sạc laptop (Type-C)", "lt": 1050, "cum": "", "web": true}, {"ten": "Sạc không dây", "lt": 150, "cum": "", "web": true}, {"ten": "Sạc xe hơi", "lt": 120, "cum": "", "web": true}, {"ten": "Adapter chuyển đổi", "lt": 4410, "cum": "", "web": true}, {"ten": "Sạc giá rẻ", "lt": 20, "cum": "", "web": true}, {"ten": "Sạc đa năng", "lt": 370, "cum": "", "web": false}]}, {"ten": "Cổng sạc", "lt": 4230, "co_web": true, "khong_lam": "", "so_do": false, "gt": [{"ten": "Type-C", "lt": 3170, "cum": "", "web": true}, {"ten": "USB", "lt": 1150, "cum": "", "web": true}]}, {"ten": "Công suất sạc", "lt": 5340, "co_web": true, "khong_lam": "", "so_do": true, "gt": [{"ten": "Sạc dưới 20W", "lt": 1900, "cum": "", "web": true}, {"ten": "Sạc nhanh từ 20 - dưới 45W", "lt": 1330, "cum": "", "web": true}, {"ten": "Sạc nhanh từ 45 - dưới 70W", "lt": 1100, "cum": "", "web": true}, {"ten": "Sạc nhanh trên 70W", "lt": 1010, "cum": "", "web": true}]}, {"ten": "Số cổng sạc", "lt": 410, "co_web": true, "khong_lam": "", "so_do": true, "gt": [{"ten": "1 cổng", "lt": 0, "cum": "", "web": true}, {"ten": "2 cổng", "lt": 240, "cum": "", "web": true}, {"ten": "3 cổng", "lt": 30, "cum": "", "web": true}, {"ten": "4 cổng", "lt": 0, "cum": "", "web": true}, {"ten": "6 cổng", "lt": 0, "cum": "", "web": true}, {"ten": "Nhiều cổng", "lt": 140, "cum": "", "web": false}]}, {"ten": "Tiện ích", "lt": 2150, "co_web": true, "khong_lam": "", "so_do": false, "gt": [{"ten": "Tự điều chỉnh dòng điện", "lt": 80, "cum": "", "web": true}, {"ten": "Sạc nhanh", "lt": 1850, "cum": "", "web": true}, {"ten": "Có thể gấp gọn", "lt": 0, "cum": "", "web": true}, {"ten": "Công nghệ GaN", "lt": 160, "cum": "", "web": false}]}, {"ten": "Chân cắm", "lt": 270, "co_web": false, "khong_lam": "", "so_do": false, "gt": [{"ten": "Chân dẹt", "lt": 70, "cum": "", "web": false}, {"ten": "Chân tròn", "lt": 50, "cum": "", "web": false}, {"ten": "3 chấu", "lt": 160, "cum": "", "web": false}]}]}, {"slug": "camera", "nganh": "Camera giám sát", "url": "https://www.thegioididong.com/camera-giam-sat", "moc": 251, "moc_tho": 251.1, "tong": 72810, "so_gt": 29, "nen": "giá trị đang có trên web", "duoi": 15, "duoi_lt": 1430, "so_may": 109, "cot": {"hien-tai": "nganh/camera/cot-hien-tai.html?v=ae08bfb6", "moi": "nganh/camera/cot-moi.html?v=c038ebd5"}, "dem": {"hien-tai": {"bo_loc": 3, "dau": 29, "khung": 0}, "moi": {"bo_loc": 9, "dau": 52, "khung": 14}}, "vd": [{"ten": "Camera AI", "lt": 14340, "dat": true}, {"ten": "Chế độ quan sát ban đêm như ban ngày", "lt": 300, "dat": true}, {"ten": "Full HD 1080p", "lt": 270, "dat": true}, {"ten": "Theo dõi chuyển động", "lt": 180, "dat": false}, {"ten": "2 MP", "lt": 120, "dat": false}], "vd_tren": {"ten": "Full HD 1080p", "lt": 270, "dat": true}, "vd_duoi": {"ten": "Theo dõi chuyển động", "lt": 180, "dat": false}, "the": {"so_bo_loc": 9, "cum": [], "khac": ["Tiện ích khác", "Độ phân giải khác"], "xep": ["5 MP", "Full HD 1080p", "4K"]}, "thu": [{"ten": "Khoảng giá", "lt": 410, "co_web": false, "khong_lam": "", "so_do": true, "gt": [{"ten": "Dưới 500 nghìn", "lt": 210, "cum": "", "web": false}, {"ten": "Từ 500 nghìn - 1 triệu", "lt": 10, "cum": "", "web": false}, {"ten": "Trên 2 triệu", "lt": 190, "cum": "", "web": false}]}, {"ten": "Chất lượng / mới", "lt": 0, "co_web": false, "khong_lam": "Tiêu chí chung, web có sắp xếp Nổi bật/Bán chạy/Mới nhất", "so_do": false, "gt": []}, {"ten": "Nhu cầu / nơi lắp", "lt": 14850, "co_web": false, "khong_lam": "", "so_do": false, "gt": [{"ten": "Gia đình", "lt": 4280, "cum": "", "web": false}, {"ten": "Cửa hàng / văn phòng / công ty", "lt": 1390, "cum": "", "web": false}, {"ten": "Nhà xưởng / kho / công trình", "lt": 1670, "cum": "", "web": false}, {"ten": "Trang trại / vườn / ao", "lt": 470, "cum": "", "web": false}, {"ten": "Trông trẻ / người già", "lt": 1180, "cum": "", "web": false}, {"ten": "Thang máy", "lt": 350, "cum": "", "web": false}, {"ten": "Quay đóng gói đơn hàng", "lt": 5330, "cum": "", "web": false}, {"ten": "Bàn bida / sân thể thao", "lt": 280, "cum": "", "web": false}]}, {"ten": "Loại sản phẩm", "lt": 103800, "co_web": true, "khong_lam": "", "so_do": false, "gt": [{"ten": "Camera trong nhà", "lt": 9540, "cum": "", "web": true}, {"ten": "Camera ngoài trời", "lt": 11660, "cum": "", "web": true}, {"ten": "Camera năng lượng mặt trời", "lt": 6090, "cum": "", "web": true}, {"ten": "Camera 4G", "lt": 6320, "cum": "", "web": true}, {"ten": "Camera AI", "lt": 14340, "cum": "", "web": true}, {"ten": "Webcam", "lt": 7820, "cum": "", "web": true}, {"ten": "Camera quan sát thú cưng", "lt": 3280, "cum": "", "web": true}, {"ten": "Chuông cửa camera", "lt": 44470, "cum": "", "web": false}, {"ten": "Trọn bộ camera + đầu ghi", "lt": 2620, "cum": "", "web": false}]}, {"ten": "Kiểu dáng", "lt": 68020, "co_web": false, "khong_lam": "", "so_do": false, "gt": [{"ten": "Camera xoay 360 độ", "lt": 18520, "cum": "", "web": false}, {"ten": "Camera góc rộng / toàn cảnh", "lt": 2340, "cum": "", "web": false}, {"ten": "Camera mini / siêu nhỏ", "lt": 26920, "cum": "", "web": false}, {"ten": "Camera giấu kín / ngụy trang", "lt": 23230, "cum": "", "web": false}, {"ten": "Camera bóng đèn", "lt": 1550, "cum": "", "web": false}, {"ten": "Camera thân (bullet)", "lt": 500, "cum": "", "web": false}, {"ten": "Camera dome (bán cầu)", "lt": 1790, "cum": "", "web": false}]}, {"ten": "Độ phân giải", "lt": 3190, "co_web": true, "khong_lam": "", "so_do": true, "gt": [{"ten": "HD 720p", "lt": 120, "cum": "", "web": true}, {"ten": "Full HD 1080p", "lt": 270, "cum": "", "web": true}, {"ten": "2 MP", "lt": 120, "cum": "", "web": true}, {"ten": "3 MP", "lt": 70, "cum": "", "web": true}, {"ten": "4 MP", "lt": 130, "cum": "", "web": true}, {"ten": "5 MP", "lt": 150, "cum": "", "web": true}, {"ten": "6 MP", "lt": 10, "cum": "", "web": true}, {"ten": "8 MP", "lt": 140, "cum": "", "web": true}, {"ten": "10 MP", "lt": 30, "cum": "", "web": true}, {"ten": "11 MP", "lt": 0, "cum": "", "web": true}, {"ten": "13 MP", "lt": 20, "cum": "", "web": true}, {"ten": "4K", "lt": 2040, "cum": "", "web": false}]}, {"ten": "Kết nối", "lt": 35420, "co_web": false, "khong_lam": "", "so_do": false, "gt": [{"ten": "Wifi", "lt": 18040, "cum": "", "web": false}, {"ten": "Không dây", "lt": 10010, "cum": "", "web": false}, {"ten": "Có dây / LAN / PoE", "lt": 1240, "cum": "", "web": false}, {"ten": "Camera IP", "lt": 5710, "cum": "", "web": false}, {"ten": "Analog (AHD / HDCVI / TVI)", "lt": 1120, "cum": "", "web": false}, {"ten": "Xem qua điện thoại", "lt": 3860, "cum": "", "web": false}]}, {"ten": "Tiện ích", "lt": 18870, "co_web": true, "khong_lam": "", "so_do": false, "gt": [{"ten": "Phát hiện chuyển động", "lt": 320, "cum": "", "web": true}, {"ten": "Phát hiện con người", "lt": 170, "cum": "", "web": true}, {"ten": "Phát hiện tiếng khóc", "lt": 10, "cum": "", "web": true}, {"ten": "Theo dõi chuyển động", "lt": 180, "cum": "", "web": true}, {"ten": "Gửi cảnh báo đến điện thoại", "lt": 1890, "cum": "", "web": true}, {"ten": "Đàm thoại 2 chiều", "lt": 1460, "cum": "", "web": true}, {"ten": "Chế độ quan sát ban đêm có màu", "lt": 790, "cum": "", "web": true}, {"ten": "Cuộc gọi 1 chạm", "lt": 180, "cum": "", "web": true}, {"ten": "Băng tần wifi 2.4 GHz & 5 GHz", "lt": 100, "cum": "", "web": true}, {"ten": "Camera nhiều ống kính", "lt": 7300, "cum": "", "web": true}, {"ten": "Chế độ quan sát ban đêm như ban ngày", "lt": 300, "cum": "", "web": true}, {"ten": "Quan sát ban đêm (chung)", "lt": 2920, "cum": "", "web": false}, {"ten": "Ghi âm / thu âm", "lt": 860, "cum": "", "web": false}, {"ten": "Nhận diện khuôn mặt", "lt": 1250, "cum": "", "web": false}, {"ten": "Zoom quang học / nhìn xa", "lt": 1110, "cum": "", "web": false}]}, {"ten": "Lưu trữ", "lt": 1520, "co_web": false, "khong_lam": "", "so_do": false, "gt": [{"ten": "Thẻ nhớ", "lt": 580, "cum": "", "web": false}, {"ten": "Lưu trữ đám mây (cloud)", "lt": 710, "cum": "", "web": false}, {"ten": "Ghi liên tục / lưu lâu", "lt": 230, "cum": "", "web": false}]}, {"ten": "Nguồn điện", "lt": 3060, "co_web": false, "khong_lam": "", "so_do": false, "gt": [{"ten": "Dùng pin sạc", "lt": 3060, "cum": "", "web": false}]}]}];
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const so = n => String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+const MAX_HET = 4, TOP_N = 3, HE_SO = 10;
+let cur = CFG[0];
+
+/* ---------- iframe: phóng bảng Lọc vừa bề ngang cột, nhận và chuyển lệnh giữa 2 cột ---------- */
+const frames = $$('.col iframe');
+let notesOn = true;
+const send = (f, m) => f.contentWindow && f.contentWindow.postMessage(Object.assign({ tb: 1 }, m), '*');
+const rong = new Map(), popw = new Map();
+function layout() {
+  const full = document.body.classList.contains('full');
+  for (const f of frames) {
+    const box = f.parentElement, w = box.clientWidth, h = box.clientHeight;
+    if (!w) continue;
+    const pw = Math.round(Math.min(720, Math.max(440, w / 0.85 - 40)) / 20) * 20;
+    if (popw.get(f) !== pw) { popw.set(f, pw); send(f, { type: 'pop', w: pw }); }
+    const W0 = rong.get(f) || pw + 40;
+    const s = Math.min(w / W0, full ? 1.6 : 1.3);
+    f.style.width = W0 + 'px';
+    f.style.left = Math.max(0, (w - W0 * s) / 2) + 'px';
+    f.style.transform = `scale(${s})`;
+    f.style.height = Math.ceil(h / s) + 'px';
+    send(f, { type: 'k', k: Math.min(2.6, Math.max(1, 1 / s)).toFixed(3) });
+  }
+}
+addEventListener('resize', layout);
+addEventListener('message', e => {
+  const m = e.data; if (!m || !m.tb) return;
+  const src = frames.find(f => f.contentWindow === e.source); if (!src) return;
+  if (m.type === 'san-sang') { popw.delete(src); layout(); send(src, { type: 'ghi-chu', on: notesOn }); send(src, { type: 'moc', on: true }); return; }
+  if (['chon', 'nhom', 'bo'].includes(m.type)) frames.forEach(f => send(f, m));
+  else if (m.type === 'rong' && rong.get(src) !== m.w) { rong.set(src, m.w); layout(); }
+});
+
+/* ---------- chọn ngành ---------- */
+function veTabs() {
+  $('#tabs').innerHTML = CFG.map(d => `<button class="tab${d === cur ? ' on' : ''}" role="tab" aria-selected="${d === cur}" data-slug="${d.slug}">${esc(d.nganh)}</button>`).join('');
+}
+$('#tabs').addEventListener('click', e => { const b = e.target.closest('.tab'); if (b) chon(b.dataset.slug); });
+function chon(slug) {
+  cur = CFG.find(d => d.slug === slug) || CFG[0];
+  if (location.hash.slice(1) !== cur.slug) history.replaceState(null, '', '#' + cur.slug);
+  document.title = `Bộ lọc ${cur.nganh}: hiện tại và sau khi áp luật`;
+  veTabs(); veLuat(); veC10(); veQtr(); veThu();
+  $('#moc-lg').textContent = so(cur.moc);
+  for (const col of $$('.col')) {
+    const b = col.dataset.ban, d = cur.dem[b], f = col.querySelector('iframe');
+    col.querySelector('[data-dem]').innerHTML = `<span class="stat"><b>${d.bo_loc}</b>thuộc tính</span>` +
+      `<span class="stat"><b>${d.dau}</b>giá trị${b === 'moi' ? ' ở màn hình đầu' : ''}</span>` +
+      (d.khung ? `<span class="stat"><b>${d.khung}</b>giá trị trong khung ▾</span>` : '');
+    if (f.dataset.src !== cur.cot[b]) { f.dataset.src = cur.cot[b]; rong.delete(f); popw.delete(f); f.src = cur.cot[b]; }
+  }
+  requestAnimationFrame(layout);
+}
+addEventListener('hashchange', () => chon(location.hash.slice(1)));
+
+/* ---------- dải luật ---------- */
+const pt = x => (x >= 10 ? x.toFixed(1) : x.toFixed(x >= 1 ? 1 : 2)).replace('.', ',') + '%';
+const lan = x => (x >= 10 ? x.toFixed(0) : x >= 1 ? x.toFixed(1) : x.toFixed(2)).replace('.', ',');
+const n_ = s => `<b class="lq-so">${s}</b>`;
+const chipL = (t, cls = '') => `<span class="lq-chip ${cls}">${esc(t)}</span>`;
+function veLuat() {
+  const Q = cur, T = Q.the, ptCho = Q.duoi / Q.so_gt * 100, ptLt = Q.duoi_lt / Q.tong * 100;
+  const the = (stt, hoi, y, vd) => `<div class="lq-c"><div class="lq-h"><span class="lq-n">${stt}</span>${hoi}</div>
+    <ul>${y.map(x => `<li>${x}</li>`).join('')}</ul>${vd ? `<div class="lq-vd">${vd}</div>` : ''}</div>`;
+  $('#lq').innerHTML = `
+    <div class="lq-c lq-moc"><div class="lq-t">Mốc của ${esc(Q.nganh)}</div>
+      <div class="lq-big">${so(Q.moc)}<small>lượt tìm/tháng</small></div>
+      <div class="lq-f">${so(Q.tong)} lượt ÷ ${Q.so_gt} giá trị ÷ ${HE_SO} = ${String(Q.moc_tho).replace('.', ',')}, bỏ số lẻ</div>
+      <div class="lq-f lq-cm">${Q.duoi}/${Q.so_gt} giá trị dưới mốc chiếm ${n_(pt(ptCho))} số chỗ, chỉ mang về ${n_(pt(ptLt))} lượt tìm</div>
+      <button class="lk" id="b-c10">Vì sao chia ${HE_SO}?</button></div>
+    ${the(1, 'Thuộc tính có được hiện?', [`Từ ${n_(so(Q.moc) + ' lượt')} thì kéo ra`, 'Nhiều lượt tìm xếp trước', `Không xét số máy`], `Đạt: ${T.so_bo_loc} thuộc tính`)}
+    ${the(2, 'Có gom thành nút ▾?', [`Từ ${n_('2 cụm')}, mỗi cụm từ ${n_('2 giá trị')}`, `Cả thuộc tính từ ${n_('6 giá trị')}`, 'Gom xong mới xét luật 3'],
+      T.cum.length ? T.cum.map(t => chipL(t + ' ▾', 'cum')).join('') : 'Ngành này chưa có cụm')}
+    ${the(3, 'Giá trị có nút riêng?', [`Từ ${n_(MAX_HET + ' giá trị')} trở xuống: hiện hết`, `Nhiều hơn: đạt ${n_('mốc ' + so(Q.moc))} thì hiện`, `Ít hơn ${TOP_N} giá trị đạt: lấy ${TOP_N} giá trị cao nhất`])}
+    ${the(4, 'Phần còn lại đi đâu?', [`Từ ${n_('2 giá trị')}: vào ${n_('Khác ▾')}`, 'Chỉ 1 giá trị: hiện luôn', 'Giá trị web chưa có: chỉ thêm khi đạt mốc'],
+      T.khac.length ? T.khac.map(t => chipL(t + ' ▾', 'khac')).join('') : 'Ngành này không có nhóm Khác')}
+    ${the(5, 'Xếp giá trị thế nào?', [`Có số đo: ${n_('thấp → cao')}`, `Không số đo: ${n_('A → Z')}`, `${n_('Khác')} luôn đứng cuối`],
+      T.xep.length ? T.xep.map(t => chipL(t)).join('→') : '')}`;
+  $('#b-c10').onclick = () => setDrawer(dCt, !dCt.classList.contains('open'));
+}
+
+/* ---------- Vì sao chia 10 ---------- */
+function veC10() {
+  const Q = cur, ptCho = Q.duoi / Q.so_gt * 100, ptLt = Q.duoi_lt / Q.tong * 100;
+  $('#ct-pill').textContent = `${Q.nganh}: mốc ${so(Q.moc)} lượt tìm/tháng`;
+  const pt3 = x => (x >= 0.1 ? x.toFixed(2) : x.toFixed(3)).replace('.', ',') + '%';
+  const vdTinh = v => {
+    if (!v) return '';
+    const cho = 100 / Q.so_gt, lt = v.lt / Q.tong * 100, gap = lt ? cho / lt : Infinity, vao = gap >= HE_SO;
+    return `<div class="vdct-b ${vao ? 'chua' : 'du'}"><div class="vdct-t">${esc(v.ten)}: ${so(v.lt)} lượt tìm/tháng</div>
+      <ol><li>% số chỗ = 1 ÷ ${Q.so_gt} = <b>${pt3(cho)}</b></li>
+        <li>% lượt tìm = ${so(v.lt)} ÷ ${so(Q.tong)} = <b>${pt3(lt)}</b></li>
+        <li>Tỷ lệ chiếm chỗ = <b>${isFinite(gap) ? 'gấp ' + lan(gap) + ' lần' : 'không có lượt tìm'}</b></li>
+        <li>${vao ? `Từ ${HE_SO} lần trở lên` : `Chưa tới ${HE_SO} lần`}: <span class="kq ${vao ? 'chua' : 'du'}">${vao ? 'Không đáng 1 chỗ riêng' : 'Đáng 1 chỗ riêng'}</span></li></ol>
+      <div class="vdct-n">Tra nhanh bằng mốc: ${so(v.lt)} ${vao ? '<' : '≥'} ${so(Q.moc)} lượt, ra cùng kết quả</div></div>`;
+  };
+  const vd = Q.vd.map(v => { const g = v.lt ? (100 / Q.so_gt) / (v.lt / Q.tong * 100) : null;
+    return `<tr><td>${esc(v.ten)}</td><td class="r">${so(v.lt)}</td><td class="r">${g == null ? 'không có lượt tìm' : 'gấp ' + lan(g) + ' lần'}</td>
+    <td><span class="kq ${v.dat ? 'du' : 'chua'}">${v.dat ? 'Đạt mốc' : 'Dưới mốc'}</span></td></tr>`; }).join('');
+  $('#ctg').innerHTML = `
+    <div class="card"><h4>Mỗi giá trị chiếm 1 chỗ như nhau</h4>
+      <div><b>${Q.duoi} trên ${Q.so_gt}</b> giá trị của ${esc(Q.nganh)} dưới mốc ${so(Q.moc)} lượt</div>
+      <div class="thanh"><span class="tn">Chiếm</span><i class="tv"><b style="width:${ptCho}%"></b></i><span class="ts"><b>${pt(ptCho)}</b> số chỗ</span></div>
+      <div class="thanh"><span class="tn">Mang về</span><i class="tv"><b class="lt" style="width:${Math.max(ptLt, 1)}%"></b></i><span class="ts"><b>${pt(ptLt)}</b> lượt tìm</span></div>
+      <div style="margin-top:8px">Nhóm này chiếm chỗ <span class="gap-to">gấp ${ptLt ? lan(ptCho / ptLt) : '∞'} lần</span> phần lượt tìm mang về</div>
+      <div class="ghi">Tính trên ${esc(Q.nen)}, không tính Thương hiệu.</div></div>
+    <div class="card"><h4>Công thức</h4>
+      <div class="cthuc">Tỷ lệ chiếm chỗ = % số chỗ ÷ % lượt tìm</div>
+      <ul><li>% số chỗ = 1 ÷ ${Q.so_gt} giá trị = ${pt(100 / Q.so_gt)}</li>
+        <li>% lượt tìm = lượt tìm của giá trị ÷ ${so(Q.tong)} lượt</li>
+        <li><b>Gấp từ ${HE_SO} lần trở lên</b>: không đáng 1 chỗ riêng</li></ul>
+      <div class="cthuc" style="margin-top:12px">Đổi ra lượt tìm để tra nhanh</div>
+      <ul><li>Mốc = tổng lượt tìm ÷ số giá trị ÷ ${HE_SO}</li>
+        <li>${so(Q.tong)} ÷ ${Q.so_gt} ÷ ${HE_SO} = ${String(Q.moc_tho).replace('.', ',')}, bỏ số lẻ: <b>${so(Q.moc)} lượt</b></li>
+        <li>Mỗi ngành tự ra mốc của mình, không dùng chung 1 số</li></ul>
+      <div class="cthuc" style="margin-top:12px">Ví dụ áp công thức</div>
+      <div class="vdct">${vdTinh(Q.vd_duoi)}${vdTinh(Q.vd_tren)}</div></div>
+    <div class="card"><h4>Tính thử ${Q.vd.length} giá trị</h4>
+      <table><tr><th>Giá trị</th><th class="r">Lượt tìm</th><th class="r">Chiếm chỗ</th><th></th></tr>${vd}</table>
+      <div class="ghi">Dưới mốc chưa chắc vào Khác: còn luật 4 giá trị trở xuống, luật lấy ${TOP_N} giá trị nhiều lượt tìm nhất và luật chỉ 1 giá trị thì hiện luôn.</div></div>`;
+}
+
+/* ---------- Quy trình order ---------- */
+function veQtr() {
+  const AI = { seo: 'SEO', kb: 'Khai báo', nh: 'Ngành hàng' };
+  const ai = xs => (xs || []).map(k => `<span class="ai ${k}">${AI[k]}</span>`).join('');
+  const node = x => `<div class="fc-n ${x.c || ''}">${x.b ? `<span class="bb">${x.b}</span>` : ''}${ai(x.ai)}<div class="tt">${x.t}</div>${x.s ? `<div class="ss">${x.s}</div>` : ''}${x.nut || ''}</div>`;
+  const doc = (nhan = '') => `<div class="fc-v">${nhan ? `<span>${nhan}</span>` : ''}</div><div class="fc-gap"></div><div class="fc-gap"></div>`;
+  const hang = (x, ben) => node(x) + (ben ? `<div class="fc-h"><span>${ben.lb}</span></div>${node(ben)}` : '<div class="fc-gap"></div><div class="fc-gap"></div>');
+  $('#fc').innerHTML = [
+    hang({ b: 'Bước 1', ai: ['seo'], t: 'Gửi bộ Filter đề xuất cho Khai báo và Ngành hàng', s: 'Chọn theo nhu cầu tìm kiếm và sử dụng của khách. Lượt tìm lấy từ Ahrefs, Google Trends' }), doc(),
+    hang({ b: 'Bước 2', ai: ['kb', 'nh'], t: 'Khai báo bộ Filter. Ngành hàng xem lại', s: 'Ngành hàng muốn thêm giá trị nào thì gửi bổ sung' }), doc(),
+    hang({ b: 'Bước 3', c: 'd', t: 'Ngành hàng muốn bổ sung?' }, { lb: 'Không', c: 'end', t: 'Giữ nguyên, không làm thêm' }), doc('Có'),
+    hang({ b: 'Bước 4', ai: ['seo'], t: 'Research giá trị muốn thêm', s: 'Lượt tìm/tháng của giá trị', nut: '<button class="lk" id="b-qtr-thu">Thử order giá trị này</button>' }), doc(),
+    hang({ c: 'd', t: 'Đủ điều kiện hiện theo 5 luật?', s: `Mốc của ${esc(cur.nganh)}: ${so(cur.moc)} lượt` }, { lb: 'Có', c: 'ok', ai: ['kb'], t: 'Khai báo bổ sung' }), doc('Không'),
+    hang({ ai: ['seo', 'nh'], t: 'SEO xác nhận lại nhu cầu với Ngành hàng' }), doc(),
+    hang({ c: 'd', t: 'Ngành hàng vẫn muốn hiện?' }, { lb: 'Không', c: 'end', t: 'Không hiện, không làm thêm' }), doc('Có'),
+    hang({ ai: ['kb'], t: 'Khai báo bổ sung, hiện thử', s: 'Giá trị hiện theo mong muốn kinh doanh, chưa đủ điều kiện của SEO' }), doc(),
+    hang({ b: 'Bước 5', c: 'd', t: 'Sau 1 tháng có từ 300 lượt truy cập?' }, { lb: 'Có', c: 'ok', t: 'Tiếp tục giữ' }), doc('Không'),
+    hang({ c: 'bad', t: 'Bỏ hoặc gộp giá trị' }),
+    `<div class="fc-dk">${node({ b: 'Bước 6, định kỳ', ai: ['seo'], t: '3 tháng/lần làm mới cả bộ Filter', s: 'Chạy lại từ Bước 1 với lượt tìm mới nhất' })}</div>`,
+  ].join('');
+  $('.fc-lg').innerHTML = `<span>Ai làm:</span>${ai(['seo', 'kb', 'nh'])}<span class="sp"></span><span>Ô vàng có dấu ? là chỗ hỏi Có / Không</span>`;
+  $('#b-qtr-thu').onclick = () => setDrawer(dThu, true);
+}
+
+/* ---------- Thử order: cùng luật với ap-luat-quy-trinh-nhieu-nganh.py ---------- */
+const giaTriDo = t => { t = t.toLowerCase(); const m = t.match(/(\d+(?:[.,]\d+)?)/); if (!m) return null;
+  let v = parseFloat(m[1].replace(/\.(?=\d{3})/g, '').replace(',', '.')); const sau = t.slice(m.index + m[0].length).trim();
+  if (/^(triệu|tr)/.test(sau)) v *= 1e6; else if (/^(nghìn|k|\.000)/.test(sau)) v *= 1e3; else if (/^tb/.test(sau)) v *= 1000;
+  if (t.startsWith('dưới')) v -= 0.5; else if (t.startsWith('trên')) v += 0.5; return v; };
+const xep = (xs, soDo) => [...xs].sort((a, b) => {
+  const va = soDo ? giaTriDo(a.ten) : null, vb = soDo ? giaTriDo(b.ten) : null;
+  if ((va === null) !== (vb === null)) return va === null ? 1 : -1;
+  if (va !== null && va !== vb) return va - vb;
+  return a.ten.localeCompare(b.ten, 'vi');
+});
+function ap(items, moc, cho) {                          // {ten: {k:'hien'|'khac', ly}}
+  const out = {}, n = items.length;
+  if (n <= MAX_HET) items.forEach(x => out[x.ten] = { k: 'hien', ly: `${cho} có ${n} giá trị (từ ${MAX_HET} trở xuống) nên hiện hết` });
+  else {
+    const dat = items.filter(x => x.lt >= moc);
+    if (dat.length >= TOP_N) items.forEach(x => out[x.ten] = x.lt >= moc ? { k: 'hien', ly: `Đạt mốc ${so(moc)} lượt` } : { k: 'khac', ly: `Chưa đạt mốc ${so(moc)} lượt` });
+    else {
+      const top = [...items].sort((a, b) => b.lt - a.lt).slice(0, TOP_N);
+      items.forEach(x => out[x.ten] = top.includes(x)
+        ? { k: 'hien', ly: `${x.lt >= moc ? 'Đạt' : 'Chưa đạt'} mốc ${so(moc)} lượt, nằm trong ${TOP_N} giá trị nhiều lượt tìm nhất (chỉ ${dat.length} giá trị đạt mốc)` }
+        : { k: 'khac', ly: `Chưa đạt mốc ${so(moc)} lượt, không nằm trong ${TOP_N} giá trị nhiều lượt tìm nhất` });
+    }
+  }
+  const khac = items.filter(x => out[x.ten].k === 'khac');
+  if (khac.length === 1) { const o = out[khac[0].ten]; o.k = 'hien'; o.ly += ', nhưng chỉ 1 giá trị còn lại nên hiện luôn'; }
+  return out;
+}
+function boTri(A, items, moc) {                         // gom cụm như luật 2 rồi áp luật 3, 4 ở màn hình đầu
+  const cum = {};
+  items.forEach(v => { if (v.cum) (cum[v.cum] = cum[v.cum] || []).push(v); });
+  const du = Object.keys(cum).filter(k => cum[k].length >= 2);
+  const gom = du.length >= 2 && items.length >= 6;
+  const top = gom ? items.filter(v => !du.includes(v.cum)).concat(du.map(k => ({ ten: k, lt: cum[k].reduce((s, x) => s + x.lt, 0), con: cum[k] }))) : items;
+  const kq = ap(top, moc, 'Thuộc tính'), noi = {};
+  top.forEach(x => {
+    if (x.con) x.con.forEach(y => noi[y.ten] = kq[x.ten].k === 'hien' ? { k: 'hien', ly: `Thuộc cụm ${x.ten} ▾`, cum: x.ten } : { k: 'khac', ly: `Thuộc cụm ${x.ten}, cụm vào Khác` });
+    else noi[x.ten] = kq[x.ten];
+  });
+  return { gom, top, kq, noi };
+}
+const norm = s => s.trim().toLowerCase();
+function tinh(f) {
+  const moc = cur.moc, r = { buoc: [], anh: [] };
+  if (f.bl === '__moi__') {
+    const ok = f.lt >= moc;
+    r.buoc.push(`Thuộc tính mới cần từ ${so(moc)} lượt tìm (mốc của ${cur.nganh}): ${ok ? 'đủ, được kéo ra' : 'chưa đủ, chưa kéo ra'}`);
+    if (ok) r.buoc.push(`Thuộc tính chỉ có 1 giá trị (từ ${MAX_HET} trở xuống) nên giá trị hiện luôn`);
+    r.ket = ok ? { c: `Tạo thuộc tính mới, hiện ${f.ten}`, them: 1 } : { c: 'Chưa tạo thuộc tính mới', them: 0 };
+    return r;
+  }
+  const A = cur.thu[+f.bl];
+  if (A.khong_lam) { r.buoc.push(`${A.ten} không làm bộ lọc: ${A.khong_lam}`); r.ket = { c: 'Không thêm', them: 0 }; return r; }
+  const cu = A.gt.find(x => norm(x.ten) === norm(f.ten));
+  const ltTT = A.lt - (cu ? cu.lt : 0) + f.lt, hienTT = ltTT >= moc;
+  r.buoc.push(`${A.ten}: ${so(ltTT)} lượt tìm${cu ? '' : ' (cộng thêm giá trị vừa gõ)'}, ${hienTT ? 'đạt' : 'dưới'} mốc ${so(moc)}: ${hienTT ? 'thuộc tính được kéo ra' : 'thuộc tính chưa kéo ra'}`);
+  if (!cu && A.co_web && f.lt < moc) {
+    r.buoc.push(`Web chưa có giá trị này, ${so(f.lt)} lượt chưa đạt mốc ${so(moc)} nên chưa thêm (Bước 4)`);
+    r.buoc.push('Ngành hàng vẫn muốn hiện: SEO xác nhận lại, hiện thử 1 tháng, dưới 300 lượt truy cập thì bỏ hoặc gộp');
+    r.ket = { c: 'Chưa thêm giá trị', them: 0 };
+    return r;
+  }
+  const items = A.gt.filter(x => x !== cu).concat([{ ten: f.ten, lt: f.lt, cum: cu ? cu.cum : '', moi: 1 }]);
+  const truoc = boTri(A, A.gt, moc), sau = boTri(A, items, moc), o = sau.noi[f.ten];
+  r.buoc.push(sau.gom ? 'Đủ 2 cụm và từ 6 giá trị nên gom theo cụm' : 'Chưa đủ điều kiện gom cụm');
+  r.buoc.push(sau.top.length <= MAX_HET ? `${sau.top.length} nút ở màn hình đầu (từ ${MAX_HET} trở xuống): hiện hết` : `${sau.top.length} nút ở màn hình đầu, xét mốc ${so(moc)} và ${TOP_N} giá trị cao nhất`);
+  r.buoc.push(`${f.ten}: ${o.ly}`);
+  r.ket = !hienTT ? { c: 'Thuộc tính chưa kéo ra nên chưa hiện', them: 0 }
+    : o.k === 'hien' ? { c: o.cum ? `Hiện trong khung ${o.cum} ▾` : 'Hiện riêng ở màn hình đầu', them: 1 } : { c: `Vào ${A.ten} khác ▾`, them: 0 };
+  const hienX = sau.top.filter(x => sau.kq[x.ten].k === 'hien'), khacX = sau.top.filter(x => sau.kq[x.ten].k === 'khac');
+  r.cho = { ten: A.ten, hien: xep(hienX, A.so_do), khac: khacX.length > 1 ? xep(khacX, A.so_do) : [] };
+  for (const x of A.gt) {
+    if (x === cu) continue;
+    const a = truoc.noi[x.ten], b = sau.noi[x.ten];
+    if (a && b && a.k !== b.k) r.anh.push(`${x.ten}: ${a.k === 'hien' ? 'đang hiện riêng' : 'đang ở nhóm Khác'}, nay ${b.k === 'hien' ? 'hiện riêng' : 'vào nhóm Khác'}`);
+  }
+  return r;
+}
+const el = id => document.getElementById(id);
+function veThu() {
+  $('#thu-pill').textContent = `${cur.nganh}: mốc ${so(cur.moc)} lượt tìm/tháng`;
+  const ds = cur.thu.map((a, i) => ({ a, i })).filter(x => !x.a.khong_lam).sort((x, y) => y.a.lt - x.a.lt);
+  el('qt-bl').innerHTML = ds.map(({ a, i }) => `<option value="${i}">${esc(a.ten)}${a.lt >= cur.moc ? '' : ' (chưa kéo ra)'}</option>`).join('') + '<option value="__moi__">Thuộc tính mới</option>';
+  const a0 = ds[0];
+  const vds = [{ ten: 'Giá trị mới', bl: String(a0.i), lt: Math.round(cur.moc * 3 / 10) * 10, nhan: `${a0.a.ten}, gấp 3 mốc` },
+               { ten: 'Giá trị mới', bl: String(a0.i), lt: Math.max(10, Math.round(cur.moc / 2 / 10) * 10), nhan: `${a0.a.ten}, nửa mốc` },
+               { ten: 'Thuộc tính mới', bl: '__moi__', lt: Math.round(cur.moc * 2 / 10) * 10, nhan: 'Thuộc tính mới' }];
+  el('vds').innerHTML = vds.map((v, i) => `<button class="vd-b" data-i="${i}">${esc(v.nhan)}<small>${so(v.lt)} lượt</small></button>`).join('');
+  el('vds').onclick = e => { const b = e.target.closest('.vd-b'); if (!b) return; const v = vds[+b.dataset.i];
+    el('qt-ten').value = v.ten; el('qt-bl').value = v.bl; el('qt-lt').value = v.lt; tinhThu(); };
+  el('qt-bl').value = String(a0.i); el('qt-lt').value = vds[0].lt; el('qt-ten').value = 'Giá trị mới';
+  tinhThu();
+}
+function tinhThu() {
+  const f = { ten: el('qt-ten').value.trim() || 'Giá trị mới', bl: el('qt-bl').value, lt: Math.max(0, Math.round(+el('qt-lt').value || 0)) };
+  const rg = el('qt-rg'); rg.max = Math.max(5000, cur.moc * 10, f.lt); rg.value = f.lt;
+  const r = tinh(f);
+  el('thu-kq').innerHTML = `<div class="card"><h4>Hiện tại</h4><div class="mt">Web đang chạy</div><div class="c">Có giá trị riêng</div>
+      <div class="t">Order giá trị nào thì tạo giá trị đó</div><span class="tag them">Màn hình đầu thêm 1 giá trị</span></div>
+    <div class="card"><h4>Sau khi áp luật</h4><div class="mt">Quy_Trình 15/11, mốc ${so(cur.moc)}</div><div class="c">${esc(r.ket.c)}</div>
+      <div class="t">${esc(f.ten)}: ${so(f.lt)} lượt tìm/tháng</div>
+      <span class="tag${r.ket.them ? ' them' : ''}">${r.ket.them ? 'Thêm 1 giá trị' : 'Không thêm giá trị ở màn hình đầu'}</span></div>`;
+  const chip = x => `<span class="qt-chip${x.moi ? ' moi' : ''}">${esc(x.ten)}${x.con ? ' ▾' : ''}<small>${so(x.lt)} lượt</small></span>`;
+  let h = `<div><h4>Cách tính</h4><ol>${r.buoc.map(x => `<li>${esc(x)}</li>`).join('')}</ol></div>`;
+  if (r.cho) h += `<div><h4>${esc(r.cho.ten)} sau khi thêm</h4><div class="qt-row"><b>Màn hình đầu</b>${r.cho.hien.map(chip).join('')}</div>` +
+    (r.cho.khac.length ? `<div class="qt-row khac"><b>${esc(r.cho.ten)} khác ▾</b>${r.cho.khac.map(chip).join('')}</div>` : '<div class="qt-row"><b>Không có nhóm Khác</b></div>') + '</div>';
+  h += `<div><h4>Giá trị khác bị ảnh hưởng</h4>` + (r.anh.length ? `<ul>${r.anh.map(x => `<li>${esc(x)}</li>`).join('')}</ul>` : '<p>Không giá trị nào đổi kết quả.</p>') + '</div>';
+  el('qt-ct').innerHTML = h;
+}
+el('qt-rg').addEventListener('input', e => { el('qt-lt').value = e.target.value; tinhThu(); });
+['qt-ten', 'qt-lt'].forEach(id => el(id).addEventListener('input', tinhThu));
+el('qt-bl').addEventListener('change', tinhThu);
+
+/* ---------- nút trên thanh đầu trang ---------- */
+const dThu = $('#d-thu'), dCt = $('#d-ct'), dQtr = $('#d-qtr');
+function setDrawer(d, o) {
+  for (const x of [dThu, dCt, dQtr]) { const mo = x === d && o; x.classList.toggle('open', mo); x.setAttribute('aria-hidden', String(!mo)); }
+  $('#b-qtr').classList.toggle('on', dQtr.classList.contains('open'));
+}
+$('#b-thu').onclick = () => setDrawer(dThu, !dThu.classList.contains('open'));
+$('#b-qtr').onclick = () => setDrawer(dQtr, !dQtr.classList.contains('open'));
+$$('.b-dong').forEach(b => b.onclick = () => setDrawer(null, false));
+$('#b-lq').onclick = e => {
+  const an = document.body.classList.toggle('an-lq');
+  e.currentTarget.classList.toggle('on', !an); e.currentTarget.textContent = an ? 'Luật: ẩn' : 'Luật: hiện';
+  requestAnimationFrame(layout);
+};
+const bGhi = $('#b-ghi');
+bGhi.onclick = () => {
+  notesOn = !notesOn;
+  bGhi.classList.toggle('on', notesOn); bGhi.textContent = notesOn ? 'Ghi chú: bật' : 'Ghi chú: tắt';
+  frames.forEach(f => send(f, { type: 'ghi-chu', on: notesOn }));
+};
+const cols = $('#cols');
+$('#tog').innerHTML = $$('.col').map(c => `<button class="tg" data-ban="${c.dataset.ban}" aria-pressed="true">${esc(c.querySelector('h2').textContent)}</button>`).join('');
+$('#tog').addEventListener('click', e => {
+  const b = e.target.closest('.tg'); if (!b) return;
+  const on = b.getAttribute('aria-pressed') !== 'true';
+  if (!on && $$('.tg[aria-pressed="true"]').length === 1) return;
+  b.setAttribute('aria-pressed', String(on));
+  const col = $(`.col[data-ban="${b.dataset.ban}"]`);
+  col.classList.toggle('tat', !on);
+  if (!on && col.classList.contains('big')) setFull(null);
+  cols.style.gridTemplateColumns = `repeat(${$$('.col:not(.tat)').length}, minmax(0, 1fr))`;
+  requestAnimationFrame(layout);
+});
+function setFull(col) {
+  $$('.col').forEach(c => { c.classList.toggle('big', c === col); c.querySelector('.b-full').textContent = c === col ? 'Thu nhỏ' : 'Phóng to'; });
+  document.body.classList.toggle('full', !!col);
+  requestAnimationFrame(layout);
+}
+cols.addEventListener('click', e => { const b = e.target.closest('.b-full'); if (!b) return; const col = b.closest('.col'); setFull(col.classList.contains('big') ? null : col); });
+addEventListener('keydown', e => { if (e.key === 'Escape') { setDrawer(null, false); setFull(null); } });
+
+chon(location.hash.slice(1));
+</script>
+</body></html>
