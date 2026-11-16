@@ -27,22 +27,6 @@ body { display: flex; flex-direction: column; overflow-x: hidden; overflow-y: au
 .btn.chinh { background: var(--tim); border-color: var(--tim); color: #fff; } .btn.chinh:hover { background: #5b21b6; }
 .lk { font: 600 13px Inter, system-ui, sans-serif; color: var(--tim); background: none; border: 0; padding: 0; cursor: pointer; white-space: nowrap; }
 .lk:hover { text-decoration: underline; }
-/* tổng quan: Mục tiêu > Hiện trạng > Cách tối ưu */
-.tq { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.1fr) minmax(0, 1.3fr); gap: 8px 22px; padding: 8px 8px 0; }
-body.an-tq .tq { display: none; }
-.tq-c { position: relative; background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 10px 14px 11px; min-width: 0; font-size: 13.5px; line-height: 1.4; }
-.tq-c + .tq-c::before { content: "›"; position: absolute; left: -17px; top: 50%; transform: translateY(-55%); font-size: 26px; font-weight: 700; color: #b9a5f0; }
-.tq-c h3 { margin: 0 0 6px; font-size: 15px; display: flex; align-items: center; gap: 8px; }
-.tq-c h3 span { font-size: 11.5px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: var(--tim); }
-.tq-c ul { margin: 0; padding: 0; list-style: none; }
-.tq-c li { margin: 3px 0; padding-left: 12px; position: relative; color: #344054; }
-.tq-c li::before { content: ""; position: absolute; left: 0; top: .6em; width: 5px; height: 5px; border-radius: 50%; background: #98a2b3; }
-.tq-so { display: grid; grid-template-columns: repeat(auto-fit, minmax(92px, 1fr)); gap: 6px; margin-top: 6px; }
-.tq-so div { background: #f9fafb; border: 1px solid var(--line); border-radius: 8px; padding: 4px 8px; font-size: 12px; color: var(--mut); }
-.tq-so b { display: block; font-size: 18px; color: var(--ink); line-height: 1.2; }
-.tq-so div.moi { background: var(--moi-bg); border-color: #abefc6; } .tq-so div.gop { background: var(--gop-bg); border-color: #fedf89; }
-.tq-so div.an { background: var(--an-bg); border-style: dashed; }
-.tq-c .lk { margin-top: 6px; }
 /* dải luật */
 .lq { display: grid; grid-template-columns: minmax(210px, .95fr) repeat(5, minmax(0, 1fr)); gap: 8px; padding: 8px 8px 0; }
 body.an-lq .lq { display: none; }
@@ -179,7 +163,6 @@ body.full .col:not(.big) { display: none; }
 .gia-t small { color: var(--mut); }
 .tag-s { display: inline-block; font-size: 12px; font-weight: 700; border-radius: 999px; padding: 1px 8px; white-space: nowrap; background: #f2f4f7; color: #475467; }
 .tag-s.moi { background: var(--moi-bg); color: #067647; } .tag-s.gop { background: var(--gop-bg); color: #b45309; } .tag-s.an { background: var(--an-bg); color: #98a2b3; }
-@media (max-width: 1250px) { .tq { grid-template-columns: 1fr; } .tq-c + .tq-c::before { display: none; } }
 @media (max-width: 1250px) { .lq { grid-template-columns: repeat(3, minmax(0, 1fr)); } .lq-c + .lq-c:not(.lq-moc)::before { display: none; } .c10, .qt-ct { grid-template-columns: 1fr; } .vdct { grid-template-columns: 1fr; } }
 @media (max-width: 900px) {
   body { overflow: auto; height: auto; } html { height: auto; }
@@ -196,14 +179,12 @@ body.full .col:not(.big) { display: none; }
   <div class="tabs" id="tabs" role="tablist" aria-label="Chọn ngành hàng"></div>
   <span class="sp"></span>
   <div class="tog" id="tog" role="group" aria-label="Chọn cột để xem"></div>
-  <button class="btn on" id="b-tq">Tổng quan: hiện</button>
   <button class="btn on" id="b-lq">Luật: hiện</button>
   <button class="btn" id="b-gia">Khoảng giá</button>
   <button class="btn" id="b-qtr">Quy trình order</button>
   <button class="btn chinh" id="b-thu">Thử order</button>
   <button class="btn on" id="b-ghi">Ghi chú: bật</button>
 </div>
-<div class="tq" id="tq"></div>
 <div class="lq" id="lq"></div>
 <div class="sub">
   <span><i class="sw"></i>Giữ</span>
@@ -299,7 +280,7 @@ function chon(slug) {
   cur = CFG.find(d => d.slug === slug) || CFG[0];
   if (location.hash.slice(1) !== cur.slug) history.replaceState(null, '', '#' + cur.slug);
   document.title = `Bộ lọc ${cur.nganh}: hiện tại và sau khi áp luật`;
-  veTabs(); veTq(); veLuat(); veC10(); veGia(); veQtr(); veThu();
+  veTabs(); veLuat(); veC10(); veGia(); veQtr(); veThu();
   $('#moc-lg').textContent = so(cur.moc);
   for (const col of $$('.col')) {
     const b = col.dataset.ban, d = cur.dem[b], f = col.querySelector('iframe');
@@ -337,30 +318,6 @@ function veLuat() {
       T.xep_chu.length ? T.xep_chu.map(t => chipL(t)).join('→') : T.xep.map(t => chipL(t)).join('→'))}`;
   $('#b-c10').onclick = () => setDrawer(dCt, !dCt.classList.contains('open'));
 }
-
-/* ---------- Tổng quan: Mục tiêu > Hiện trạng > Cách tối ưu (mạch trình bày theo họp 16/11) ---------- */
-function veTq() {
-  const Q = cur, H = Q.dem['hien-tai'], M = Q.dem.moi, K = Q.kb, T = Q.the;
-  const o = (so_, nhan, cls = '') => `<div class="${cls}"><b>${so_}</b>${nhan}</div>`;
-  const ds = (xs, n = 4) => xs.slice(0, n).map(esc).join(', ') + (xs.length > n ? `, … (${xs.length})` : '');
-  const moiTong = K.gia_tri.length + K.cum.length + K.khac.length;
-  $('#tq').innerHTML = `
-    <div class="tq-c"><h3><span>1</span>Mục tiêu</h3><ul>
-      <li>Bộ lọc gọn, dễ chọn: giá trị ít người tìm không chiếm 1 nút riêng</li>
-      <li>Đón đủ nhu cầu: thêm giá trị khách tìm nhiều mà web chưa có</li>
-      <li>Nhẹ việc khai báo: 1 luật chung cho mọi ngành, ít giá trị phải khai báo</li></ul></div>
-    <div class="tq-c"><h3><span>2</span>Hiện trạng ${esc(Q.nganh)}</h3>
-      <div class="tq-so">${o(H.bo_loc, 'thuộc tính')}${o(H.dau, 'giá trị')}${o(Q.duoi + '/' + Q.so_gt, 'giá trị dưới mốc')}${o(pt(Q.duoi_lt / Q.tong * 100), 'lượt tìm của nhóm đó')}</div>
-      <ul style="margin-top:6px"><li>Nhiều giá trị chiếm chỗ mà gần như không ai tìm</li>
-        <li>Thương hiệu (${Q.so_hang} hãng) xếp không theo luật nào</li></ul></div>
-    <div class="tq-c"><h3><span>3</span>Cách tối ưu</h3>
-      <div class="tq-so">${o(M.bo_loc, 'thuộc tính')}${o(M.dau, 'giá trị màn hình đầu')}${o(K.gom, 'giá trị web vào Khác / gộp', 'gop')}${o(K.bo, 'giá trị web bỏ', 'an')}${o(moiTong, 'giá trị cần khai báo mới', 'moi')}</div>
-      <ul style="margin-top:6px">
-        <li>Khai báo mới: ${K.gia_tri.length} giá trị${K.gia_tri.length ? ` (${ds(K.gia_tri)})` : ''}${K.cum.length ? `, ${K.cum.length} nút ▾ (${ds(K.cum)})` : ''}${K.khac.length ? `, ${K.khac.length} nút Khác` : ''}${K.tt.length ? `; ${K.tt.length} thuộc tính mới` : ''}</li>
-        <li>Thương hiệu: ${T.hang.map(esc).join(' → ')} … (nhiều lượt tìm trước)</li>
-        <li>5 luật bên dưới quyết định từng giá trị; rê chuột vào giá trị để xem lý do</li></ul></div>`;
-}
-
 /* ---------- Khoảng giá khách tìm ---------- */
 function veGia() {
   const Q = cur, G = Q.gia;
@@ -583,11 +540,6 @@ function setDrawer(d, o) {
 }
 $('#b-thu').onclick = () => setDrawer(dThu, !dThu.classList.contains('open'));
 $('#b-gia').onclick = () => setDrawer(dGia, !dGia.classList.contains('open'));
-$('#b-tq').onclick = e => {
-  const an = document.body.classList.toggle('an-tq');
-  e.currentTarget.classList.toggle('on', !an); e.currentTarget.textContent = an ? 'Tổng quan: ẩn' : 'Tổng quan: hiện';
-  requestAnimationFrame(layout);
-};
 $('#b-qtr').onclick = () => setDrawer(dQtr, !dQtr.classList.contains('open'));
 $$('.b-dong').forEach(b => b.onclick = () => setDrawer(null, false));
 $('#b-lq').onclick = e => {
