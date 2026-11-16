@@ -106,6 +106,15 @@
   }
 
   const priceActive = st => st.pmin > PRICE_MIN || st.pmax < PRICE_MAX;
+  const soKQ = st => {                                       // số kết quả: chế độ chỉ đếm lấy số web báo khi chọn đúng 1 giá trị
+    if (!D.chi_dem) return filterIdx(st).length;
+    const deep = deepest(st.sel), b = st.brands, gia = priceActive(st);
+    if (gia) return null;
+    if (!deep.length && !b.length) return D.tong_sp;
+    if (deep.length === 1 && !b.length) return N[deep[0]].so_sp;
+    if (!deep.length && b.length === 1) return D.brands[b[0]].so_sp;
+    return null;
+  };
   const anyFilter = st => st.sel.length || st.brands.length || priceActive(st);
 
   /* ---------- địa chỉ từng trang: mỗi nút là một trang riêng ---------- */
@@ -379,9 +388,9 @@
     return h + '</div>';
   }
   function popupFoot() {
-    const n = filterIdx(pending).length;
+    const n = soKQ(pending);
     return `<span class="demo-dest">${destText(pending)}</span><a class="!text-red-5 !border-red-5 p-10px rounded-8px w-160px border !bg-white !text-center cursor-pointer" id="demo-reset"><span>Bỏ chọn</span></a>` +
-      `<button class="relative overflow-hidden rounded-lg bg-blue-5 px-3 py-2 text-white transition-all duration-300 !text-16 font-600 !p-10px min-w-160px shrink-0" id="demo-ok">Xem ${n} kết quả</button>`;
+      `<button class="relative overflow-hidden rounded-lg bg-blue-5 px-3 py-2 text-white transition-all duration-300 !text-16 font-600 !p-10px min-w-160px shrink-0" id="demo-ok">${n == null ? 'Xem kết quả' : 'Xem ' + n + ' kết quả'}</button>`;
   }
   function mountPopup() {
     const wrap = $('#demo-pop-wrap');
@@ -451,12 +460,13 @@
 <div class="leading-24 text-primary-600 flex cursor-pointer items-center justify-end gap-1"><i class="icon__row-5-col-2"></i>So sánh</div></div></div></div>`;
   }
   function renderGrid() {
-    const idx = sortIdx(filterIdx(state));
+    let idx = sortIdx(filterIdx(state));
+    if (D.chi_dem && !idx.length && deepest(state.sel).length) idx = N[deepest(state.sel)[0]].may.slice();
     const grid = $('#demo-grid');
     const crumb = $('#demo-breadcrumb');
     if (crumb) {                                              // "26 Laptop Asus" khi đứng ở trang riêng; chọn nhiều không có trang thì chỉ "78 Laptop" như web
       const name = !hasPage(state) ? '' : picks(state).map(x => x.k === 'hang' ? D.brands[x.b].ten : N[x.id].ten).join(' ');
-      crumb.textContent = idx.length + ' ' + D.ten_trang + (name ? ' ' + name : '');
+      crumb.textContent = (D.chi_dem ? (soKQ(state) ?? idx.length) : idx.length) + ' ' + D.ten_trang + (name ? ' ' + name : '');
     }
     grid.innerHTML = idx.length ? idx.slice(0, state.shown).map(cardHtml).join('')
       : '<div id="demo-empty">Không có sản phẩm nào phù hợp với bộ lọc này.</div>';
