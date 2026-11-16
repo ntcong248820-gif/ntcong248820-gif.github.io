@@ -1,6 +1,6 @@
 <!doctype html>
 <!-- Slide trình bày bộ lọc 6 ngành (build-trinh-bay-nhieu-nganh.py thay /*CFG*/ rồi ghi ra slide.html cạnh index.html).
-     Mỗi phần 1 slide: Mục đích > Hiện trạng > Cách tối ưu > Công thức > Luật > Khoảng giá > Bộ lọc thực tế > Thử order > Quy trình > Kết quả.
+     Mỗi phần 1 slide (16/11 owner bỏ slide Khoảng giá: demo nằm hết ở Bộ lọc thực tế): Mục đích > Hiện trạng > Cách tối ưu > Công thức > Luật > Bộ lọc thực tế > Thử order > Quy trình > Kết quả.
      Chọn ngành 1 chỗ ở thanh đầu, mọi slide theo ngành đổi theo. Slide Bộ lọc thực tế dùng lại cột iframe nganh/<slug>/cot-*.html. -->
 <html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
@@ -325,13 +325,6 @@ body.full .cols { grid-template-columns: 1fr !important; } body.full .col:not(.b
   </table></div>
 </div></section>
 
-<!-- 12 · Khoảng giá -->
-<section class="sl" data-id="khoang-gia" data-nhom="Khoảng giá" data-ten="Khoảng giá"><div class="w">
-  <div class="nhan">Khoảng giá · <span id="gia-ng"></span></div>
-  <h2>Khách tìm theo khoảng giá nào</h2>
-  <div class="grid3" id="gia-g"></div>
-</div></section>
-
 <!-- 13 · Bộ lọc thực tế -->
 <section class="sl xem" data-id="bo-loc" data-nhom="Bộ lọc thực tế" data-ten="Bộ lọc thực tế">
   <div class="xem-t">
@@ -463,8 +456,8 @@ function chon(slug) {
   cur = CFG.find(d => d.slug === slug) || CFG[0];
   el('ngs').value = cur.slug;
   document.title = `Bộ lọc ${cur.nganh}`;
-  for (const id of ['c10-ng', 'luat-ng', 'xep-ng', 'gia-ng', 'xem-ng', 'thu-ng']) el(id).textContent = cur.nganh;
-  veHt(); veMoc(); veC10(); veLuat(); veXep(); veGia(); veQtr(); veThu(); veKq(); veBia();
+  for (const id of ['c10-ng', 'luat-ng', 'xep-ng', 'xem-ng', 'thu-ng']) el(id).textContent = cur.nganh;
+  veHt(); veMoc(); veC10(); veLuat(); veXep(); veQtr(); veThu(); veKq(); veBia();
   el('moc-lg').textContent = so(cur.moc);
   if (SL[idx] && SL[idx].dataset.id === 'bo-loc') moFrame();
   ganHash();
@@ -563,28 +556,6 @@ function veXep() {
       <li>Đổi cùng đơn vị, thấp → cao</li><li>"Dưới X" trước X; "Trên X", "X trở lên" sau X</li></ul></td><td>${T.xep.length ? ds(T.xep) : '<span class="mu">Ngành này không có</span>'}</td></tr>
     <tr><td class="ten">Giá trị chữ</td><td><ul style="margin:0;padding-left:18px"><li>A → Z theo từ điển tiếng Việt</li><li>Số trong tên so theo giá trị</li></ul></td><td>${T.xep_chu.length ? ds(T.xep_chu) : ''}</td></tr>
     <tr><td class="ten">Nút Khác</td><td>Luôn đứng cuối</td><td>${T.khac.length ? chip(T.khac[0], 'khac') : '<span class="mu">Ngành này không có</span>'}</td></tr>`;
-}
-
-/* ---------- khoảng giá ---------- */
-function veGia() {
-  const Q = cur, G = Q.gia;
-  if (!G.length) { el('gia-g').innerHTML = '<div class="card">Ngành này chưa có từ khoá theo khoảng giá.</div>'; return; }
-  const max = Math.max(...G.map(g => g.lt), 1), S = G.filter(g => g.so), C = G.filter(g => !g.so && g.kq === 'Không vào bộ lọc'), tong = S.reduce((s, g) => s + g.lt, 0);
-  const top = [...S].sort((a, b) => b.lt - a.lt).slice(0, 3), chua = S.filter(g => !g.web && g.lt >= Q.moc);
-  const nhan = g => g.kq === 'Nút riêng' ? `<span class="tag ${g.web ? '' : 'giu'}">${g.web ? 'Nút riêng' : 'Nút mới'}</span>`
-    : g.kq.startsWith('Vào') ? `<span class="tag gop">${esc(g.kq)}</span>` : `<span class="tag">Không vào bộ lọc</span>${g.ly ? `<br><small>${esc(g.ly)}</small>` : ''}`;
-  el('gia-g').innerHTML = `
-    <div class="card" style="grid-column: span 2"><h4>Lượt tìm từng khoảng giá</h4>
-      <table class="tb" style="font-size:14px"><tr><th>Khoảng giá</th><th class="r">Lượt tìm/tháng</th><th>Web</th><th>Sau khi áp luật</th></tr>
-      ${G.map(g => `<tr><td>${esc(g.ten)}${g.tk.length ? `<br><small>${g.tk.map(esc).join(', ')}</small>` : ''}</td>
-        <td class="r">${so(g.lt)}<i class="gbar" style="width:${Math.round(g.lt / max * 100)}%"></i></td>
-        <td>${g.web ? 'Có' : 'Chưa có'}</td><td>${nhan(g)}</td></tr>`).join('')}</table></div>
-    <div class="card"><h4>Đọc nhanh</h4><ul>
-      <li>Khách tìm nhiều nhất: ${top.map(g => `<b>${esc(g.ten)}</b> (${so(g.lt)})`).join(', ')}</li>
-      ${top.length ? `<li>${top.length} khoảng này chiếm ${pt(top.reduce((s, g) => s + g.lt, 0) / Math.max(tong, 1) * 100)} lượt tìm có ghi số tiền</li>` : ''}
-      <li>${chua.length ? `Web chưa có mà đạt mốc: ${chua.map(g => `<b>${esc(g.ten)}</b>`).join(', ')}` : 'Không có khoảng giá web chưa có mà đạt mốc'}</li>
-      ${C.length ? `<li>Tìm theo chữ, không ghi số tiền: ${C.map(g => `${esc(g.ten)} (${so(g.lt)})`).join(', ')}</li>` : ''}
-      <li>Chỉ đổi mốc tiền khi khoảng khách tìm lệch với cách web đang chia; đổi thì Ngành hàng xác nhận lại</li></ul></div>`;
 }
 
 /* ---------- bộ lọc thực tế: 2 cột iframe ---------- */
