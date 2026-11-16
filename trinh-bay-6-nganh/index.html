@@ -107,11 +107,19 @@ body.full .col:not(.big) { display: none; }
 .vdct-b ol { margin: 0; padding-left: 18px; font-size: 13px; }
 .vdct-n { margin-top: 5px; padding-top: 5px; border-top: 1px dashed var(--line); color: #475467; font-size: 12.5px; }
 /* sơ đồ quy trình order */
-.qtr-wrap { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 24px; align-items: start; }
+.qtr-wrap { display: grid; grid-template-columns: minmax(320px, 560px) minmax(0, 1fr); gap: 32px; align-items: start; }
+.qtr-mt-dau { margin: 0 0 12px; color: #344054; }
+.qtr-mt dl { margin: 6px 0 0; display: grid; grid-template-columns: 112px minmax(0, 1fr); gap: 6px 10px; }
+.qtr-mt dt { font-size: 12.5px; font-weight: 700; color: var(--mut); padding-top: 2px; }
+.qtr-mt dt.kd { color: #067647; }
+.qtr-mt dd { margin: 0; }
+.qtr-mt dd ul { margin: 0; }
+.qtr-mt-luu { background: #fffaeb; border-radius: 8px; padding: 10px 12px; border-top: 0 !important; }
 .qtr-mt { border: 1px solid var(--line); border-left: 4px solid var(--tim); border-radius: 10px; padding: 12px 16px; background: #fcfaff; font-size: 14px; line-height: 1.45; }
 .qtr-mt h4 { margin: 0 0 8px; font-size: 16px; }
 .qtr-mt-i + .qtr-mt-i { margin-top: 10px; padding-top: 10px; border-top: 1px dashed var(--line); }
 .qtr-mt ul { margin: 4px 0 0; padding-left: 18px; color: #344054; }
+@media (max-width: 1200px) { .qtr-mt dl { grid-template-columns: minmax(0, 1fr); } }
 .qtr-mt li { margin: 2px 0; }
 @media (max-width: 900px) { .qtr-wrap { grid-template-columns: minmax(0, 1fr); } }
 .fc-lg { display: flex; gap: 6px 14px; flex-wrap: wrap; font-size: 13px; color: #344054; margin-bottom: 12px; }
@@ -228,10 +236,38 @@ body.full .col:not(.big) { display: none; }
   <div class="qtr-wrap">
     <aside class="qtr-mt">
       <h4>Mục tiêu</h4>
-      <div class="qtr-mt-i"><b>1. Gọn bộ lọc</b>
-        <ul><li>Bộ lọc đang quá nhiều, rối.</li><li>Nhóm lại cho gọn và hợp lý hơn.</li><li>Khách chọn sản phẩm dễ hơn.</li></ul></div>
-      <div class="qtr-mt-i"><b>2. Thêm bộ lọc khách đang quan tâm</b>
-        <ul><li>Ngoài kia khách đang tìm, đang là xu hướng.</li><li>Web chưa có bộ lọc này.</li><li>SEO đề xuất bổ sung.</li></ul></div>
+      <p class="qtr-mt-dau">Bộ lọc là bước nằm giữa lúc khách vào trang danh mục và lúc khách chọn được máy để mua. Lọc trúng nhu cầu thì khách tìm ra máy nhanh, ít bỏ trang, dễ chốt đơn hơn.</p>
+      <div class="qtr-mt-i"><b>1. Gọn bộ lọc để khách chọn máy nhanh</b>
+        <dl>
+          <dt>Hiện tại</dt><dd><ul>
+            <li>Bộ lọc thêm theo từng đợt order, chưa đo khách có thật sự cần không.</li>
+            <li>Quá nhiều nút, cùng một loại bị chia lộn xộn (Card rời và Card tích hợp chung một chỗ).</li>
+            <li>Thương hiệu xếp theo hãng nào khai báo trước, không có luật.</li></ul></dd>
+          <dt>Làm</dt><dd><ul>
+            <li>Gom theo hãng hoặc loại thành nút 2 cấp: Intel ▾, AMD ▾, Card rời ▾.</li>
+            <li>Giá trị nhiều người tìm có nút riêng, ít người tìm vào nút Khác.</li>
+            <li>Xếp nút theo lượt tìm, số đo xếp thấp đến cao.</li></ul></dd>
+          <dt class="kd">Lợi cho bán hàng</dt><dd><ul>
+            <li>Khách thấy đúng thứ mình cần ngay màn hình đầu.</li>
+            <li>Bấm ít hơn để tới danh sách máy, ít bỏ trang giữa chừng.</li></ul></dd>
+        </dl></div>
+      <div class="qtr-mt-i"><b>2. Thêm bộ lọc khách đang tìm mà web chưa có</b>
+        <dl>
+          <dt>Hiện tại</dt><dd><ul>
+            <li>Có nhu cầu khách tìm nhiều nhưng web chưa có nút.</li>
+            <li>Nhu cầu "Học tập, văn phòng" quá chung, sinh viên và dân văn phòng cần máy khác nhau.</li></ul></dd>
+          <dt>Làm</dt><dd><ul>
+            <li>Đo lượt tìm/tháng từng nhu cầu, công nghệ mới.</li>
+            <li>Đạt mốc và có máy đang bán thì đề xuất thêm, ví dụ tách Sinh viên và Văn phòng.</li></ul></dd>
+          <dt class="kd">Lợi cho bán hàng</dt><dd><ul>
+            <li>Mỗi nút mới là một trang danh mục có thể lên Google, đón thêm khách đang tìm đúng nhu cầu đó.</li>
+            <li>Khách đi thẳng tới nhóm máy đang bán, nhất là hàng mới về.</li></ul></dd>
+        </dl></div>
+      <div class="qtr-mt-i qtr-mt-luu"><b>Điều cần giữ: không nhét mọi thứ vào bộ lọc</b>
+        <ul>
+          <li>Mỗi giá trị mới phải khai báo lại cho toàn bộ sản phẩm.</li>
+          <li>Thêm tràn lan làm team khai báo quá tải, máy mới lên web chậm, bán chậm.</li>
+          <li>Vì vậy chỉ thêm giá trị có người tìm và có máy, còn lại gom vào Khác.</li></ul></div>
     </aside>
     <div class="fc" id="fc"></div>
   </div>
