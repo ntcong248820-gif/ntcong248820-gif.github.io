@@ -54,6 +54,12 @@
       if (g.lt != null) el.insertAdjacentHTML('beforeend', `<i class="tb-ma${g.it ? ' it' : ''}">${g.lt}</i>`);   // số ở góc = lượt tìm/tháng
       if (g.anh && !el.querySelector('img')) el.insertAdjacentHTML('afterbegin', IMG(g.anh));
     }
+    for (const el of $$('[data-pbrand]', b)) {                  // logo hãng: số ở góc = lượt tìm/tháng của hãng
+      if (el.dataset.tbh) continue;
+      const h = (TB.hang || [])[+el.dataset.pbrand]; if (!h) continue;
+      el.dataset.tbh = el.dataset.pbrand;
+      el.insertAdjacentHTML('beforeend', `<i class="tb-ma">${h.so}</i>`);
+    }
     const wrap = b.firstElementChild;
     if (wrap) for (const bl of wrap.children) {
       if (bl.dataset.tbg) continue;
@@ -128,10 +134,12 @@
   function placePin() { if (!pinFor) { pin.classList.remove('show'); return; } pin.textContent = pinFor.text; place(pin, pinEl()); }
   document.addEventListener('mouseover', e => {
     if (!notesOn) return;
+    const hb = e.target.closest('#demo-pbody [data-tbh]');
+    if (hb) return showHover(hb, ((TB.hang || [])[+hb.dataset.tbh] || {}).cau);
     const c = e.target.closest('#demo-pbody [data-tbid]');
     if (c) return showHover(c, (ghi(c.dataset.tbid) || {}).cau);
     const h = e.target.closest('#demo-pbody [data-tbg] > p');
-    if (h) { const g = TB.nhom[+h.parentElement.dataset.tbg]; return showHover(h, g && g.cau); }
+    if (h) { const g = h.parentElement.dataset.tbg === 'th' ? { cau: TB.th_cau } : TB.nhom[+h.parentElement.dataset.tbg]; return showHover(h, g && g.cau); }
     hideHover();
   });
 
