@@ -155,6 +155,10 @@ body.full .cols { grid-template-columns: 1fr !important; } body.full .col:not(.b
 .qt-form #qt-ten { min-width: 220px; } .qt-form input[type=number] { width: 120px; min-width: 0; }
 .qt-form input[type=range] { min-width: 240px; padding: 0; accent-color: var(--tim); }
 .card .mt { font-size: 13.5px; color: var(--ink2); font-weight: 600; margin-bottom: 6px; }
+.md .card .mt { margin: 12px 0 2px; text-transform: uppercase; letter-spacing: .05em; font-size: 12px; color: var(--mut); }
+.md .card .mt.kd { color: #067647; }
+.md .card li { margin: 3px 0; font-size: 14.5px; }
+.md .card.luu { background: #fffaeb; border-color: #fedf89; }
 .card .c { font-size: 18px; font-weight: 700; margin-top: 4px; }
 .card .t { font-size: 14px; color: var(--ink2); white-space: pre-line; margin-top: 2px; }
 .card .tag2 { display: inline-block; margin-top: 8px; font-size: 12.5px; font-weight: 700; border-radius: 999px; padding: 3px 10px; background: var(--an-bg); color: var(--mut); }
@@ -227,15 +231,36 @@ body.full .cols { grid-template-columns: 1fr !important; } body.full .col:not(.b
 <!-- 2 · Mục đích -->
 <section class="sl" data-id="muc-dich" data-nhom="Mục đích" data-ten="Mục đích và vấn đề"><div class="w">
   <div class="nhan">Mục đích</div>
-  <h2>Gọn bộ lọc, thêm thứ khách cần, không đè tải khai báo</h2>
-  <p class="de">Tóm tắt từ buổi họp với Ngành hàng và Khai báo.</p>
-  <div class="grid3">
-    <div class="card"><div class="ico">1</div><h3>Gọn và logic hơn</h3><ul>
-      <li>Bộ lọc hiện quá nhiều, rối</li><li>Nhóm lại để khách chọn sản phẩm nhanh hơn</li></ul></div>
-    <div class="card"><div class="ico xanh">2</div><h3>Thêm bộ lọc khách đang tìm</h3><ul>
-      <li>Có bộ lọc khách quan tâm mà web chưa có</li><li>Ví dụ: Sinh viên, học tập tách khỏi Văn phòng</li></ul></div>
-    <div class="card"><div class="ico do">!</div><h3>Vấn đề cần tránh</h3><ul>
-      <li>Bộ lọc càng phức tạp, càng phải khai báo lại nhiều sản phẩm</li><li>Gây tải và làm chậm team Khai báo</li></ul></div>
+  <h2>Bộ lọc gọn và trúng nhu cầu thì khách chọn máy nhanh, dễ chốt đơn</h2>
+  <p class="de">Bộ lọc là bước nằm giữa lúc khách vào trang danh mục và lúc khách chọn được máy để mua. Tóm tắt từ buổi họp với Ngành hàng và Khai báo.</p>
+  <div class="grid3 md">
+    <div class="card"><div class="ico">1</div><h3>Gọn bộ lọc để khách chọn máy nhanh</h3>
+      <div class="mt">Hiện tại</div><ul>
+        <li>Bộ lọc thêm theo từng đợt order, chưa đo khách có thật sự cần không</li>
+        <li>Quá nhiều nút, Card rời và Card tích hợp chung một chỗ</li>
+        <li>Thương hiệu xếp theo hãng nào khai báo trước</li></ul>
+      <div class="mt">Làm</div><ul>
+        <li>Gom theo hãng hoặc loại thành nút 2 cấp: Intel ▾, AMD ▾, Card rời ▾</li>
+        <li>Ít người tìm thì vào nút Khác</li>
+        <li>Xếp nút theo lượt tìm</li></ul>
+      <div class="mt kd">Lợi cho bán hàng</div><ul>
+        <li>Khách thấy đúng thứ cần ngay màn hình đầu</li>
+        <li>Bấm ít hơn để tới danh sách máy, ít bỏ trang giữa chừng</li></ul></div>
+    <div class="card"><div class="ico xanh">2</div><h3>Thêm bộ lọc khách đang tìm mà web chưa có</h3>
+      <div class="mt">Hiện tại</div><ul>
+        <li>Có nhu cầu khách tìm nhiều nhưng web chưa có nút</li>
+        <li>"Học tập, văn phòng" quá chung: sinh viên và dân văn phòng cần máy khác nhau</li></ul>
+      <div class="mt">Làm</div><ul>
+        <li>Đo lượt tìm/tháng từng nhu cầu, công nghệ mới</li>
+        <li>Đạt mốc và có máy đang bán thì đề xuất thêm, ví dụ tách Sinh viên và Văn phòng</li></ul>
+      <div class="mt kd">Lợi cho bán hàng</div><ul>
+        <li>Mỗi nút mới là một trang danh mục có thể lên Google, đón thêm khách đang tìm đúng nhu cầu đó</li>
+        <li>Khách đi thẳng tới nhóm máy đang bán, nhất là hàng mới về</li></ul></div>
+    <div class="card luu"><div class="ico do">!</div><h3>Điều cần giữ: không nhét mọi thứ vào bộ lọc</h3><ul>
+      <li>Mỗi giá trị mới phải khai báo lại cho toàn bộ sản phẩm</li>
+      <li>Thêm tràn lan làm team Khai báo quá tải</li>
+      <li>Máy mới lên web chậm, bán chậm</li>
+      <li>Vì vậy chỉ thêm giá trị có người tìm và có máy, còn lại gom vào Khác</li></ul></div>
   </div>
 </div></section>
 
