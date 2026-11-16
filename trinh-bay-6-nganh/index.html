@@ -107,7 +107,7 @@ body.full .col:not(.big) { display: none; }
 .vdct-b ol { margin: 0; padding-left: 18px; font-size: 13px; }
 .vdct-n { margin-top: 5px; padding-top: 5px; border-top: 1px dashed var(--line); color: #475467; font-size: 12.5px; }
 /* sơ đồ quy trình order */
-.qtr-wrap { display: grid; grid-template-columns: minmax(300px, 460px) minmax(0, 1fr); gap: 32px; align-items: start; }
+.qtr-wrap { display: grid; grid-template-columns: minmax(320px, 540px) minmax(0, 1fr); gap: 32px; align-items: start; }
 .qtr-mt-dau { margin: 0 0 12px; color: #344054; }
 .qtr-mt dl { margin: 6px 0 0; display: grid; grid-template-columns: 72px minmax(0, 1fr); gap: 6px 10px; }
 .qtr-mt dt { font-size: 12.5px; font-weight: 700; color: var(--mut); padding-top: 2px; }
@@ -236,27 +236,18 @@ body.full .col:not(.big) { display: none; }
   <div class="qtr-wrap">
     <aside class="qtr-mt">
       <h4>Mục tiêu</h4>
-      <p class="qtr-mt-dau">Bộ lọc nằm giữa lúc khách vào danh mục và lúc khách chọn được máy để mua.</p>
+      <p class="qtr-mt-dau">Bộ lọc nằm giữa lúc khách vào danh mục và lúc khách chọn được máy để mua. Lọc càng trúng nhu cầu, khách càng nhanh tìm ra máy và càng dễ mua.</p>
       <div class="qtr-mt-i"><b>1. Gọn bộ lọc</b>
         <dl>
-          <dt>Hiện tại</dt><dd><ul>
-            <li>Nhiều nút, chưa đo khách có cần không.</li>
-            <li>Thương hiệu xếp không theo luật.</li></ul></dd>
-          <dt>Làm</dt><dd><ul>
-            <li>Gom thành nút 2 cấp: Intel ▾, AMD ▾, Card rời ▾.</li>
-            <li>Ít người tìm thì vào nút Khác.</li>
-            <li>Xếp nút theo lượt tìm.</li></ul></dd>
-          <dt class="kd">Lợi ích</dt><dd><ul>
-            <li>Khách thấy đúng thứ cần ngay màn hình đầu, chọn máy nhanh hơn.</li></ul></dd>
+          <dt>Hiện tại</dt><dd><ul><li>Bộ lọc thêm dần theo từng đợt order, chưa đo khách có thật sự tìm hay không.</li><li>Nhiều nút, khách phải đọc hết mới thấy thứ mình cần.</li><li>Cùng một loại bị chia rời rạc: Card rời, Card tích hợp nằm lẫn với các dòng RTX.</li><li>Thương hiệu xếp theo hãng nào khai báo trước, không theo nhu cầu khách.</li></ul></dd>
+          <dt>Làm</dt><dd><ul><li>Gom giá trị cùng hãng hoặc cùng loại thành 1 nút 2 cấp: Intel ▾, AMD ▾, Card rời ▾, bấm vào mới xổ chi tiết.</li><li>Giá trị ít người tìm gom vào nút Khác: vẫn lọc được, chỉ không chiếm chỗ.</li><li>Xếp nút và thương hiệu theo lượt tìm: thứ khách tìm nhiều nằm trước.</li></ul></dd>
+          <dt class="kd">Lợi ích</dt><dd><ul><li>Màn hình đầu ít nút hơn, khách thấy ngay thứ mình cần.</li><li>Ít bước hơn để tới danh sách máy, khách ít bỏ trang giữa chừng.</li><li>Mọi ngành dùng chung 1 luật, Ngành hàng và Khai báo dễ theo.</li></ul></dd>
         </dl></div>
       <div class="qtr-mt-i"><b>2. Thêm bộ lọc khách đang tìm</b>
         <dl>
-          <dt>Hiện tại</dt><dd><ul>
-            <li>Có nhu cầu khách tìm nhiều mà web chưa có nút.</li></ul></dd>
-          <dt>Làm</dt><dd><ul>
-            <li>Đạt mốc lượt tìm và có máy thì đề xuất thêm, ví dụ Sinh viên.</li></ul></dd>
-          <dt class="kd">Lợi ích</dt><dd><ul>
-            <li>Thêm trang danh mục lên Google, đón khách đang tìm đúng nhu cầu.</li></ul></dd>
+          <dt>Hiện tại</dt><dd><ul><li>Có nhu cầu khách tìm nhiều trên Google mà web chưa có nút, ví dụ laptop sinh viên.</li><li>Có nhu cầu gộp quá chung: "Học tập, văn phòng", trong khi sinh viên và dân văn phòng cần máy khác nhau.</li></ul></dd>
+          <dt>Làm</dt><dd><ul><li>Đo lượt tìm/tháng của từng nhu cầu, từng công nghệ mới (Ahrefs, Google Trends).</li><li>Đạt mốc lượt tìm của ngành thì đề xuất thêm.</li><li>Chỉ thêm khi TGDĐ có máy đang bán, để bấm vào luôn ra sản phẩm.</li></ul></dd>
+          <dt class="kd">Lợi ích</dt><dd><ul><li>Mỗi nút mới là 1 trang danh mục riêng, có thể lên Google, đón khách đang tìm đúng nhu cầu đó.</li><li>Khách vào thẳng nhóm máy phù hợp, không phải tự lọc lại.</li><li>Hàng mới về (chip, card mới) có chỗ hiện sớm.</li></ul></dd>
         </dl></div>
     </aside>
     <div class="fc" id="fc"></div>
