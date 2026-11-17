@@ -213,19 +213,20 @@
   document.addEventListener('click', e => {
     if (!notesOn || !e.isTrusted) return;
     const h = e.target.closest('#demo-pbody [data-tbg] > p');
-    if (h) { const bl = h.parentElement; return post({ type: 'nhom', keys: blockKeys(bl), rel: relOf(bl) }); }
+    if (h) { const bl = h.parentElement, g = bl.dataset.tbg === 'th' ? { ma: ['E1'], cau: TB.th_cau } : (TB.nhom[+bl.dataset.tbg] || {});
+      return post({ type: 'nhom', keys: blockKeys(bl), rel: relOf(bl), ma: g.ma || [], cau: g.cau || '', nhan: h.textContent.trim() }); }
     // Bấm giá trị là lọc thật ở cột này (owner chốt 12/11), đồng thời cột kia cuộn tới giá trị tương ứng.
     const c = e.target.closest('#demo-pbody [data-pnode]');
     if (c && c.dataset.tbid) {
       if (c.className.includes('!border-blue-5')) return post({ type: 'bo' });   // đang chọn: bấm là bỏ chọn, thôi tô
       const bl = c.closest('[data-tbg]');
-      return post({ type: 'chon', keys: ghi(c.dataset.tbid).k, id: c.dataset.tbid, ten: N[c.dataset.tbid].ten.toLowerCase(), nhomKeys: bl ? blockKeys(bl) : null, rel: bl ? relOf(bl) : null });
+      return post({ type: 'chon', keys: ghi(c.dataset.tbid).k, id: c.dataset.tbid, ma: ghi(c.dataset.tbid).ma || [], cau: ghi(c.dataset.tbid).cau || '', nhan: N[c.dataset.tbid].ten, ten: N[c.dataset.tbid].ten.toLowerCase(), nhomKeys: bl ? blockKeys(bl) : null, rel: bl ? relOf(bl) : null });
     }
     const x = e.target.closest('#demo-pbody [data-pexp]');
     if (x && x.dataset.tbid) {
       if (x.classList.contains('is-open')) { post({ type: 'bo' }); return; }
       const bl = x.closest('[data-tbg]');
-      return post({ type: 'chon', keys: ghi(x.dataset.tbid).k, id: x.dataset.tbid, ten: N[x.dataset.tbid].ten.toLowerCase(), nhomKeys: bl ? blockKeys(bl) : null, rel: bl ? relOf(bl) : null });
+      return post({ type: 'chon', keys: ghi(x.dataset.tbid).k, id: x.dataset.tbid, ma: ghi(x.dataset.tbid).ma || [], cau: ghi(x.dataset.tbid).cau || '', nhan: N[x.dataset.tbid].ten, ten: N[x.dataset.tbid].ten.toLowerCase(), nhomKeys: bl ? blockKeys(bl) : null, rel: bl ? relOf(bl) : null });
     }
     if (e.target.closest('#demo-pbody') && !e.target.closest('a,button,input')) post({ type: 'bo' });
   }, true);
