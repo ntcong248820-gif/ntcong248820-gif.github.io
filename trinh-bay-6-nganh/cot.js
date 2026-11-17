@@ -213,7 +213,7 @@
   document.addEventListener('click', e => {
     if (!notesOn || !e.isTrusted) return;
     const h = e.target.closest('#demo-pbody [data-tbg] > p');
-    if (h) { const bl = h.parentElement, g = bl.dataset.tbg === 'th' ? { ma: ['E1'], cau: TB.th_cau } : (TB.nhom[+bl.dataset.tbg] || {});
+    if (h) { const bl = h.parentElement, g = bl.dataset.tbg === 'th' ? { ma: ['A5', 'E1'], cau: TB.th_cau } : (TB.nhom[+bl.dataset.tbg] || {});
       return post({ type: 'nhom', keys: blockKeys(bl), rel: relOf(bl), ma: g.ma || [], cau: g.cau || '', nhan: h.textContent.trim() }); }
     // Bấm giá trị là lọc thật ở cột này (owner chốt 12/11), đồng thời cột kia cuộn tới giá trị tương ứng.
     const c = e.target.closest('#demo-pbody [data-pnode]');
