@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="vi">
+<head><meta name="robots" content="noindex, nofollow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<title>Demo hệ trang Blog</title>
+<style>
+:root{--text:#252A31;--muted:#667085;--line:#E5E7EB;--bg:#F2F4F7;--primary:#2A83E9;--yellow:#FFD500}
+@media (prefers-color-scheme:dark){:root{--text:#E6E8EC;--muted:#98A2B3;--line:#333B47;--bg:#14181F}}
+*{box-sizing:border-box}
+body{margin:0;font:15px/1.55 Inter,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;color:var(--text);background:var(--bg)}
+header{background:var(--yellow);padding:22px 16px}
+header div,main{max-width:960px;margin:0 auto}
+h1{margin:0;font-size:22px;color:#1D2939}
+header p{margin:6px 0 0;color:#344054;font-size:14px}
+main{padding:20px 16px 48px}
+h2{font-size:17px;margin:28px 0 4px}
+.sub{color:var(--muted);margin:0 0 10px;font-size:14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
+a.card{display:block;padding:14px 16px;border:1px solid var(--line);border-radius:10px;background:#fff;color:#252A31;text-decoration:none}
+a.card:hover{border-color:var(--primary)}
+a.card b{display:block;font-size:15px}
+a.card span{display:block;color:#667085;font-size:13px;margin-top:2px}
+a.card em{font-style:normal;color:var(--primary);font-size:12px}
+.note{margin-top:28px;padding:12px 14px;border:1px dashed var(--line);border-radius:8px;color:var(--muted);font-size:13px}
+</style>
+</head>
+<body>
+<header><div>
+<h1>Demo hệ trang /blog và khối Bài viết liên quan</h1>
+<p>Bản mẫu để IT xem cùng Doc mô tả. Bài viết là bài thật của Thế Giới Di Động. Mỗi trang có ô ghi chú nhỏ ghi mã rule (A1 đến A9, B1 đến B4) để đối chiếu với Doc.</p>
+</div></header>
+<main>
+
+<h2>1. Hệ trang /blog</h2>
+<p class="sub">Trang gom bài 3 hệ và trang tìm kiếm chung (rule A1 đến A5).</p>
+<div class="grid">
+<a class="card" href="trang-blog/blog/index.html"><b>/blog</b><span>Bài mới nhất của Tin tức, Hỏi Đáp, Game App</span><em>A1, A3</em></a>
+<a class="card" href="trang-blog/blog/trang-2/index.html"><b>/blog?page=2</b><span>Trang 2 của danh sách</span><em>A1</em></a>
+<a class="card" href="trang-blog/tim-kiem/index.html"><b>/blog/tim-kiem</b><span>Có kết quả và không có kết quả, đổi bằng nút trên đầu trang</span><em>A4, A5</em></a>
+</div>
+
+<h2>2. Trang chủ đề và trang chủ từng hệ</h2>
+<p class="sub">Trang chủ đề theo Tag (A9) và ô tìm kiếm mới trên trang chủ Hỏi Đáp (A8).</p>
+<div class="grid">
+<a class="card" href="chu-de-trang-chu/chu-de/index.html"><b>/blog/chu-de/iphone-18-pro-max</b><span>Tag nhiều bài, đủ ngưỡng để cho Google index</span><em>A9</em></a>
+<a class="card" href="chu-de-trang-chu/chu-de/oppo-find-x10-pro-max/index.html"><b>/blog/chu-de/oppo-find-x10-pro-max</b><span>Tag ít bài, dưới ngưỡng: vẫn mở được nhưng không cho index</span><em>A9</em></a>
+<a class="card" href="chu-de-trang-chu/trang-chu-hoi-dap/index.html"><b>/hoi-dap có ô tìm kiếm mới</b><span>Bấm Tìm sang trang tìm kiếm chung</span><em>A8</em></a>
+</div>
+
+<h2>3. Khối Bài viết liên quan trên Ngành hàng và Hãng</h2>
+<p class="sub">Mỗi trang đổi được 3 trạng thái kinh doanh và 3 cách hiện khối (rule B3, B4).</p>
+<div class="grid">
+<a class="card" href="nganh-hang-hang/nganh-hang/index.html"><b>Trang Ngành hàng</b><span>Đang bán, chưa kinh doanh, ngừng kinh doanh</span><em>B3, B4</em></a>
+<a class="card" href="nganh-hang-hang/hang/index.html"><b>Trang Hãng</b><span>Đang bán, chưa kinh doanh, ngừng kinh doanh</span><em>B3, B4</em></a>
+</div>
+
+<h2>4. Khối Bài viết liên quan trên trang Sản phẩm</h2>
+<p class="sub">Mỗi trang đổi được 3 cách hiện khối, bật tắt bài viết sản phẩm và đánh giá để thấy vị trí khối đổi (rule B3, B4).</p>
+<div class="grid">
+<a class="card" href="san-pham/dang-ban/index.html"><b>Sản phẩm đang bán</b><span>iPhone 18 Pro Max</span><em>B3, B4</em></a>
+<a class="card" href="san-pham/chua-ban/index.html"><b>Sản phẩm chưa bán</b><span>Asus ROG G1000</span><em>B3, B4</em></a>
+<a class="card" href="san-pham/ngung-ban/index.html"><b>Sản phẩm ngừng bán</b><span>Dell Vostro 15 3520</span><em>B3, B4</em></a>
+</div>
+
+<p class="note">Cần mở bằng địa chỉ http (không mở trực tiếp file) để ảnh và nút đổi trạng thái chạy đúng. Chữ trong phần infobox và nội dung sản phẩm là văn mẫu, chưa phải bài SEO thật. Nút "Xem tất cả" của khối Bài viết liên quan ở mọi trang đều mở trang chủ đề mẫu iPhone 18 Pro Max, vì demo chỉ dựng 2 trang chủ đề mẫu.</p>
+</main>
+</body>
+</html>

@@ -1,0 +1,765 @@
+<!doctype html>
+<html lang="vi">
+<head><meta name="robots" content="noindex, nofollow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="referrer" content="no-referrer"><!-- CDN ảnh TGDĐ trả 403 khi Referer là domain lạ -->
+<title>Demo khối Bài viết về, trang Hãng</title>
+<meta name="description" content="Demo khối Bài viết về [Tên] trên trang Hãng">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/demo-blog.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Demo", "item": ""}]}</script>
+</head>
+<body>
+<a class="skip" href="#main">Bỏ qua tới nội dung chính</a>
+<div class="db-bar" role="region" aria-label="Chọn trạng thái xem thử">
+  <div class="container db-bar-in">
+    <p class="db-title">Khối “Bài viết về [Tên]” trên trang Hãng <small>Bản demo cho IT, bài là bài thật của TGDĐ</small></p>
+    <div class="db-row"><span class="db-label">Trạng thái kinh doanh</span><div class="db-seg"><button type="button" class="db-btn" data-pick="state:dang-ban" aria-pressed="false">Đang bán<br><small>Laptop Dell</small></button><button type="button" class="db-btn" data-pick="state:chua-kd" aria-pressed="false">Chưa kinh doanh<br><small>RAM Kingston</small></button><button type="button" class="db-btn" data-pick="state:ngung-kd" aria-pressed="false">Ngừng kinh doanh (hết hàng)<br><small>Laptop Samsung</small></button></div></div>
+    <div class="db-row"><span class="db-label">Cách khối hiện</span><div class="db-seg"><button type="button" class="db-btn db-btn--sub" data-pick="mode:du" aria-pressed="false">Đủ 5 bài theo Tag của Hãng</button><button type="button" class="db-btn db-btn--sub" data-pick="mode:thieu" aria-pressed="false">Thiếu bài, lấy thêm theo Ngành hàng</button><button type="button" class="db-btn db-btn--sub" data-pick="mode:khong" aria-pressed="false">Không có bài nào, ẩn khối</button></div></div>
+    <div class="db-row"><span class="db-label">Bài viết SEO của trang</span><div class="db-seg">
+      <button type="button" class="db-btn db-btn--sub" data-pick="seo:co" aria-pressed="false">Có</button>
+      <button type="button" class="db-btn db-btn--sub" data-pick="seo:khong" aria-pressed="false">Không</button>
+      <button type="button" class="db-btn db-btn--sub" data-toggle-notes aria-pressed="true">Ghi chú: <b>Bật</b></button></div></div>
+  </div>
+</div>
+<header class="site-header">
+  <div class="container header-top">
+    <a class="logo" href="#" aria-label="Thế Giới Di Động - về mục lục demo">
+      <img src="https://cdnv2-tmdt.tgdd.vn/webmwg/production-fe/tmdt-tgdd/public/static/images/logo-tgdd.png" alt="thegioididong.com" width="265" height="48"></a>
+    <form class="search" role="search" onsubmit="return false">
+      <label class="sr-only" for="q">Tìm kiếm</label>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg><input id="q" type="search" placeholder="Bạn tìm gì...">
+    </form>
+    <nav class="header-actions" aria-label="Tài khoản">
+      <a href="#"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span>Đăng nhập</span></a>
+      <a href="#"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2 2h3l2.7 12.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg><span>Giỏ hàng</span></a>
+      <a class="location" href="#"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 5-8 12-8 12s-8-7-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Hồ Chí Minh</span></a>
+    </nav>
+  </div>
+  <nav class="container header-nav" aria-label="Ngành hàng"><ul><li><a href="#"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg><span>Điện thoại</span></a></li><li><a href="#"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 16V7a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v9m16 0H4m16 0 1.28 2.55a1 1 0 0 1-.9 1.45H3.62a1 1 0 0 1-.9-1.45L4 16"/></svg><span>Laptop</span></a></li><li><a href="#"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a9 9 0 0 1 18 0v7a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3"/></svg><span>Phụ kiện</span></a></li><li><a href="#"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="6"/><path d="M12 10v2l1 1"/><path d="m16.1 7.7-.8-4A2 2 0 0 0 13.3 2h-2.7a2 2 0 0 0-2 1.6l-.8 4.1"/><path d="m7.9 16.4.8 4a2 2 0 0 0 2 1.6h2.7a2 2 0 0 0 2-1.6l.8-4.1"/></svg><span>Smartwatch</span></a></li><li><a href="#"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="6"/><path d="M12 10v2l1 1"/><path d="m16.1 7.7-.8-4A2 2 0 0 0 13.3 2h-2.7a2 2 0 0 0-2 1.6l-.8 4.1"/><path d="m7.9 16.4.8 4a2 2 0 0 0 2 1.6h2.7a2 2 0 0 0 2-1.6l.8-4.1"/></svg><span>Đồng hồ</span></a></li><li><a href="#"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M12 18h.01"/></svg><span>Tablet</span></a></li><li><a href="#"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg><span>Máy cũ, Thu cũ</span></a></li><li><a href="#"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg><span>Màn hình, Máy in</span></a></li></ul></nav>
+</header>
+<div class="db-pane" data-pane="dang-ban"><nav class="container lv-crumb" aria-label="Breadcrumb"><ol><li><a href="https://www.thegioididong.com/laptop" target="_blank" rel="noopener">Laptop</a><svg class="sep" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></li><li aria-current="page">12 Laptop Dell</li></ol></nav><h1 class="sr-only" id="h1--hang-dang-ban">Laptop Dell</h1>
+<main class="container lv-main">
+<section class="panel lv-panel" aria-label="Danh sách sản phẩm"><div class="filter filter-top"><div class="filter-anchor"><a class="btn-filter has-filter" href="https://www.thegioididong.com/laptop-dell" target="_blank" rel="noopener"><span class="filter-ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 3H2l8 9.46V19l4 2v-8.54L22 3z"/></svg></span>Lọc</a></div><a class="picked" href="https://www.thegioididong.com/laptop" target="_blank" rel="noopener" aria-label="Bỏ lọc Dell">Dell<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></a><a class="clear-all-link" href="https://www.thegioididong.com/laptop" target="_blank" rel="noopener">Xóa tất cả</a></div><div class="lv-sort" role="group" aria-label="Sắp xếp"><span class="lv-sort-label">Sắp xếp theo:</span><span class="lv-sort-item is-active">Nổi bật</span><span class="lv-dot" aria-hidden="true"></span><span class="lv-sort-item">Bán chạy</span><span class="lv-dot" aria-hidden="true"></span><span class="lv-sort-item">Mới nhất</span><span class="lv-dot" aria-hidden="true"></span><span class="lv-sort-item">% Giảm giá</span><span class="lv-dot" aria-hidden="true"></span><span class="lv-sort-item">Giá ⇅</span></div><ol class="lv-grid" data-fold-grid><li class="lv-card" data-fold-item>
+  <a class="lv-img" href="https://www.thegioididong.com/laptop/dell-15-dc15255-r5-7530u-dc5r5973w1-2y" target="_blank" rel="noopener"><img src="https://cdnv2.tgdd.vn/mwg-static/tgdd/Products/Images/44/368556/dell-15-dc15255-r5-7530u-dc5r5973w1-2y-thumb-639180726788114595-600x600.jpg" alt="Dell 15 DC15255 R5 7530U (DC5R5973W1-2Y)"
+    width="600" height="600" loading="lazy"></a>
+  <div class="lv-info"><span class="lv-tags"><span class="lv-tag">Trả chậm 0% trả trước 0đ</span><span class="lv-tag">Quà 100.000₫</span></span>
+    <a class="lv-name" href="https://www.thegioididong.com/laptop/dell-15-dc15255-r5-7530u-dc5r5973w1-2y" target="_blank" rel="noopener" title="Dell 15 DC15255 R5 7530U (DC5R5973W1-2Y)">Dell 15 DC15255 R5 7530U (DC5R5973W1-2Y)</a>
+    <span class="lv-specs"><span class="lv-spec">RAM 16 GB</span><span class="lv-spec">SSD 512 GB</span></span>
+    <span class="lv-price">23.990.000đ</span><span class="lv-old"><del>25.690.000đ</del><b>-7%</b></span></div>
+  <span class="lv-rate"><span class="lv-star" aria-hidden="true">★</span>5<span aria-hidden="true">•</span>Đã bán 445</span>
+  <span class="lv-compare"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M8 12h8M12 8v8"/></svg>So sánh</span>
+</li><li class="lv-card" data-fold-item>
+  <a class="lv-img" href="https://www.thegioididong.com/laptop/dell-15-dc15250-i5-1334u-dc5i5897w1" target="_blank" rel="noopener"><img src="https://cdnv2.tgdd.vn/mwg-static/tgdd/Products/Images/44/362025/dell-15-dc15250-i5-1334u-dc5i5897w1-thumb-639046899814234946-600x600.jpg" alt="Dell 15 DC15250 i5 1334U (DC5I5897W1)"
+    width="600" height="600" loading="lazy"></a>
+  <div class="lv-info"><span class="lv-tags"><span class="lv-tag">Trả chậm 0% trả trước 0đ</span><span class="lv-tag">Quà 100.000₫</span></span>
+    <a class="lv-name" href="https://www.thegioididong.com/laptop/dell-15-dc15250-i5-1334u-dc5i5897w1" target="_blank" rel="noopener" title="Dell 15 DC15250 i5 1334U (DC5I5897W1)">Dell 15 DC15250 i5 1334U (DC5I5897W1)</a>
+    <span class="lv-specs"><span class="lv-spec">RAM 16 GB</span><span class="lv-spec">SSD 512 GB</span></span>
+    <span class="lv-price">22.990.000đ</span><span class="lv-old"><del>24.490.000đ</del><b>-6%</b></span></div>
+  <span class="lv-rate"><span class="lv-star" aria-hidden="true">★</span>5<span aria-hidden="true">•</span>Đã bán 3,7k</span>
+  <span class="lv-compare"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M8 12h8M12 8v8"/></svg>So sánh</span>
+</li><li class="lv-card" data-fold-item>
+  <a class="lv-img" href="https://www.thegioididong.com/laptop/dell-15-dc15250-i5-1334u-71092479" target="_blank" rel="noopener"><img src="https://cdnv2.tgdd.vn/mwg-static/tgdd/Products/Images/44/364859/dell-15-dc15250-i5-1334u-71092479-thumb-639106625637480692-600x600.jpg" alt="Dell 15 DC15250 i5 1334U (71092479)"
+    width="600" height="600" loading="lazy"></a>
+  <div class="lv-info"><span class="lv-tags"><span class="lv-tag">Trả chậm 0% trả trước 0đ</span><span class="lv-tag">Quà 100.000₫</span></span>
+    <a class="lv-name" href="https://www.thegioididong.com/laptop/dell-15-dc15250-i5-1334u-71092479" target="_blank" rel="noopener" title="Dell 15 DC15250 i5 1334U (71092479)">Dell 15 DC15250 i5 1334U (71092479)</a>
+    <span class="lv-specs"><span class="lv-spec">RAM 16 GB</span><span class="lv-spec">SSD 512 GB</span></span>
+    <span class="lv-price">22.990.000đ</span><span class="lv-old"><del>24.490.000đ</del><b>-6%</b></span></div>
+  <span class="lv-rate"><span class="lv-star" aria-hidden="true">★</span>5<span aria-hidden="true">•</span>Đã bán 1,9k</span>
+  <span class="lv-compare"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M8 12h8M12 8v8"/></svg>So sánh</span>
+</li><li class="lv-card" data-fold-item>
+  <a class="lv-img" href="https://www.thegioididong.com/laptop/dell-15-dc15250-i5-1334u-cph99" target="_blank" rel="noopener"><img src="https://cdnv2.tgdd.vn/mwg-static/tgdd/Products/Images/44/357990/dell-15-dc15250-i5-1334u-cph99-thumb-638967241287160500-600x600.jpg" alt="Dell 15 DC15250 i5 1334U (CPH99)"
+    width="600" height="600" loading="lazy"></a>
+  <div class="lv-info"><span class="lv-tags"><span class="lv-tag">Trả chậm 0% trả trước 0đ</span><span class="lv-tag">Quà 100.000₫</span></span>
+    <a class="lv-name" href="https://www.thegioididong.com/laptop/dell-15-dc15250-i5-1334u-cph99" target="_blank" rel="noopener" title="Dell 15 DC15250 i5 1334U (CPH99)">Dell 15 DC15250 i5 1334U (CPH99)</a>
+    <span class="lv-specs"><span class="lv-spec">RAM 16 GB</span><span class="lv-spec">SSD 512 GB</span></span>
+    <span class="lv-price">22.490.000đ</span><span class="lv-old"><del>24.490.000đ</del><b>-8%</b></span></div>
+  <span class="lv-rate"><span class="lv-star" aria-hidden="true">★</span>5<span aria-hidden="true">•</span>Đã bán 3k</span>
+  <span class="lv-compare"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M8 12h8M12 8v8"/></svg>So sánh</span>
+</li><li class="lv-card" data-fold-item>
+  <a class="lv-img" href="https://www.thegioididong.com/laptop/dell-15-dc15250-i5-1334u-dc15250-i5u165w11slu-27" target="_blank" rel="noopener"><img src="https://cdnv2.tgdd.vn/mwg-static/tgdd/Products/Images/44/365310/dell-15-dc15250-i5-1334u-dc15250-i5u165w11slu-27-thumb-639116750273813116-600x600.jpg" alt="Dell 15 DC15250 i5 1334U (DC15250-i5U165W11SLU-27)"
+    width="600" height="600" loading="lazy"></a>
+  <div class="lv-info"><span class="lv-tags"><span class="lv-tag">Trả chậm 0% trả trước 0đ</span><span class="lv-tag">Quà 100.000₫</span></span>
+    <a class="lv-name" href="https://www.thegioididong.com/laptop/dell-15-dc15250-i5-1334u-dc15250-i5u165w11slu-27" target="_blank" rel="noopener" title="Dell 15 DC15250 i5 1334U (DC15250-i5U165W11SLU-27)">Dell 15 DC15250 i5 1334U (DC15250-i5U165W11SLU-27)</a>
+    <span class="lv-specs"><span class="lv-spec">RAM 16 GB</span><span class="lv-spec">SSD 512 GB</span></span>
+    <span class="lv-price">22.990.000đ</span><span class="lv-old"><del>24.490.000đ</del><b>-6%</b></span></div>
+  <span class="lv-rate"><span class="lv-star" aria-hidden="true">★</span>5<span aria-hidden="true">•</span>Đã bán 1,7k</span>
+  <span class="lv-compare"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M8 12h8M12 8v8"/></svg>So sánh</span>
+</li><li class="lv-card" data-fold-item>
+  <a class="lv-img" href="https://www.thegioididong.com/laptop/dell-14-dc14250-core-5-120u-dc4c5386w" target="_blank" rel="noopener"><img src="https://cdnv2.tgdd.vn/mwg-static/tgdd/Products/Images/44/360690/dell-14-dc14250-core-5-120u-dc4c5386w-thumb-639027406591081421-600x600.jpg" alt="Dell 14 DC14250 Core 5 120U (DC4C5386W)"
+    width="600" height="600" loading="lazy"></a>
+  <div class="lv-info"><span class="lv-tags"><span class="lv-tag">Trả chậm 0% trả trước 0đ</span><span class="lv-tag">Quà 100.000₫</span></span>
+    <a class="lv-name" href="https://www.thegioididong.com/laptop/dell-14-dc14250-core-5-120u-dc4c5386w" target="_blank" rel="noopener" title="Dell 14 DC14250 Core 5 120U (DC4C5386W)">Dell 14 DC14250 Core 5 120U (DC4C5386W)</a>
+    <span class="lv-specs"><span class="lv-spec">RAM 16 GB</span><span class="lv-spec">SSD 512 GB</span></span>
+    <span class="lv-price">26.990.000đ</span><span class="lv-old"><del>29.990.000đ</del><b>-10%</b></span></div>
+  <span class="lv-rate"><span class="lv-star" aria-hidden="true">★</span>5<span aria-hidden="true">•</span>Đã bán 2,6k</span>
+  <span class="lv-compare"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M8 12h8M12 8v8"/></svg>So sánh</span>
+</li><li class="lv-card" data-fold-item>
+  <a class="lv-img" href="https://www.thegioididong.com/laptop/dell-pro-14-essential-pv14250-core-5-120u-pv14250-120u-16512w-bl" target="_blank" rel="noopener"><img src="https://cdnv2.tgdd.vn/mwg-static/tgdd/Products/Images/44/362024/dell-pro-14-essential-pv14250-core-5-120u-pv14250-120u-16512w-bl-thumb-639046727854987975-600x600.jpg" alt="Dell Pro 14 Essential PV14250 Core 5 120U (PV14250-120U-16512W-BL)"
+    width="600" height="600" loading="lazy"></a>
+  <div class="lv-info"><span class="lv-tags"><span class="lv-tag">Trả chậm 0% trả trước 0đ</span><span class="lv-tag">Quà 100.000₫</span></span>
+    <a class="lv-name" href="https://www.thegioididong.com/laptop/dell-pro-14-essential-pv14250-core-5-120u-pv14250-120u-16512w-bl" target="_blank" rel="noopener" title="Dell Pro 14 Essential PV14250 Core 5 120U (PV14250-120U-16512W-BL)">Dell Pro 14 Essential PV14250 Core 5 120U (PV14250-120U-16512W-BL)</a>
+    <span class="lv-specs"><span class="lv-spec">RAM 16 GB</span><span class="lv-spec">SSD 512 GB</span></span>
+    <span class="lv-price">27.990.000đ</span><span class="lv-old"><del>28.990.000đ</del><b>-3%</b></span></div>
+  <span class="lv-rate"><span class="lv-star" aria-hidden="true">★</span>5<span aria-hidden="true">•</span>Đã bán 2k</span>
+  <span class="lv-compare"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M8 12h8M12 8v8"/></svg>So sánh</span>
+</li><li class="lv-card" data-fold-item>
+  <a class="lv-img" href="https://www.thegioididong.com/laptop/dell-15-dc15250-i7-dc5i7748w1" target="_blank" rel="noopener"><img src="https://cdnv2.tgdd.vn/mwg-static/tgdd/Products/Images/44/340562/dell-15-dc15250-i7-dc5i7748w1-638900114799182560-600x600.jpg" alt="Dell 15 DC15250 i7 1355U (DC5I7748W1)"
+    width="600" height="600" loading="lazy"></a>
+  <div class="lv-info"><span class="lv-tags"><span class="lv-tag">Trả chậm 0% trả trước 0đ</span><span class="lv-tag">Quà 100.000₫</span></span>
+    <a class="lv-name" href="https://www.thegioididong.com/laptop/dell-15-dc15250-i7-dc5i7748w1" target="_blank" rel="noopener" title="Dell 15 DC15250 i7 1355U (DC5I7748W1)">Dell 15 DC15250 i7 1355U (DC5I7748W1)</a>
+    <span class="lv-specs"><span class="lv-spec">RAM 16 GB</span><span class="lv-spec">SSD 512 GB</span></span>
+    <span class="lv-price">25.490.000đ</span><span class="lv-old"><del>26.990.000đ</del><b>-6%</b></span></div>
+  <span class="lv-rate"><span class="lv-star" aria-hidden="true">★</span>4.9<span aria-hidden="true">•</span>Đã bán 5k</span>
+  <span class="lv-compare"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M8 12h8M12 8v8"/></svg>So sánh</span>
+</li><li class="lv-card" data-fold-item>
+  <a class="lv-img" href="https://www.thegioididong.com/laptop/dell-15-dc15250-i5-dc5i5357w1" target="_blank" rel="noopener"><img src="https://cdnv2.tgdd.vn/mwg-static/tgdd/Products/Images/44/340561/dell-15-dc15250-i5-dc5i5357w1-638900114676211077-600x600.jpg" alt="Dell 15 DC15250 i5 1334U (DC5I5357W1)"
+    width="600" height="600" loading="lazy"></a>
+  <div class="lv-info"><span class="lv-tags"><span class="lv-tag">Trả chậm 0% trả trước 0đ</span><span class="lv-tag">Quà 100.000₫</span></span>
+    <a class="lv-name" href="https://www.thegioididong.com/laptop/dell-15-dc15250-i5-dc5i5357w1" target="_blank" rel="noopener" title="Dell 15 DC15250 i5 1334U (DC5I5357W1)">Dell 15 DC15250 i5 1334U (DC5I5357W1)</a>
+    <span class="lv-specs"><span class="lv-spec">RAM 16 GB</span><span class="lv-spec">SSD 512 GB</span></span>
+    <span class="lv-price">22.490.000đ</span><span class="lv-old"><del>24.490.000đ</del><b>-8%</b></span></div>
+  <span class="lv-rate"><span class="lv-star" aria-hidden="true">★</span>5<span aria-hidden="true">•</span>Đã bán 4,3k</span>
+  <span class="lv-compare"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M8 12h8M12 8v8"/></svg>So sánh</span>
+</li><li class="lv-card" data-fold-item>
+  <a class="lv-img" href="https://www.thegioididong.com/laptop/dell-inspiron-14-5441-x1p-64-100-5mnk1" target="_blank" rel="noopener"><img src="https://cdnv2.tgdd.vn/mwg-static/tgdd/Products/Images/44/339682/dell-inspiron-14-5441-x1p-64-100-5mnk1-638895760313087821-600x600.jpg" alt="Dell Inspiron 14 5441 X1P 64 100 (5MNK1)"
+    width="600" height="600" loading="lazy"></a>
+  <div class="lv-info"><span class="lv-tags"><span class="lv-tag">Trả chậm 0% trả trước 0đ</span><span class="lv-tag">Quà 100.000₫</span></span>
+    <a class="lv-name" href="https://www.thegioididong.com/laptop/dell-inspiron-14-5441-x1p-64-100-5mnk1" target="_blank" rel="noopener" title="Dell Inspiron 14 5441 X1P 64 100 (5MNK1)">Dell Inspiron 14 5441 X1P 64 100 (5MNK1)</a>
+    <span class="lv-specs"><span class="lv-spec">RAM 16 GB</span><span class="lv-spec">SSD 512 GB</span></span>
+    <span class="lv-price">25.990.000đ</span><span class="lv-old"><del>33.990.000đ</del><b>-24%</b></span></div>
+  <span class="lv-rate"><span class="lv-star" aria-hidden="true">★</span>4.9<span aria-hidden="true">•</span>Đã bán 679</span>
+  <span class="lv-compare"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M8 12h8M12 8v8"/></svg>So sánh</span>
+</li><li class="lv-card" data-fold-item>
+  <a class="lv-img" href="https://www.thegioididong.com/laptop/dell-14-dc14250-core-3-100u-dc14250-c3u085w11slu-27" target="_blank" rel="noopener"><img src="https://cdnv2.tgdd.vn/mwg-static/tgdd/Products/Images/44/367346/dell-14-dc14250-core-3-100u-dc14250-c3u085w11slu-27-thumb-639146962678608479-600x600.jpg" alt="Dell 14 DC14250 Core 3 100U (DC14250-C3U085W11SLU-27)"
+    width="600" height="600" loading="lazy"></a>
+  <div class="lv-info"><span class="lv-tags"><span class="lv-tag">Trả chậm 0% trả trước 0đ</span><span class="lv-tag">Quà 100.000₫</span></span>
+    <a class="lv-name" href="https://www.thegioididong.com/laptop/dell-14-dc14250-core-3-100u-dc14250-c3u085w11slu-27" target="_blank" rel="noopener" title="Dell 14 DC14250 Core 3 100U (DC14250-C3U085W11SLU-27)">Dell 14 DC14250 Core 3 100U (DC14250-C3U085W11SLU-27)</a>
+    <span class="lv-specs"><span class="lv-spec">RAM 8 GB</span><span class="lv-spec">SSD 512 GB</span></span>
+    <span class="lv-price">18.990.000đ</span><span class="lv-old"><del>19.390.000đ</del><b>-2%</b></span></div>
+  <span class="lv-rate"><span class="lv-star" aria-hidden="true">★</span>5<span aria-hidden="true">•</span>Đã bán 933</span>
+  <span class="lv-compare"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M8 12h8M12 8v8"/></svg>So sánh</span>
+</li><li class="lv-card" data-fold-item>
+  <a class="lv-img" href="https://www.thegioididong.com/laptop/dell-15-dc15250-i7-1355u-71084747" target="_blank" rel="noopener"><img src="https://cdnv2.tgdd.vn/mwg-static/tgdd/Products/Images/44/360692/dell-15-dc15250-i7-1355u-71084747-thumb-639027873246623313-600x600.jpg" alt="Dell 15 DC15250 i7 1355U (71084747)"
+    width="600" height="600" loading="lazy"></a>
+  <div class="lv-info"><span class="lv-tags"><span class="lv-tag">Trả chậm 0% trả trước 0đ</span><span class="lv-tag">Quà 100.000₫</span></span>
+    <a class="lv-name" href="https://www.thegioididong.com/laptop/dell-15-dc15250-i7-1355u-71084747" target="_blank" rel="noopener" title="Dell 15 DC15250 i7 1355U (71084747)">Dell 15 DC15250 i7 1355U (71084747)</a>
+    <span class="lv-specs"><span class="lv-spec">RAM 16 GB</span><span class="lv-spec">SSD 512 GB</span></span>
+    <span class="lv-price">25.490.000đ</span><span class="lv-old"><del>26.990.000đ</del><b>-6%</b></span></div>
+  <span class="lv-rate"><span class="lv-star" aria-hidden="true">★</span>5<span aria-hidden="true">•</span>Đã bán 1,2k</span>
+  <span class="lv-compare"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M8 12h8M12 8v8"/></svg>So sánh</span>
+</li></ol></section>
+<div class="db-seo"><section class="bi" id="thong-tin--hang-dang-ban" aria-labelledby="bi-title--hang-dang-ban">
+  <h2 class="bi-title" id="bi-title--hang-dang-ban">Thông tin hãng</h2>
+  <div class="bi-frame" data-bi>
+    <div class="bi-content" id="bi-content--hang-dang-ban">
+      <div class="bi-lead"><h2>Dell &ndash; Thương hiệu laptop đ&aacute;ng tin cậy đến từ Mỹ</h2>
+<h2><a href="https://www.thegioididong.com/laptop-dell" target="_blank" rel="noopener">Laptop Dell</a> l&agrave; một trong những thương hiệu <a href="https://www.thegioididong.com/laptop" target="_blank" rel="noopener">laptop</a> h&agrave;ng đầu thế giới đến từ Mỹ, nổi bật với độ bền cao, thiết kế thực dụng v&agrave; hiệu năng ổn định. D&ugrave; bạn l&agrave; học sinh &ndash; sinh vi&ecirc;n, nh&acirc;n vi&ecirc;n văn ph&ograve;ng hay người d&ugrave;ng chuy&ecirc;n nghiệp, laptop Dell lu&ocirc;n c&oacute; những d&ograve;ng m&aacute;y ph&ugrave; hợp từ phổ th&ocirc;ng đến cao cấp.</h2></div>
+      <nav class="bi-toc" aria-label="Nội dung chính">
+        <button type="button" class="bi-toc-head" data-toc-btn aria-expanded="true" aria-controls="bi-toc-list--hang-dang-ban">
+          <span>Nội dung chính</span><svg width="20" height="20" viewBox="0 0 40 40" fill="none" aria-hidden="true"><path d="M15 11.67l7.74 7.74a.83.83 0 010 1.18L15 28.33" stroke="#2A83E9" stroke-width="3" stroke-linecap="round"/></svg></button>
+        <ol class="bi-toc-list" id="bi-toc-list--hang-dang-ban"><li class=""><a href="#cate-article-heading-0--hang-dang-ban" data-toc-link>1. Tại sao nên mua laptop Dell? Những điểm nổi bật của Laptop Dell</a></li><li class="is-sub"><a href="#cate-article-heading-1--hang-dang-ban" data-toc-link><span aria-hidden="true">•</span>Kiểu dáng linh hoạt, phù hợp nhiều phong cách</a></li><li class="is-sub"><a href="#cate-article-heading-2--hang-dang-ban" data-toc-link><span aria-hidden="true">•</span>Độ bền cao, vật liệu và linh kiện chất lượng</a></li><li class="is-sub"><a href="#cate-article-heading-3--hang-dang-ban" data-toc-link><span aria-hidden="true">•</span>Được tích hợp loạt công nghệ mới nhất</a></li><li class="is-sub"><a href="#cate-article-heading-4--hang-dang-ban" data-toc-link><span aria-hidden="true">•</span>Dung lượng pin lâu, độ bền cao</a></li><li class="is-sub"><a href="#cate-article-heading-5--hang-dang-ban" data-toc-link><span aria-hidden="true">•</span>Phù hợp đa dạng phân khúc</a></li><li class="is-sub"><a href="#cate-article-heading-6--hang-dang-ban" data-toc-link><span aria-hidden="true">•</span>Dịch vụ bảo hành, chăm sóc khách hàng tốt</a></li><li class=""><a href="#cate-article-heading-7--hang-dang-ban" data-toc-link>2. Những dòng laptop Dell phổ biến theo nhu cầu</a></li><li class="is-sub"><a href="#cate-article-heading-8--hang-dang-ban" data-toc-link><span aria-hidden="true">•</span>Dell Inspiron – Gọn nhẹ, tiện dụng cho học tập và văn phòng</a></li><li class="is-sub"><a href="#cate-article-heading-9--hang-dang-ban" data-toc-link><span aria-hidden="true">•</span>Dell Vostro – Đáng tin cậy cho môi trường doanh nghiệp nhỏ</a></li><li class="is-sub"><a href="#cate-article-heading-10--hang-dang-ban" data-toc-link><span aria-hidden="true">•</span>Dell XPS – Cao cấp cho người làm sáng tạo</a></li><li class="is-sub"><a href="#cate-article-heading-11--hang-dang-ban" data-toc-link><span aria-hidden="true">•</span>Dell Alienware – Gaming đỉnh cao, thiết kế táo bạo</a></li><li class="is-sub"><a href="#cate-article-heading-12--hang-dang-ban" data-toc-link><span aria-hidden="true">•</span>Dell Latitude – Bền bỉ và bảo mật cho môi trường doanh nghiệp</a></li><li class="is-sub"><a href="#cate-article-heading-13--hang-dang-ban" data-toc-link><span aria-hidden="true">•</span>Dell G Series – Cân bằng giữa chơi game và học tập</a></li><li class=""><a href="#cate-article-heading-14--hang-dang-ban" data-toc-link>3. Gợi ý chọn laptop Dell theo cấu hình</a></li><li class="is-sub"><a href="#cate-article-heading-15--hang-dang-ban" data-toc-link><span aria-hidden="true">•</span>Laptop Dell Core i7 – Hiệu năng cao cho công việc chuyên sâu</a></li><li class="is-sub"><a href="#cate-article-heading-16--hang-dang-ban" data-toc-link><span aria-hidden="true">•</span>Laptop Dell Core i5 – Sự cân bằng giữa hiệu năng và giá trị</a></li><li class="is-sub"><a href="#cate-article-heading-17--hang-dang-ban" data-toc-link><span aria-hidden="true">•</span>Laptop Dell Core i3 – Lựa chọn tiết kiệm cho nhu cầu cơ bản</a></li><li class=""><a href="#cate-article-heading-18--hang-dang-ban" data-toc-link>4. Xây dựng góc làm việc, học tập chất lượng cùng laptop Dell</a></li><li class=""><a href="#cate-article-heading-19--hang-dang-ban" data-toc-link>5. Tại sao nên chọn mua laptop Dell tại Thế Giới Di Động?</a></li><li class=""><a href="#cate-article-heading-20--hang-dang-ban" data-toc-link>6. Câu hỏi thường gặp khi mua laptop Dell</a></li><li class=""><a href="#cate-article-heading-21--hang-dang-ban" data-toc-link>7. Laptop Dell có bền không?</a></li></ol>
+      </nav>
+      <div class="bi-body">
+<h3 id="cate-article-heading-0--hang-dang-ban">Tại sao n&ecirc;n mua laptop Dell? Những điểm nổi bật của Laptop Dell</h3>
+<h4 id="cate-article-heading-1--hang-dang-ban">Kiểu d&aacute;ng linh hoạt, ph&ugrave; hợp nhiều phong c&aacute;ch</h4>
+<p>Laptop Dell c&oacute; thiết kế đơn giản, gọn g&agrave;ng v&agrave; dễ sử dụng, ph&ugrave; hợp với nhiều đối tượng như học sinh, sinh vi&ecirc;n, d&acirc;n văn ph&ograve;ng hay doanh nh&acirc;n. M&aacute;y thường c&oacute; m&agrave;u sắc trung t&iacute;nh, kiểu d&aacute;ng hiện đại v&agrave; chất liệu chắc chắn, mang lại cảm gi&aacute;c bền bỉ khi sử dụng.</p>
+<p>Ngo&agrave;i ra, nhiều mẫu Dell được l&agrave;m mỏng nhẹ, dễ mang theo h&agrave;ng ng&agrave;y. Một số c&ograve;n hỗ trợ m&agrave;n h&igrave;nh gập linh hoạt hoặc cảm ứng để tăng tiện lợi khi l&agrave;m việc v&agrave; giải tr&iacute;. Nh&igrave;n chung, thiết kế của Dell hướng đến sự thực tế, bền bỉ v&agrave; ph&ugrave; hợp với nhiều phong c&aacute;ch người d&ugrave;ng.</p>
+<p><img loading="lazy" loading="lazy" title="Laptop Dell đa năng cho mọi phong c&aacute;ch" src="https://cdnv2.tgdd.vn/mwg-static/tgdd/Common/42/fd/42fdc6f40c1e7063d88049b95ddb68b8.jpg" alt="Ba người d&ugrave;ng laptop Dell trong c&aacute;c m&ocirc;i trường kh&aacute;c nhau: văn ph&ograve;ng, s&acirc;n bay v&agrave; qu&aacute;n c&agrave; ph&ecirc;, thể hiện t&iacute;nh linh hoạt của sản phẩm." width="845" height="475" /></p>
+<p>Laptop Dell đa năng cho mọi phong c&aacute;ch</p>
+<h4 id="cate-article-heading-2--hang-dang-ban">Độ bền cao, vật liệu v&agrave; linh kiện chất lượng</h4>
+<p>Một trong những l&yacute; do khiến laptop Dell được tin d&ugrave;ng l&acirc;u d&agrave;i l&agrave; nhờ độ bền nổi bật. Hầu hết c&aacute;c mẫu m&aacute;y đều sử dụng chất liệu vỏ cứng c&aacute;p như nh&ocirc;m, nhựa ABS hoặc sợi carbon gi&uacute;p chống va đập tốt v&agrave; &iacute;t bị trầy xước khi sử dụng hằng ng&agrave;y. Dell cũng ch&uacute; trọng đến khả năng tản nhiệt, gi&uacute;p m&aacute;y hoạt động ổn định kể cả khi chạy c&aacute;c t&aacute;c vụ nặng.</p>
+<p>B&ecirc;n cạnh phần vỏ, linh kiện b&ecirc;n trong như bo mạch, ổ cứng hay b&agrave;n ph&iacute;m cũng được kiểm tra kỹ c&agrave;ng theo ti&ecirc;u chuẩn ri&ecirc;ng. Một số d&ograve;ng c&ograve;n đạt chứng nhận độ bền qu&acirc;n đội (MIL-STD), đảm bảo khả năng hoạt động bền bỉ trong nhiều điều kiện kh&aacute;c nhau. Đ&acirc;y l&agrave; điểm cộng lớn cho những ai ưu ti&ecirc;n độ ổn định khi l&agrave;m việc hoặc học tập.</p>
+<p><img loading="lazy" loading="lazy" title="Cấu tạo b&ecirc;n trong v&agrave; hiệu suất tản nhiệt của laptop Dell" src="https://cdnv2.tgdd.vn/mwg-static/tgdd/Common/85/c4/85c4e5a28cc220091e574ef39257b44f.jpg" alt="Laptop Dell mở nắp lộ r&otilde; cấu tr&uacute;c b&ecirc;n trong, bao gồm quạt tản nhiệt lớn, bo mạch chủ v&agrave; c&aacute;c khe RAM. B&ecirc;n cạnh đ&oacute;, th&ocirc;ng tin về độ bền chuẩn MIL-STD, vỏ hợp kim chống va đập v&agrave; tản nhiệt hiệu quả cũng được hiển thị r&otilde; r&agrave;ng." width="845" height="475" /></p>
+<p>Cấu tạo b&ecirc;n trong v&agrave; hiệu suất tản nhiệt của laptop Dell</p>
+<h4 id="cate-article-heading-3--hang-dang-ban">Được t&iacute;ch hợp loạt c&ocirc;ng nghệ mới nhất</h4>
+<p>Laptop Dell kh&ocirc;ng chỉ bền m&agrave; c&ograve;n được trang bị nhiều c&ocirc;ng nghệ mới gi&uacute;p người d&ugrave;ng sử dụng tiện lợi hơn. Hầu hết c&aacute;c mẫu m&aacute;y hiện nay đ&atilde; hỗ trợ chuẩn kết nối Wi-Fi 6, Bluetooth 5.2 cho tốc độ mạng nhanh v&agrave; ổn định. Một số model c&ograve;n đi k&egrave;m cảm biến v&acirc;n tay, camera bảo mật hoặc mở kh&oacute;a bằng khu&ocirc;n mặt.</p>
+<p>Ngo&agrave;i ra, Dell cũng t&iacute;ch hợp c&aacute;c cổng kết nối hiện đại như USB-C, HDMI, khe đọc thẻ SD,... ph&ugrave; hợp với nhiều nhu cầu sử dụng. Một số d&ograve;ng c&ograve;n c&oacute; phần mềm ri&ecirc;ng hỗ trợ đồng bộ nhanh dữ liệu giữa laptop v&agrave; điện thoại, rất hữu &iacute;ch cho người l&agrave;m việc đa thiết bị.</p>
+<p><img loading="lazy" loading="lazy" title="C&ocirc;ng nghệ v&agrave; t&iacute;nh năng kết nối tr&ecirc;n laptop Dell" src="https://cdnv2.tgdd.vn/mwg-static/tgdd/Common/5f/f3/5ff36f0532e7c21f93672bc2623b63cd.jpg" alt="Laptop Dell với m&agrave;n h&igrave;nh hiển thị sống động, l&agrave;m nổi bật c&aacute;c c&ocirc;ng nghệ v&agrave; cổng kết nối hiện đại như Wi-Fi 6, Bluetooth 5.2, cảm biến v&acirc;n tay, mở kh&oacute;a khu&ocirc;n mặt, USB-C, HDMI v&agrave; khe thẻ SD." width="845" height="475" /></p>
+<p>C&ocirc;ng nghệ v&agrave; t&iacute;nh năng kết nối tr&ecirc;n laptop Dell</p>
+<h4 id="cate-article-heading-4--hang-dang-ban">Dung lượng pin l&acirc;u, độ bền cao</h4>
+<p>Dell hiểu rằng người d&ugrave;ng hiện đại cần một chiếc laptop c&oacute; thời lượng pin đủ l&acirc;u để l&agrave;m việc cả ng&agrave;y. V&igrave; vậy, nhiều d&ograve;ng m&aacute;y được trang bị pin dung lượng lớn, c&oacute; thể hoạt động li&ecirc;n tục 6 &ndash; 10 giờ t&ugrave;y theo cấu h&igrave;nh v&agrave; nhu cầu sử dụng.</p>
+<p>Ngo&agrave;i ra, h&atilde;ng c&ograve;n tối ưu phần mềm quản l&yacute; năng lượng để giảm ti&ecirc;u hao pin khi m&aacute;y ở chế độ chờ hoặc sử dụng nhẹ nh&agrave;ng. Một số mẫu c&ograve;n hỗ trợ sạc nhanh, gi&uacute;p tiết kiệm thời gian đ&aacute;ng kể. Điều n&agrave;y đặc biệt hữu &iacute;ch với người thường xuy&ecirc;n di chuyển, l&agrave;m việc ngo&agrave;i văn ph&ograve;ng hoặc trong m&ocirc;i trường linh hoạt.</p>
+<p><img loading="lazy" loading="lazy" title="Pin laptop bền bỉ cả ng&agrave;y" src="https://cdnv2.tgdd.vn/mwg-static/tgdd/Common/48/ca/48cab3f5fac669e67a6f83bf579aa5e0.jpg" alt="Laptop hiển thị pin đầy 100% d&ugrave;ng l&ecirc;n đến 10 giờ, quảng c&aacute;o t&iacute;nh năng pin tr&acirc;u bền bỉ, sạc nhanh v&agrave; hoạt động ổn định." width="845" height="475" /></p>
+<p>Pin laptop bền bỉ cả ng&agrave;y</p>
+<h4 id="cate-article-heading-5--hang-dang-ban">Ph&ugrave; hợp đa dạng ph&acirc;n kh&uacute;c</h4>
+<p>Từ người d&ugrave;ng cơ bản đến chuy&ecirc;n nghiệp, Dell đều c&oacute; sản phẩm ph&ugrave; hợp nhờ ph&acirc;n kh&uacute;c đa dạng. D&ograve;ng <a href="https://www.thegioididong.com/laptop?g=hoc-tap-van-phong" target="_blank" rel="noopener">laptop văn ph&ograve;ng</a> phổ th&ocirc;ng đ&aacute;p ứng tốt c&aacute;c nhu cầu học tập, l&agrave;m việc cơ bản; trong khi c&aacute;c d&ograve;ng trung - cao cấp mang lại hiệu năng mạnh mẽ hơn để xử l&yacute; thiết kế, lập tr&igrave;nh hay chơi game.</p>
+<p>Dell c&ograve;n c&oacute; nhiều d&ograve;ng m&aacute;y chuy&ecirc;n biệt như d&ograve;ng mỏng nhẹ cho doanh nh&acirc;n hay d&ograve;ng <a href="https://www.thegioididong.com/laptop?g=laptop-gaming" target="_blank" rel="noopener">laptop gaming</a> cho game thủ. Mỗi d&ograve;ng đều được tối ưu về thiết kế, hiệu suất v&agrave; t&iacute;nh năng ri&ecirc;ng, gi&uacute;p người d&ugrave;ng dễ d&agrave;ng chọn lựa sản phẩm đ&uacute;ng với nhu cầu v&agrave; ng&acirc;n s&aacute;ch của m&igrave;nh. Đ&acirc;y l&agrave; một trong những điểm mạnh lớn gi&uacute;p Dell giữ vững thị phần tr&ecirc;n to&agrave;n cầu.</p>
+<p><img loading="lazy" loading="lazy" title="Laptop Dell đa dạng ph&acirc;n kh&uacute;c người d&ugrave;ng" src="https://cdnv2.tgdd.vn/mwg-static/tgdd/Common/a9/4f/a94fb48e72cc402843a6cd30f249ec0d.jpg" alt="C&aacute;c mẫu laptop Dell kh&aacute;c nhau được sử dụng cho nhiều mục đ&iacute;ch: chơi game, lập tr&igrave;nh v&agrave; học tập, nhấn mạnh sự ph&ugrave; hợp đa dạng ph&acirc;n kh&uacute;c của sản phẩm." width="845" height="475" /></p>
+<p>Laptop Dell đa dạng ph&acirc;n kh&uacute;c người d&ugrave;ng</p>
+<h4 id="cate-article-heading-6--hang-dang-ban">Dịch vụ bảo h&agrave;nh, chăm s&oacute;c kh&aacute;ch h&agrave;ng tốt</h4>
+<p>Laptop Dell được bảo h&agrave;nh ch&iacute;nh h&atilde;ng từ 1 đến 3 năm, t&ugrave;y d&ograve;ng m&aacute;y. Nhiều model hỗ trợ bảo h&agrave;nh tận nơi, gi&uacute;p người d&ugrave;ng kh&ocirc;ng cần mang m&aacute;y đi xa khi gặp sự cố. Dell cũng c&oacute; phần mềm hỗ trợ theo d&otilde;i t&igrave;nh trạng m&aacute;y v&agrave; cập nhật tự động.</p>
+<p>Tại Việt Nam, người d&ugrave;ng c&oacute; thể dễ d&agrave;ng bảo h&agrave;nh m&aacute;y tại c&aacute;c trung t&acirc;m ủy quyền hoặc th&ocirc;ng qua hệ thống lớn như Thế Giới Di Động. Dịch vụ tư vấn v&agrave; hỗ trợ kỹ thuật cũng được đ&aacute;nh gi&aacute; nhanh ch&oacute;ng, chuy&ecirc;n nghiệp, gi&uacute;p người d&ugrave;ng y&ecirc;n t&acirc;m hơn khi sử dụng.</p>
+<p><img loading="lazy" loading="lazy" title="Tư vấn v&agrave; bảo h&agrave;nh laptop Dell" src="https://cdnv2.tgdd.vn/mwg-static/tgdd/Common/70/94/709468abf80d530965ddaf0bb398f1e7.jpg" alt="Nh&acirc;n vi&ecirc;n Thegioididong đang tư vấn cho kh&aacute;ch h&agrave;ng về dịch vụ bảo h&agrave;nh v&agrave; hỗ trợ laptop Dell, với h&igrave;nh ảnh logo Thegioididong c&ugrave;ng c&aacute;c cam kết dịch vụ." width="845" height="475" /></p>
+<p>Tư vấn v&agrave; bảo h&agrave;nh laptop Dell</p>
+<h3 id="cate-article-heading-7--hang-dang-ban">Những d&ograve;ng laptop Dell phổ biến theo nhu cầu</h3>
+<table border="1" cellspacing="0" cellpadding="10">
+<thead>
+<tr>
+<th>D&ograve;ng m&aacute;y</th>
+<th>Đối tượng ph&ugrave; hợp</th>
+<th>Thiết kế đặc trưng</th>
+<th>Tầm gi&aacute; (VNĐ)</th>
+<th>Model ti&ecirc;u biểu</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Dell Inspiron</strong></td>
+<td>Học sinh, sinh vi&ecirc;n, nh&acirc;n vi&ecirc;n văn ph&ograve;ng</td>
+<td>Gọn nhẹ, viền mỏng, th&acirc;n thiện</td>
+<td>11 &ndash; 20 triệu</td>
+<td>Inspiron 15 3511, 14 5430</td>
+</tr>
+<tr>
+<td><strong>Dell Vostro</strong></td>
+<td>Doanh nghiệp nhỏ, văn ph&ograve;ng chuy&ecirc;n nghiệp</td>
+<td>Cứng c&aacute;p, chống tr&agrave;n, bản lề chắc</td>
+<td>12 &ndash; 25 triệu</td>
+<td>Vostro 3510, 5620</td>
+</tr>
+<tr>
+<td><strong>Dell XPS</strong></td>
+<td>Người s&aacute;ng tạo, chuy&ecirc;n gia đồ họa</td>
+<td>Vỏ nh&ocirc;m CNC, si&ecirc;u mỏng, viền InfinityEdge</td>
+<td>25 &ndash; 40 triệu</td>
+<td>XPS 13 9315, XPS 15 9530</td>
+</tr>
+<tr>
+<td><strong>Dell Alienware</strong></td>
+<td>Game thủ, đồ họa 3D nặng</td>
+<td>LED RGB, vỏ kim loại, hầm hố</td>
+<td>37 &ndash; 60 triệu</td>
+<td>M16 R2, x14 R2</td>
+</tr>
+<tr>
+<td><strong>Dell Latitude</strong></td>
+<td>Doanh nghiệp lớn, thường xuy&ecirc;n di chuyển</td>
+<td>Chuẩn qu&acirc;n đội, bản lề mở 180&deg;, bảo mật cao</td>
+<td>18 &ndash; 35 triệu</td>
+<td>Latitude 5440, 3420</td>
+</tr>
+<tr>
+<td><strong>Dell G Series</strong></td>
+<td>Game thủ phổ th&ocirc;ng, sinh vi&ecirc;n kỹ thuật</td>
+<td>Đậm chất gaming, khe tản nhiệt lớn</td>
+<td>20 &ndash; 35 triệu</td>
+<td>G15 5530, G16 7630</td>
+</tr>
+</tbody>
+</table>
+<h4 id="cate-article-heading-8--hang-dang-ban">Dell Inspiron &ndash; Gọn nhẹ, tiện dụng cho học tập v&agrave; văn ph&ograve;ng</h4>
+<p><a href="https://www.thegioididong.com/laptop-dell-inspiron" target="_blank" rel="noopener">Dell Inspiron</a> l&agrave; d&ograve;ng laptop phổ th&ocirc;ng, ph&ugrave; hợp với học sinh, sinh vi&ecirc;n v&agrave; nh&acirc;n vi&ecirc;n văn ph&ograve;ng nhờ thiết kế đơn giản, th&acirc;n thiện. M&aacute;y c&oacute; lớp vỏ nhựa nh&aacute;m, bo g&oacute;c mềm mại v&agrave; trọng lượng nhẹ khoảng 1.5kg, dễ d&agrave;ng mang theo h&agrave;ng ng&agrave;y. Cấu h&igrave;nh phổ biến từ Intel Core i3 đến i5, RAM 8&ndash;16GB v&agrave; SSD từ 256GB trở l&ecirc;n, đ&aacute;p ứng tốt c&aacute;c nhu cầu như học online, soạn thảo văn bản, xử l&yacute; bảng t&iacute;nh hay họp trực tuyến. M&agrave;n h&igrave;nh 14&ndash;15.6 inch, độ ph&acirc;n giải Full HD, sử dụng tấm nền WVA hoặc IPS cho h&igrave;nh ảnh r&otilde; n&eacute;t v&agrave; g&oacute;c nh&igrave;n rộng. Mức gi&aacute; trung b&igrave;nh từ 11 đến 20 triệu đồng.</p>
+<p><img loading="lazy" loading="lazy" title="Laptop gọn nhẹ tiện dụng với cấu h&igrave;nh Core i5, SSD 256GB" src="https://cdnv2.tgdd.vn/mwg-static/tgdd/Common/17/a4/17a49d33998b2225165e36f69246dd8e.jpg" alt="M&aacute;y t&iacute;nh x&aacute;ch tay m&agrave;u bạc đang mở m&agrave;n h&igrave;nh hiển thị h&igrave;nh nền trừu tượng m&agrave;u xanh t&iacute;m, c&ugrave;ng với c&aacute;c th&ocirc;ng số nổi bật như trọng lượng ~1.5kg, chip Core i5 v&agrave; SSD 256GB." width="845" height="475" /></p>
+<p>Laptop gọn nhẹ tiện dụng với cấu h&igrave;nh Core i5, SSD 256GB</p>
+<h4 id="cate-article-heading-9--hang-dang-ban">Dell Vostro &ndash; Đ&aacute;ng tin cậy cho m&ocirc;i trường doanh nghiệp nhỏ</h4>
+<p><a href="https://www.thegioididong.com/laptop-dell-vostro" target="_blank" rel="noopener">Dell Vostro</a> được thiết kế d&agrave;nh ri&ecirc;ng cho doanh nghiệp vừa v&agrave; nhỏ, tập trung v&agrave;o t&iacute;nh bền bỉ v&agrave; độ ổn định. M&aacute;y c&oacute; ngoại h&igrave;nh cứng c&aacute;p, vỏ bền chắc, bản lề chắc chắn v&agrave; b&agrave;n ph&iacute;m chống tr&agrave;n &ndash; ph&ugrave; hợp cho c&ocirc;ng việc li&ecirc;n tục. Cấu h&igrave;nh thường bắt đầu từ Intel Core i5, RAM 8GB trở l&ecirc;n v&agrave; SSD tối đa 1TB, gi&uacute;p xử l&yacute; t&aacute;c vụ văn ph&ograve;ng, kế to&aacute;n, quản trị hệ thống một c&aacute;ch mượt m&agrave;. M&agrave;n h&igrave;nh Full HD c&oacute; lớp chống ch&oacute;i, bảo vệ mắt khi l&agrave;m việc l&acirc;u dưới &aacute;nh đ&egrave;n. Trọng lượng từ 1.5&ndash;1.8kg v&agrave; gi&aacute; dao động từ 12 đến 25 triệu đồng.</p>
+<p><img loading="lazy" loading="lazy" title="Laptop Dell Vostro bền bỉ cho doanh nghiệp" src="https://cdnv2.tgdd.vn/mwg-static/tgdd/Common/ce/05/ce053798b8a9bbd5c07b4a0b690ebb9e.jpg" alt="Laptop Dell Vostro m&agrave;u x&aacute;m bạc hiển thị m&agrave;n h&igrave;nh t&agrave;i ch&iacute;nh v&agrave; th&ocirc;ng tin quảng c&aacute;o c&aacute;c t&iacute;nh năng nổi bật như độ bền, b&agrave;n ph&iacute;m chống tr&agrave;n, m&agrave;n h&igrave;nh chống ch&oacute;i, cấu h&igrave;nh Intel Core i5, RAM 8GB+, SSD 1TB." width="845" height="475" /></p>
+<p>Laptop Dell Vostro bền bỉ cho doanh nghiệp</p>
+<h4 id="cate-article-heading-10--hang-dang-ban">Dell XPS &ndash; Cao cấp cho người l&agrave;m s&aacute;ng tạo</h4>
+<p>Dell XPS l&agrave; lựa chọn l&yacute; tưởng cho người d&ugrave;ng l&agrave;m thiết kế đồ họa, dựng phim, lập tr&igrave;nh hay s&aacute;ng tạo nội dung. M&aacute;y nổi bật với thiết kế vỏ nh&ocirc;m nguy&ecirc;n khối cắt CNC, khung viền si&ecirc;u mỏng InfinityEdge v&agrave; trọng lượng chỉ từ 1.2&ndash;1.5kg. Cấu h&igrave;nh cao cấp với vi xử l&yacute; Intel Core i7 hoặc i9, RAM từ 16GB, SSD tốc độ cao v&agrave; m&agrave;n h&igrave;nh OLED hoặc 4K UHD mang lại h&igrave;nh ảnh si&ecirc;u sắc n&eacute;t, chuẩn m&agrave;u chuy&ecirc;n nghiệp. Đ&acirc;y l&agrave; d&ograve;ng laptop c&acirc;n bằng giữa t&iacute;nh di động, hiệu năng cao v&agrave; thiết kế sang trọng, với mức gi&aacute; từ 25 đến hơn 40 triệu đồng.</p>
+<p><img loading="lazy" loading="lazy" title="Laptop cao cấp: Thiết kế, hiệu năng, m&agrave;n h&igrave;nh" src="https://cdnv2.tgdd.vn/mwg-static/tgdd/Common/d7/b6/d7b6ad84e758686bff317e25325c687c.jpg" alt="Ba chiếc laptop m&agrave;u bạc đặt cạnh nhau tr&ecirc;n nền đen, minh họa c&aacute;c t&iacute;nh năng nổi bật về thiết kế si&ecirc;u mỏng nhẹ, hiệu năng mạnh mẽ với chip Intel Core i7/i9, RAM 16GB, SSD NVMe 512GB-1TB, v&agrave; m&agrave;n h&igrave;nh si&ecirc;u sắc n&eacute;t 4K OLED/UHD với độ phủ m&agrave;u 100% DCI-P3, độ s&aacute;ng tr&ecirc;n 500 nits." width="845" height="475" /></p>
+<p>Laptop cao cấp: Thiết kế, hiệu năng, m&agrave;n h&igrave;nh</p>
+<h4 id="cate-article-heading-11--hang-dang-ban">Dell Alienware &ndash; Gaming đỉnh cao, thiết kế t&aacute;o bạo</h4>
+<p><a href="https://www.thegioididong.com/laptop-dell-gaming-alienware" target="_blank" rel="noopener">Dell Alienware</a> l&agrave; d&ograve;ng m&aacute;y gaming cao cấp được thiết kế cho game thủ chuy&ecirc;n nghiệp. M&aacute;y c&oacute; vỏ hợp kim nh&ocirc;m hoặc magie, đ&egrave;n LED RGB nổi bật v&agrave; hệ thống tản nhiệt lớn tối ưu hiệu năng khi chơi game nặng. Trang bị chip Intel Core i7/i9 hoặc AMD Ryzen 7/9, card đồ họa rời NVIDIA RTX, RAM đến 64GB v&agrave; SSD tốc độ cao, Alienware đủ sức "c&acirc;n" c&aacute;c tựa game AAA hiện nay. M&agrave;n h&igrave;nh k&iacute;ch thước 15.6&ndash;17.3 inch hỗ trợ tần số qu&eacute;t 240&ndash;360Hz cho h&igrave;nh ảnh mượt m&agrave;. Trọng lượng khoảng 2.5&ndash;3kg, ph&ugrave; hợp d&ugrave;ng cố định tại nh&agrave; hoặc văn ph&ograve;ng. Gi&aacute; từ 40 triệu đồng trở l&ecirc;n.</p>
+<p><img loading="lazy" loading="lazy" title="Laptop Dell Alienware - Thiết kế, hiệu năng v&agrave; m&agrave;n h&igrave;nh" src="https://cdnv2.tgdd.vn/mwg-static/tgdd/Common/a7/7a/a77a72d86142f944a4ca488548a86fa9.jpg" alt="Laptop Dell Alienware gaming m&agrave;u đen với thiết kế hầm hố, đường viền đ&egrave;n RGB nổi bật, m&agrave;n h&igrave;nh hiển thị logo Alienware v&agrave; cảnh chơi game s&ocirc;i động, c&ugrave;ng c&aacute;c th&ocirc;ng số kỹ thuật được liệt k&ecirc;." width="845" height="475" /></p>
+<p>Laptop Dell Alienware - Thiết kế, hiệu năng v&agrave; m&agrave;n h&igrave;nh</p>
+<h4 id="cate-article-heading-12--hang-dang-ban">Dell Latitude &ndash; Bền bỉ v&agrave; bảo mật cho m&ocirc;i trường doanh nghiệp</h4>
+<p><a href="https://www.thegioididong.com/laptop-dell-latitude" target="_blank" rel="noopener">Dell Latitude</a> l&agrave; d&ograve;ng laptop chuy&ecirc;n biệt cho doanh nghiệp lớn, nổi bật nhờ độ bền đạt chuẩn qu&acirc;n đội Mỹ (MIL-STD-810H) v&agrave; t&iacute;nh năng bảo mật n&acirc;ng cao như nhận diện v&acirc;n tay, khu&ocirc;n mặt, TPM 2.0. M&aacute;y c&oacute; thiết kế tối giản, vỏ nh&ocirc;m hoặc sợi carbon chắc chắn, bản lề mở 180 độ tiện lợi khi tr&igrave;nh b&agrave;y nội dung. Cấu h&igrave;nh từ Intel Core i5/i7, RAM 8&ndash;16GB, SSD 256GB trở l&ecirc;n c&ugrave;ng c&ocirc;ng nghệ vPro hỗ trợ quản l&yacute; từ xa. M&agrave;n h&igrave;nh Full HD c&oacute; lớp phủ chống ch&oacute;i, hoạt động tốt ngo&agrave;i trời. Trọng lượng 1.3&ndash;1.7kg, gi&aacute; dao động từ 18 đến 35 triệu đồng.</p>
+<p><img loading="lazy" loading="lazy" title="C&aacute;c t&iacute;nh năng nổi bật của laptop Dell d&agrave;nh cho doanh nghiệp" src="https://cdnv2.tgdd.vn/mwg-static/tgdd/Common/63/72/637202ef9ef3e125f2f0d678b63ab67c.jpg" alt="Ba mẫu laptop Dell kh&aacute;c nhau, mỗi mẫu minh họa một t&iacute;nh năng nổi bật: độ bền chuẩn qu&acirc;n đội, bảo mật tối ưu v&agrave; hiệu năng ổn định, k&egrave;m theo th&ocirc;ng số kỹ thuật v&agrave; c&ocirc;ng nghệ bảo mật." width="845" height="475" /></p>
+<p>C&aacute;c t&iacute;nh năng nổi bật của laptop Dell d&agrave;nh cho doanh nghiệp</p>
+<h4 id="cate-article-heading-13--hang-dang-ban">Dell G Series &ndash; C&acirc;n bằng giữa chơi game v&agrave; học tập</h4>
+<p><a href="https://www.thegioididong.com/laptop-dell-gaming-g-series" target="_blank" rel="noopener">Dell G Series</a> l&agrave; lựa chọn ph&ugrave; hợp cho sinh vi&ecirc;n c&ocirc;ng nghệ, kỹ thuật hoặc game thủ phổ th&ocirc;ng cần m&aacute;y vừa học vừa chơi game. M&aacute;y c&oacute; thiết kế hiện đại, đậm chất game thủ với vỏ đen/x&aacute;m, b&agrave;n ph&iacute;m LED v&agrave; khe tản nhiệt lớn. Trang bị CPU Intel Core i5/i7 hoặc AMD Ryzen 5/7, card đồ họa RTX 3050&ndash;4060, RAM 16GB v&agrave; SSD từ 512GB, Dell G Series xử l&yacute; tốt cả c&aacute;c phần mềm kỹ thuật lẫn c&aacute;c tựa game phổ biến. M&agrave;n h&igrave;nh Full HD 15.6 inch, tần số qu&eacute;t từ 120Hz đến 165Hz cho chuyển động mượt m&agrave;. Trọng lượng 2.2&ndash;2.5kg, gi&aacute; từ 20 đến 35 triệu đồng.</p>
+<p><img loading="lazy" loading="lazy" title="Laptop gaming Dell G-series: Sức mạnh v&agrave; phong c&aacute;ch" src="https://cdnv2.tgdd.vn/mwg-static/tgdd/Common/99/31/9931e0ba58d1a28836b0e97d12904dff.jpg" alt="Laptop gaming Dell G-series m&agrave;u đen với m&agrave;n h&igrave;nh hiển thị game đua xe, thiết kế tản nhiệt hầm hố v&agrave; b&agrave;n ph&iacute;m đ&egrave;n LED, c&ugrave;ng khả năng xử l&yacute; đồ họa v&agrave; chơi game mượt m&agrave;." width="845" height="475" /></p>
+<p>Laptop gaming Dell G-series: Sức mạnh v&agrave; phong c&aacute;ch</p>
+<h3 id="cate-article-heading-14--hang-dang-ban">Gợi &yacute; chọn laptop Dell theo cấu h&igrave;nh</h3>
+<h4 id="cate-article-heading-15--hang-dang-ban">Laptop Dell Core i7 &ndash; Hiệu năng cao cho c&ocirc;ng việc chuy&ecirc;n s&acirc;u</h4>
+<p>Nếu bạn l&agrave;m việc với c&aacute;c phần mềm nặng như Photoshop, Premiere, AutoCAD, hoặc chơi game AAA, cấu h&igrave;nh <a href="https://www.thegioididong.com/laptop-core-i7" target="_blank" rel="noopener">laptop Core i7</a> l&agrave; lựa chọn hợp l&yacute;. D&ograve;ng chip n&agrave;y c&oacute; số nh&acirc;n/luồng lớn hơn, xung nhịp cao, hỗ trợ tốt c&aacute;c t&aacute;c vụ đa nhiệm v&agrave; xử l&yacute; đồ họa.</p>
+<p>C&aacute;c mẫu Dell sử dụng chip Intel Core i7 thường thuộc ph&acirc;n kh&uacute;c trung &ndash; cao cấp như Dell XPS, Alienware, Latitude cao cấp hoặc Dell Gaming G Series. Mức RAM phổ biến từ 16GB, ổ cứng SSD 512GB trở l&ecirc;n, một số c&ograve;n đi k&egrave;m card đồ họa rời NVIDIA RTX. Gi&aacute; thường từ 22 đến tr&ecirc;n 40 triệu đồng t&ugrave;y d&ograve;ng m&aacute;y.</p>
+<p><img loading="lazy" loading="lazy" title="Laptop Dell mạnh mẽ cho c&ocirc;ng việc s&aacute;ng tạo." src="https://cdnv2.tgdd.vn/mwg-static/tgdd/Common/0f/a8/0fa80f258ec9bfa3cb595b104424160c.jpg" alt="Laptop Dell hiển thị phần mềm chỉnh sửa ảnh, video v&agrave; thiết kế 3D, với th&ocirc;ng số nổi bật Intel Core i7, RAM 16GB, SSD 512GB+, đặt tr&ecirc;n b&agrave;n c&ugrave;ng tai nghe v&agrave; chuột." width="845" height="475" /></p>
+<p>Laptop Dell mạnh mẽ cho c&ocirc;ng việc s&aacute;ng tạo.</p>
+<p><strong>Bảng gi&aacute; c&aacute;c mẫu laptop Dell Core i7 nổi bật:</strong></p>
+<table border="1" cellspacing="0" cellpadding="10">
+<thead>
+<tr>
+<th>Model</th>
+<th>RAM / SSD</th>
+<th>M&agrave;n h&igrave;nh</th>
+<th>Gi&aacute; tham khảo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://www.thegioididong.com/laptop/dell-inspiron-15-3530-i7-n5i7216w1" target="_blank" rel="noopener">Dell Inspiron 15 3530 - N5I7216W1</a></td>
+<td>16GB/512GB</td>
+<td>15.6" Full HD 120Hz</td>
+<td>20.990.000</td>
+</tr>
+<tr>
+<td><a href="https://www.thegioididong.com/laptop/dell-inspiron-15-3520-i7-71053682" target="_blank" rel="noopener">Dell Inspiron 15 3520 (71053682)</a></td>
+<td>16GB/512GB</td>
+<td>15.6" Full HD 120Hz</td>
+<td>18.990.000</td>
+</tr>
+<tr>
+<td><a href="https://www.thegioididong.com/laptop/dell-inspiron-15-3520-i7-n3520i7u165w11blufp" target="_blank" rel="noopener">Dell Inspiron 15 3520 N3520-i7U165W11BLU-FP</a></td>
+<td>16GB/512GB</td>
+<td>15.6" Full HD 120Hz</td>
+<td>18.990.000</td>
+</tr>
+<tr>
+<td><a href="https://www.thegioididong.com/laptop/dell-inspiron-15-3530-i7-71053721" target="_blank" rel="noopener">Dell Inspiron 15 3530 - 71053721</a></td>
+<td>16GB/512GB</td>
+<td>15.6" Full HD 120Hz</td>
+<td>20.990.000</td>
+</tr>
+<tr>
+<td><a href="https://www.thegioididong.com/laptop/dell-inspiron-15-3530-i7-n3530i7u161w11blufp" target="_blank" rel="noopener">Dell Inspiron 15 3530 N3530-i7U161W11BLU-FP</a></td>
+<td>16GB/1TB</td>
+<td>15.6" Full HD 120Hz</td>
+<td>21.990.000</td>
+</tr>
+<tr>
+<td><a href="https://www.thegioididong.com/laptop/dell-g15-5530-i7-i7hx161w11gr4060" target="_blank" rel="noopener">Dell G15 5530 i7HX161W11GR4060</a></td>
+<td>16GB/1TB</td>
+<td>15.6" Full HD 165Hz</td>
+<td>36.190.000</td>
+</tr>
+</tbody>
+</table>
+<p><em>Lưu &yacute;: Gi&aacute; b&aacute;n của bảng tr&ecirc;n chỉ d&ugrave;ng để tham khảo, gi&aacute; b&aacute;n thực tế c&oacute; thể thay đổi t&ugrave;y theo thời điểm.</em></p>
+<h4 id="cate-article-heading-16--hang-dang-ban">Laptop Dell Core i5 &ndash; Sự c&acirc;n bằng giữa hiệu năng v&agrave; gi&aacute; trị</h4>
+<p>Với nhu cầu văn ph&ograve;ng, học tập, thiết kế nhẹ hoặc chơi game tầm trung, <a href="https://www.thegioididong.com/laptop-core-i5" target="_blank" rel="noopener">laptop Core i5</a> ho&agrave;n to&agrave;n đ&aacute;p ứng tốt. D&ograve;ng vi xử l&yacute; n&agrave;y c&oacute; hiệu năng ổn định, ti&ecirc;u thụ điện năng vừa phải, hỗ trợ hầu hết c&aacute;c phần mềm th&ocirc;ng dụng.</p>
+<p>Laptop Dell chạy Core i5 xuất hiện nhiều tr&ecirc;n c&aacute;c d&ograve;ng như Inspiron, Vostro, Latitude tầm trung hay Dell G Series cơ bản. Cấu h&igrave;nh thường đi k&egrave;m RAM 8GB hoặc 16GB, SSD 256&ndash;512GB. Mức gi&aacute; hợp l&yacute;, dao động từ 13 đến 25 triệu đồng.</p>
+<p><img loading="lazy" loading="lazy" title="Hiệu Năng Ổn Định, Gi&aacute; Trị Vượt Trội" src="https://cdnv2.tgdd.vn/mwg-static/tgdd/Common/33/9a/339ad557fd5ec7e82ac5d2ee7c574b8a.jpg" alt="M&aacute;y t&iacute;nh x&aacute;ch tay với m&agrave;n h&igrave;nh hiển thị giao diện phần mềm ph&acirc;n t&iacute;ch v&agrave; trợ l&yacute; ảo, k&egrave;m th&ocirc;ng số kỹ thuật nổi bật về hiệu năng v&agrave; gi&aacute; trị vượt trội." width="845" height="475" /></p>
+<p>Hiệu Năng Ổn Định, Gi&aacute; Trị Vượt Trội</p>
+<p><strong>Bảng gi&aacute; c&aacute;c mẫu laptop Dell Core i5 phổ biến:</strong></p>
+<table border="1" cellspacing="0" cellpadding="10">
+<thead>
+<tr>
+<th>Model</th>
+<th>RAM / SSD</th>
+<th>M&agrave;n h&igrave;nh</th>
+<th>Gi&aacute; tham khảo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://www.thegioididong.com/laptop/dell-inspiron-15-3520-i5-25p231" target="_blank" rel="noopener">Dell Inspiron 15 3520 i5 1235U (25P2312)</a></td>
+<td>16GB/512GB</td>
+<td>15.6" Full HD 120Hz</td>
+<td>15.990.000</td>
+</tr>
+<tr>
+<td><a href="https://www.thegioididong.com/laptop/dell-inspiron-15-3530-i5-n5i5340w1" target="_blank" rel="noopener">Dell Inspiron 15 3530 i5 1334U (N5I5340W1)</a></td>
+<td>16GB/512GB</td>
+<td>15.6" Full HD 120Hz</td>
+<td>17.990.000</td>
+</tr>
+<tr>
+<td><a href="https://www.thegioididong.com/laptop/dell-inspiron-15-3530-i5-p16wd22" target="_blank" rel="noopener">Dell Inspiron 15 3530 - P16WD22</a></td>
+<td>16GB/512GB</td>
+<td>15.6" Full HD 120Hz</td>
+<td>17.990.000</td>
+</tr>
+<tr>
+<td><a href="https://www.thegioididong.com/laptop/dell-inspiron-15-3530-i5-n3530-i5u165w11slu-hs24" target="_blank" rel="noopener">Dell Inspiron 15 3530 - N3530-i5U165W11SLU-HS24</a></td>
+<td>16GB/512GB</td>
+<td>15.6" Full HD 120Hz</td>
+<td>17.990.000</td>
+</tr>
+<tr>
+<td><a href="https://www.thegioididong.com/laptop/dell-15-dc15250-i5-dc5i5357w1" target="_blank" rel="noopener">Dell 15 DC15250 - DC5I5357W1</a></td>
+<td>16GB/512GB</td>
+<td>15.6" Full HD 120Hz</td>
+<td>17.990.000</td>
+</tr>
+<tr>
+<td><a href="https://www.thegioididong.com/laptop/dell-latitude-3450-i5-l34501335u16512wn" target="_blank" rel="noopener">Dell Latitude 3450 - L3450-1335U-16512WN</a></td>
+<td>16GB/512GB</td>
+<td>14" Full HD 60 Hz</td>
+<td>18.590.000</td>
+</tr>
+</tbody>
+</table>
+<h4 id="cate-article-heading-17--hang-dang-ban">Laptop Dell Core i3 &ndash; Lựa chọn tiết kiệm cho nhu cầu cơ bản</h4>
+<p>Nếu nhu cầu của bạn chủ yếu l&agrave; lướt web, học online, xem phim, l&agrave;m việc với Word, Excel,&hellip; th&igrave; chip Core i3 l&agrave; đủ d&ugrave;ng. D&ograve;ng m&aacute;y sử dụng vi xử l&yacute; n&agrave;y c&oacute; mức gi&aacute; dễ tiếp cận, tiết kiệm điện v&agrave; &iacute;t tỏa nhiệt.</p>
+<p>C&aacute;c mẫu laptop Dell chạy Core i3 thường l&agrave; Inspiron d&ograve;ng phổ th&ocirc;ng hoặc Vostro cấp thấp, cấu h&igrave;nh cơ bản với RAM 8GB, SSD 256GB v&agrave; m&agrave;n h&igrave;nh Full HD. Gi&aacute; b&aacute;n phổ biến từ 8 đến 12 triệu đồng.</p>
+<p><img loading="lazy" loading="lazy" title="Laptop Dell Core i3 với khả năng l&agrave;m việc đa nhiệm hiệu quả" src="https://cdnv2.tgdd.vn/mwg-static/tgdd/Common/31/69/31695b9efec8ad8945eefaf8ad700a28.jpg" alt="Laptop Dell m&agrave;u bạc hiển thị nhiều ứng dụng c&ugrave;ng l&uacute;c như tr&igrave;nh duyệt web, cuộc gọi video, Excel v&agrave; Word, c&ugrave;ng với th&ocirc;ng tin về hiệu năng Core i3, tiết kiệm điện v&agrave; gi&aacute; cả." width="845" height="475" /></p>
+<p>Laptop Dell Core i3 với khả năng l&agrave;m việc đa nhiệm hiệu quả</p>
+<h3 id="cate-article-heading-18--hang-dang-ban">X&acirc;y dựng g&oacute;c l&agrave;m việc, học tập chất lượng c&ugrave;ng laptop Dell</h3>
+<p>Để tận dụng tối đa sức mạnh của chiếc laptop Dell v&agrave; tạo ra một kh&ocirc;ng gian l&agrave;m việc chuy&ecirc;n nghiệp, gi&uacute;p bảo vệ sức khỏe (cổ vai g&aacute;y, mắt), việc trang bị th&ecirc;m c&aacute;c phụ kiện đồng bộ l&agrave; v&ocirc; c&ugrave;ng cần thiết. Dưới đ&acirc;y l&agrave; bảng gợi &yacute; chi tiết để bạn n&acirc;ng cấp g&oacute;c m&aacute;y:</p>
+<table border="1" cellspacing="0" cellpadding="10">
+<thead>
+<tr>
+<th>T&ecirc;n thiết bị</th>
+<th>Vai tr&ograve;</th>
+<th>C&aacute;ch chọn</th>
+<th>Sản phẩm gợi &yacute;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><a href="https://www.thegioididong.com/chuot-may-tinh" target="_blank" rel="noopener">Chuột m&aacute;y t&iacute;nh</a></strong></td>
+<td>Thay thế Touchpad tr&ecirc;n c&aacute;c d&ograve;ng Dell Inspiron/Vostro, tăng độ ch&iacute;nh x&aacute;c khi chỉnh sửa ảnh hoặc l&agrave;m việc với bảng t&iacute;nh.</td>
+<td>Chọn chuột Bluetooth kết nối ổn định cho XPS. D&ugrave;ng Dell G Series Gaming n&ecirc;n chọn chuột c&oacute; cảm biến nhạy v&agrave; độ trễ thấp.</td>
+<td>Dell Wireless</td>
+</tr>
+<tr>
+<td><strong><a href="https://www.thegioididong.com/ban-phim" target="_blank" rel="noopener">B&agrave;n ph&iacute;m</a></strong></td>
+<td>Gi&uacute;p g&otilde; ph&iacute;m nhanh hơn, bảo vệ b&agrave;n ph&iacute;m t&iacute;ch hợp của Dell, giữ tư thế ngồi chuẩn khi kết hợp với gi&aacute; đỡ laptop.</td>
+<td>B&agrave;n ph&iacute;m cơ nhỏ gọn (TKL) cho g&oacute;c m&aacute;y gọn g&agrave;ng. Ưu ti&ecirc;n loại c&oacute; kết nối kh&ocirc;ng d&acirc;y cho sự tinh tế đ&uacute;ng chuẩn Dell XPS.</td>
+<td><a title="B&agrave;n ph&iacute;m Dell" href="https://www.thegioididong.com/ban-phim-dell" target="_blank" rel="noopener">B&agrave;n ph&iacute;m Dell</a></td>
+</tr>
+<tr>
+<td><strong><a href="https://www.thegioididong.com/mieng-lot-chuot" target="_blank" rel="noopener">Miếng l&oacute;t chuột</a></strong></td>
+<td>Tối ưu h&oacute;a khả năng di chuột, tạo sự &ecirc;m &aacute;i cho cổ tay v&agrave; gi&uacute;p mặt b&agrave;n kh&ocirc;ng bị trầy xước.</td>
+<td>Chọn size lớn (XL) trải d&agrave;i mặt b&agrave;n để đặt vừa b&agrave;n ph&iacute;m v&agrave; chuột. Chọn t&ocirc;ng m&agrave;u tối hoặc x&aacute;m để h&agrave;i h&ograve;a với thiết kế Dell.</td>
+<td>L&oacute;t chuột Gaming, Corsair, SteelSeries...</td>
+</tr>
+<tr>
+<td><strong><a href="https://www.thegioididong.com/gia-treo-man-hinh" target="_blank" rel="noopener">Arm m&agrave;n h&igrave;nh</a></strong></td>
+<td>Gi&uacute;p thay đổi linh hoạt tầm nh&igrave;n m&agrave;n h&igrave;nh phụ, chống mỏi cổ cho người d&ugrave;ng Dell Latitude l&agrave;m việc li&ecirc;n tục.</td>
+<td>Đảm bảo m&agrave;n h&igrave;nh của bạn c&oacute; chuẩn gắn VESA. Chọn loại arm c&oacute; piston gas để n&acirc;ng hạ mượt m&agrave; theo trọng lượng m&agrave;n.</td>
+<td>Arm North Bayou, <a title="Human Motion T6 Pro" href="https://www.thegioididong.com/gia-treo-man-hinh/gia-treo-man-hinh-human-motion-t6-pro" target="_blank" rel="noopener">Human Motion T6 Pro</a>...</td>
+</tr>
+<tr>
+<td><strong><a href="https://www.thegioididong.com/man-hinh-may-tinh" target="_blank" rel="noopener">M&agrave;n h&igrave;nh m&aacute;y t&iacute;nh</a></strong></td>
+<td>Mở rộng kh&ocirc;ng gian l&agrave;m việc chuy&ecirc;n nghiệp, tăng hiệu quả đa nhiệm khi xuất h&igrave;nh từ Dell XPS ra m&agrave;n h&igrave;nh lớn.</td>
+<td>Chọn 24-27 inch, độ ph&acirc;n giải Full HD hoặc 2K cho h&igrave;nh ảnh sắc n&eacute;t. Tấm nền IPS cho g&oacute;c nh&igrave;n rộng v&agrave; m&agrave;u chuẩn.</td>
+<td>M&agrave;n h&igrave;nh Dell UltraSharp</td>
+</tr>
+<tr>
+<td><strong><a href="https://www.thegioididong.com/hub-chuyen-doi" target="_blank" rel="noopener">Hub chuyển đổi</a></strong></td>
+<td>Bổ sung c&aacute;c cổng kết nối HDMI, LAN, USB-A cho c&aacute;c d&ograve;ng Dell si&ecirc;u mỏng (XPS, Latitude) khi cần kết nối thiết bị ngoại vi.</td>
+<td>Ưu ti&ecirc;n hub c&oacute; vỏ kim loại gi&uacute;p tản nhiệt tốt, hỗ trợ cổng USB Type-C băng th&ocirc;ng cao, xuất h&igrave;nh 4K v&agrave; c&oacute; sạc PD.</td>
+<td>Hub Ugreen, Hub Baseus, Hub Belkin...</td>
+</tr>
+<tr>
+<td><strong><a href="https://www.thegioididong.com/thiet-bi-mang" target="_blank" rel="noopener">Thiết bị mạng</a></strong></td>
+<td>Đảm bảo kết nối internet ổn định, tốc độ cao khi bạn họp online tr&ecirc;n Dell Vostro hay chơi game tr&ecirc;n d&ograve;ng Alienware.</td>
+<td>Ưu ti&ecirc;n c&aacute;c bộ định tuyến băng tần k&eacute;p hỗ trợ Wi-Fi 6. Nếu thường xuy&ecirc;n di chuyển cần thiết bị ph&aacute;t Wi-Fi 4G di động.</td>
+<td>
+<ul>
+<li><a href="https://www.thegioididong.com/thiet-bi-mang/bo-mo-rong-song-wifi-ac220v-totolink-ex200-trang" target="_blank" rel="noopener">TOTOLINK EX200</a></li>
+<li><a href="https://www.thegioididong.com/thiet-bi-mang/bo-phat-wifi-di-dong-4g-lte-tp-link-m7350-den" target="_blank" rel="noopener">TP-Link M7350</a></li>
+<li><a href="https://www.thegioididong.com/thiet-bi-mang/router-wifi-chuan-ac1200-tp-link-archer-c54" target="_blank" rel="noopener">Archer C54</a></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="cate-article-heading-19--hang-dang-ban">Tại sao n&ecirc;n chọn mua laptop Dell tại Thế Giới Di Động?</h3>
+<p>Thế Giới Di Động l&agrave; địa chỉ uy t&iacute;n để mua laptop Dell ch&iacute;nh h&atilde;ng với hệ thống phủ rộng, dịch vụ nhanh ch&oacute;ng v&agrave; hỗ trợ tận t&acirc;m. Kh&aacute;ch h&agrave;ng kh&ocirc;ng chỉ an t&acirc;m về nguồn gốc sản phẩm m&agrave; c&ograve;n được hưởng loạt ch&iacute;nh s&aacute;ch hậu m&atilde;i r&otilde; r&agrave;ng, minh bạch. Nhờ đội ngũ tư vấn chuy&ecirc;n nghiệp v&agrave; nhiều ưu đ&atilde;i linh hoạt, qu&aacute; tr&igrave;nh mua sắm trở n&ecirc;n dễ d&agrave;ng, tiết kiệm v&agrave; đ&aacute;ng tin cậy.</p>
+<p>Khi mua tại Thế Giới Di Động, bạn sẽ được hỗ trợ:</p><ul><li><strong>Trả góp 0%</strong>: nhiều sản phẩm hỗ trợ trả góp lãi suất 0% qua đối tác tài chính, tùy điều kiện và hồ sơ của từng khách hàng.</li><li><strong>Thanh toán linh hoạt</strong>: tiền mặt, quẹt thẻ, thanh toán online hoặc trả góp tùy nhu cầu.</li><li><strong>Bảo hành chính hãng</strong>: thời hạn tùy sản phẩm, ghi rõ trên trang chi tiết từng máy.</li><li><strong>Hỗ trợ đổi trả</strong>: một số sản phẩm áp dụng 1 đổi 1 trong thời gian đầu sử dụng, theo chính sách riêng của từng model.</li><li><strong>Giao hàng nhanh toàn quốc</strong> và gần 3.000 cửa hàng để xem máy, nhận tư vấn và hỗ trợ bảo hành.</li></ul>
+<p>Khi đến Thế Giới Di Động, bạn sẽ được trải nghiệm:</p>
+<ul>
+<li aria-level="1">Sản phẩm ch&iacute;nh h&atilde;ng 100%, bảo h&agrave;nh r&otilde; r&agrave;ng theo ti&ecirc;u chuẩn Dell Việt Nam.</li>
+<li aria-level="1">Hệ thống hơn 3.000 cửa h&agrave;ng to&agrave;n quốc, giao nhanh trong v&agrave;i giờ tại nhiều khu vực.</li>
+<li aria-level="1">Nh&acirc;n vi&ecirc;n tư vấn tận t&igrave;nh, hỗ trợ c&agrave;i đặt, bảo h&agrave;nh trong suốt qu&aacute; tr&igrave;nh sử dụng.</li>
+</ul>
+<h3 id="cate-article-heading-20--hang-dang-ban">C&acirc;u hỏi thường gặp khi mua laptop Dell</h3>
+<h3 id="cate-article-heading-21--hang-dang-ban"><strong>Laptop Dell c&oacute; bền kh&ocirc;ng?</strong></h3>
+<p>C&oacute;. Laptop Dell nổi tiếng với độ bền cao, đặc biệt l&agrave; c&aacute;c d&ograve;ng như Latitude hoặc Alienware thường đạt chuẩn độ bền qu&acirc;n đội (MIL-STD-810H), chống sốc, rung v&agrave; chịu được nhiệt độ khắc nghiệt.</p>
+<p><strong>Dell Inspiron v&agrave; Dell Vostro kh&aacute;c nhau g&igrave;?</strong></p>
+<p>Dell Inspiron hướng đến người d&ugrave;ng phổ th&ocirc;ng như học sinh, sinh vi&ecirc;n, d&acirc;n văn ph&ograve;ng; c&ograve;n Dell Vostro d&agrave;nh cho doanh nghiệp nhỏ, c&oacute; th&ecirc;m t&iacute;nh năng bảo mật, thiết kế cứng c&aacute;p v&agrave; b&agrave;n ph&iacute;m tối ưu cho nhập liệu.</p>
+<p><strong>Laptop Dell c&oacute; chơi game được kh&ocirc;ng?</strong></p>
+<p>C&oacute;, nhưng bạn n&ecirc;n chọn c&aacute;c d&ograve;ng chuy&ecirc;n dụng như <strong>Dell G Series</strong> hoặc <strong>Alienware</strong>, v&igrave; ch&uacute;ng được trang bị chip Intel d&ograve;ng H v&agrave; card đồ họa rời như NVIDIA RTX, c&ugrave;ng hệ thống tản nhiệt tốt.</p>
+<p><strong>Dell c&oacute; d&ograve;ng laptop n&agrave;o mỏng nhẹ, cao cấp kh&ocirc;ng?</strong></p>
+<p><strong>Dell XPS</strong> l&agrave; d&ograve;ng ultrabook cao cấp, thiết kế viền mỏng, mỏng nhẹ, d&ugrave;ng vật liệu nh&ocirc;m &ndash; sợi carbon v&agrave; m&agrave;n h&igrave;nh chuẩn m&agrave;u cao, ph&ugrave; hợp cho d&acirc;n s&aacute;ng tạo nội dung.</p>
+<p><strong>Laptop Dell bảo h&agrave;nh bao l&acirc;u?</strong></p>
+<p>Thời hạn bảo h&agrave;nh từ 12&ndash;36 th&aacute;ng t&ugrave;y d&ograve;ng m&aacute;y. Một số model hỗ trợ <strong>bảo h&agrave;nh tại nh&agrave; (onsite)</strong> v&agrave; kiểm tra t&igrave;nh trạng m&aacute;y online th&ocirc;ng qua phần mềm Dell SupportAssist.</p>
+<p><strong>Mua laptop Dell ở đ&acirc;u uy t&iacute;n, chất lượng?</strong></p>
+<p>Bạn c&oacute; thể mua laptop Dell ch&iacute;nh h&atilde;ng tại Thế Giới Di Động với ch&iacute;nh s&aacute;ch bảo h&agrave;nh đầy đủ, trả g&oacute;p 0% v&agrave; giao h&agrave;ng nhanh ch&oacute;ng.</p></div>
+    </div>
+    <button type="button" class="bi-more" data-bi-more aria-controls="bi-content--hang-dang-ban" aria-expanded="false" hidden>
+      <span>Xem thêm<svg width="20" height="20" viewBox="0 0 40 40" fill="none" aria-hidden="true"><path d="M15 11.67l7.74 7.74a.83.83 0 010 1.18L15 28.33" stroke="#2A83E9" stroke-width="3" stroke-linecap="round"/></svg></span></button>
+  </div>
+</section></div>
+<div class="db-slot"><div class="db-variant" data-mode="du"><div class="panel db-block"><section class="rb" aria-labelledby="rb-title--hang-dang-ban-du"><div class="rb-head"><h3 id="rb-title--hang-dang-ban-du">Bài viết về Laptop Dell</h3><a class="rb-all" href="../../chu-de-trang-chu/chu-de/index.html" title="Trang chủ đề của Tag này (demo dùng trang mẫu iPhone 18 Pro Max)">Xem tất cả ›</a></div><ol class="rb-list"><li><a class="rb-item" href="https://www.thegioididong.com/tin-tuc/dell-xps-16-creator-edition-ra-mat-chip-nvidia-1599709" target="_blank" rel="noopener"><img src="https://cdnv2.tgdd.vn/mwg-static/tgdd/News/Thumb/1599709/de639271516054174769.jpg" alt="" width="96" height="54" loading="lazy"><span class="rb-body"><span class="rb-title">Dell XPS 16 Creator Edition ra mắt: Chip NVIDIA RTX Spark, bộ nhớ</span><span class="rb-meta">Tin tức&nbsp;&nbsp;09/10/2026</span></span></a></li><li><a class="rb-item" href="https://www.thegioididong.com/tin-tuc/vi-sao-laptop-dell-ai-lai-can-thiet-1588732" target="_blank" rel="noopener"><img src="https://cdnv2.tgdd.vn/mwg-static/tgdd/News/Thumb/1588732/laptop-dell-ai-T639045324937064739.jpg" alt="" width="96" height="54" loading="lazy"><span class="rb-body"><span class="rb-title">Vì sao laptop Dell AI lại cần thiết? Nên mua sản phẩm nào đây?</span><span class="rb-meta">Tin tức&nbsp;&nbsp;25/01/2026</span></span></a></li><li><a class="rb-item" href="https://www.thegioididong.com/tin-tuc/mua-dell-chinh-hang-trai-nghiem-xung-tam-quyen-loi-toi-uu-1578193" target="_blank" rel="noopener"><img src="https://cdnv2.tgdd.vn/mwg-static/tgdd/News/Thumb/1578193/laptop-dell-t638836852982791549.jpg" alt="" width="96" height="54" loading="lazy"><span class="rb-body"><span class="rb-title">Mua laptop Dell chính hãng: Trải nghiệm xứng tầm, quyền lợi tối ưu</span><span class="rb-meta">Tin tức&nbsp;&nbsp;24/05/2025</span></span></a></li><li><a class="rb-item" href="https://www.thegioididong.com/tin-tuc/laptop-dell-van-phong-core-i5-gia-tot-trang-bi-san-office-xai-truoc-tra-sau-1577398" target="_blank" rel="noopener"><img src="https://cdnv2.tgdd.vn/mwg-static/tgdd/News/Thumb/1577398/2638814356617376354.jpg" alt="" width="96" height="54" loading="lazy"><span class="rb-body"><span class="rb-title">Laptop Dell văn phòng core i5 giá tốt, trang bị sẵn Microsoft Office</span><span class="rb-meta">Tin tức&nbsp;&nbsp;28/04/2025</span></span></a></li><li><a class="rb-item" href="https://www.thegioididong.com/tin-tuc/diem-manh-khien-dell-inspiron-14-5440-dang-mua-1568349" target="_blank" rel="noopener"><img src="https://cdn.tgdd.vn//News/Thumb/1568349/laptop-t-1200x675.jpg" alt="" width="96" height="54" loading="lazy"><span class="rb-body"><span class="rb-title">Những điểm mạnh đáng mua trên Dell Inspiron 14 5440</span><span class="rb-meta">Tin tức&nbsp;&nbsp;24/07/2024</span></span></a></li></ol></section></div><div class="db-note" role="note"><button type="button" class="db-note-x" aria-label="Tắt ghi chú">&times;</button><p><b>Ghi chú cho IT (B3, B4)</b></p><p>Ca này: Tag của Hãng có từ 5 bài, lấy 5 bài mới nhất, không cần lấy thêm.</p><p>Thứ tự lấy bài, bài mới trước trong mỗi cấp, bài trùng chỉ hiện 1 lần:<br>1. Tag của Hãng (chính trang) <code>laptop dell</code>, mặc định: có 11 bài, lấy 5 bài.</p><p>Nút Xem tất cả: /blog/chu-de/laptop-dell (trang chủ đề của Tag <code>laptop dell</code>).</p><p>Vị trí khối: cuối trang, ngay dưới bài viết SEO của trang. Bấm “Bài viết SEO: Không” để xem trang chưa có bài viết SEO: khối nằm cuối nội dung chính, trên chân trang.</p></div></div><div class="db-variant" data-mode="thieu" hidden><div class="panel db-block"><section class="rb" aria-labelledby="rb-title--hang-dang-ban-thieu"><div class="rb-head"><h3 id="rb-title--hang-dang-ban-thieu">Bài viết về Laptop Dell</h3><a class="rb-all" href="../../chu-de-trang-chu/chu-de/index.html" title="Trang chủ đề của Tag này (demo dùng trang mẫu iPhone 18 Pro Max)">Xem tất cả ›</a></div><ol class="rb-list"><li><a class="rb-item" href="https://www.thegioididong.com/tin-tuc/laptop-latitude-7400-co-the-cam-nhan-su-hien-dien-nguoi-dung-1142818" target="_blank" rel="noopener"><img src="https://cdn.tgdd.vn/Files/2019/01/05/1142818/dell-latitude-7400-2-in-1_800x450-600x400.jpg" alt="" width="96" height="54" loading="lazy"><span class="rb-body"><span class="rb-title">Dell ra mắt laptop xoay gập cảm nhận được sự hiện diện của người dùng</span><span class="rb-meta">Tin tức&nbsp;&nbsp;05/01/2019</span></span></a></li><li><a class="rb-item" href="https://www.thegioididong.com/hoi-dap/laptop-dell-inspiron-7460-ram-8-gb-choi-game-muot-1012123" target="_blank" rel="noopener"><img src="https://cdn.tgdd.vn/hoi-dap/1012123/Thumbnail/Laptop-Dell-Inspiron-7460-ram-8-GB-choi-game-co-muot-khong-5.jpg" alt="" width="96" height="54" loading="lazy"><span class="rb-body"><span class="rb-title">Laptop Dell Inspiron 7460 ram 8 GB chơi game mượt không?</span><span class="rb-meta">Hỏi Đáp&nbsp;&nbsp;11/08/2017</span></span></a></li><li><a class="rb-item" href="https://www.thegioididong.com/hoi-dap/dell-inspiron-5767-choi-game-ngon-khong-1012116" target="_blank" rel="noopener"><img src="https://cdn.tgdd.vn/hoi-dap/1012116/Thumbnail/Dell-Inspiron-5767-choi-game-ngon-khong-3.jpg" alt="" width="96" height="54" loading="lazy"><span class="rb-body"><span class="rb-title">Dell Inspiron 5767 chơi game ngon không?</span><span class="rb-meta">Hỏi Đáp&nbsp;&nbsp;11/08/2017</span></span></a></li><li><a class="rb-item" href="https://www.thegioididong.com/tin-tuc/dell-ra-mat-latitude-3330-danh-cho-truong-hoc-va-doanh-nghiep-nho-516704" target="_blank" rel="noopener"><img src="https://cdn.tgdd.vn/Files/2013/04/18/516704/x-dell-Latitude-3330-2-600x400.jpg" alt="" width="96" height="54" loading="lazy"><span class="rb-body"><span class="rb-title">Dell ra mắt Latitude 3330 cho trường học và doanh nghiệp nhỏ</span><span class="rb-meta">Tin tức&nbsp;&nbsp;18/04/2013</span></span></a></li><li><a class="rb-item" href="https://www.thegioididong.com/hoi-dap/huong-dan-cach-choi-co-vua-co-ban-don-gian-cho-nguoi-moi-1305566" target="_blank" rel="noopener"><img src="https://cdn.tgdd.vn/hoi-dap/1305566/Thumbnail/thum.jpg" alt="" width="96" height="54" loading="lazy"><span class="rb-body"><span class="rb-title">Hướng dẫn cách chơi cờ vua cơ bản, đơn giản cho người mới bắt đầu</span><span class="rb-meta">Hỏi Đáp&nbsp;&nbsp;13/11/2026</span></span></a></li></ol></section></div><div class="db-note" role="note"><button type="button" class="db-note-x" aria-label="Tắt ghi chú">&times;</button><p><b>Ghi chú cho IT (B3, B4)</b></p><p>Ca này: Tag của Hãng chưa đủ 5 bài, lấy thêm theo Tag của Ngành hàng cho đủ 5. Bài của Hãng đứng trước, bài của Ngành hàng đứng sau.</p><p>Thứ tự lấy bài, bài mới trước trong mỗi cấp, bài trùng chỉ hiện 1 lần:<br>1. Tag của Hãng (chính trang) <code>dell</code>, khai tay để minh hoạ ca này (mặc định sẽ là <code>laptop dell</code>): có 4 bài, lấy 4 bài.<br>2. Tag của Ngành hàng (cấp trên) <code>laptop</code>, mặc định: có 22 bài, lấy 1 bài.</p><p>Nút Xem tất cả: /blog/chu-de/dell (trang chủ đề của Tag <code>dell</code>).</p><p>Vị trí khối: cuối trang, ngay dưới bài viết SEO của trang. Bấm “Bài viết SEO: Không” để xem trang chưa có bài viết SEO: khối nằm cuối nội dung chính, trên chân trang.</p></div></div><div class="db-variant" data-mode="khong" hidden><div class="db-note" role="note"><button type="button" class="db-note-x" aria-label="Tắt ghi chú">&times;</button><p><b>Ghi chú cho IT (B3, B4)</b></p><p>Ca này: cả Tag của Hãng và Tag của Ngành hàng đều chưa có bài, ẩn cả khối, không để khung trống.</p><p>Thứ tự lấy bài, bài mới trước trong mỗi cấp, bài trùng chỉ hiện 1 lần:<br>1. Tag của Hãng (chính trang): giả định chưa có bài nào mang Tag này.<br>2. Tag của Ngành hàng (cấp trên): giả định chưa có bài nào mang Tag này.</p><p>Không hiện nút Xem tất cả vì khối ẩn.</p><p>Vị trí khối: cuối trang, ngay dưới bài viết SEO của trang. Bấm “Bài viết SEO: Không” để xem trang chưa có bài viết SEO: khối nằm cuối nội dung chính, trên chân trang.</p></div></div></div>
+</main></div>
+<div class="db-pane" data-pane="chua-kd" hidden><nav class="container breadcrumb" aria-label="Breadcrumb"><ol><li><a href="#">RAM máy tính</a><svg class="sep" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></li><li><h1 id="h1--hang-chua-kd" aria-current="page"><span class="h1-count" data-visible-count>14</span> RAM Kingston</h1></li></ol></nav>
+<main class="container">
+<section class="panel listing" aria-label="Danh sách sản phẩm"><div class="filter filter-top">
+    <div class="filter-anchor">
+      <button type="button" class="btn-filter has-filter" data-open-filter aria-haspopup="dialog" aria-expanded="false" aria-controls="fpanel--hang-chua-kd"><span class="filter-ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 3H2l8 9.46V19l4 2v-8.54L22 3z"/></svg></span>Lọc</button>
+      <div class="fpanel" id="fpanel--hang-chua-kd" data-filter-modal role="dialog" aria-modal="true" aria-labelledby="mf-title--hang-chua-kd" hidden>
+        <div class="fpanel-head"><h2 id="mf-title--hang-chua-kd">Tất cả bộ lọc</h2>
+          <button type="button" class="modal-close" data-close-filter><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>Đóng</button></div>
+        <div class="fpanel-body"><div class="fpicked"><b>Đã chọn:</b><a class="picked" href="#" aria-label="Bỏ lọc Kingston">Kingston<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></a><a class="clear-all-link" href="#">Xóa tất cả</a></div><fieldset class="fgroup"><legend>Loại sản phẩm</legend><div class="opts opts--type"><button type="button" class="opt" data-g="type" data-v="ddr5" data-label="DDR5" aria-pressed="false">DDR5</button><button type="button" class="opt" data-g="type" data-v="ddr4" data-label="DDR4" aria-pressed="false">DDR4</button></div></fieldset></div>
+        <div class="fpanel-foot"><button type="button" class="btn btn-outline-red" data-clear-draft>Bỏ chọn</button>
+          <button type="button" class="btn btn-primary" data-apply-filter><span>Xem <span data-result-count>14</span> kết quả</span></button></div>
+      </div>
+    </div>
+    <a class="picked" href="#" aria-label="Bỏ lọc Kingston">Kingston<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></a><a class="clear-all-link" href="#">Xóa tất cả</a><span class="picked-dyn"></span>
+  </div><div><nav class="filter-lines" aria-label="Xem theo dòng"><a class="chip" href="#">Kingston FURY Beast</a></nav></div><div class="sort-row"><p class="cnkd-note"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg><span>Chưa bán tại Thế Giới Di Động, thông tin để tham khảo. <a href="https://www.thegioididong.com/may-tinh-de-ban" target="_blank" rel="noopener">Xem máy tính để bàn đang bán<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></span></p></div><div class="grid" data-grid data-fold-grid><article class="pcard" data-fold-item data-order="0" data-brand="Kingston" data-attrs="{&quot;brand&quot;:[&quot;Kingston&quot;],&quot;type&quot;:[&quot;ddr5&quot;]}">
+  <a class="pcard-main" href="#" data-pdp="Kingston FURY Renegade DDR5 9600 RGB">
+    <div class="pcard-img pcard-img--blank"><b>Kingston</b><small>Chưa có ảnh chính thức</small></div>
+    <h3 class="pcard-name">Kingston FURY Renegade DDR5 9600 RGB</h3>
+    
+  </a>
+  <p class="release is-stage"><span class="stage stage--rumor">Tin đồn</span></p>
+</article><article class="pcard" data-fold-item data-order="1" data-brand="Kingston" data-attrs="{&quot;brand&quot;:[&quot;Kingston&quot;],&quot;type&quot;:[&quot;ddr5&quot;]}">
+  <a class="pcard-main" href="#" data-pdp="Kingston FURY Renegade DDR5">
+    <div class="pcard-img"><img src="assets/sp/kingston-fury-renegade-ddr5.jpg" alt="" width="600" height="600" loading="lazy"></div>
+    <h3 class="pcard-name">Kingston FURY Renegade DDR5</h3>
+    
+  </a>
+  <p class="release is-stage"><span class="stage stage--unsold">Chưa bán</span></p>
+</article><article class="pcard" data-fold-item data-order="2" data-brand="Kingston" data-attrs="{&quot;brand&quot;:[&quot;Kingston&quot;],&quot;type&quot;:[&quot;ddr5&quot;]}">
+  <a class="pcard-main" href="#" data-pdp="Kingston FURY Beast DDR5 8400 RGB">
+    <div class="pcard-img pcard-img--blank"><b>Kingston</b><small>Chưa có ảnh chính thức</small></div>
+    <h3 class="pcard-name">Kingston FURY Beast DDR5 8400 RGB</h3>
+    
+  </a>
+  <p class="release is-stage"><span class="stage stage--rumor">Tin đồn</span></p>
+</article><article class="pcard" data-fold-item data-order="3" data-brand="Kingston" data-attrs="{&quot;brand&quot;:[&quot;Kingston&quot;],&quot;type&quot;:[&quot;ddr5&quot;]}">
+  <a class="pcard-main" href="#" data-pdp="Kingston FURY Renegade DDR5 RGB">
+    <div class="pcard-img"><img src="assets/sp/kingston-fury-renegade-ddr5-rgb.jpg" alt="" width="600" height="600" loading="lazy"></div>
+    <h3 class="pcard-name">Kingston FURY Renegade DDR5 RGB</h3>
+    
+  </a>
+  <p class="release is-stage"><span class="stage stage--unsold">Chưa bán</span></p>
+</article><article class="pcard" data-fold-item data-order="4" data-brand="Kingston" data-attrs="{&quot;brand&quot;:[&quot;Kingston&quot;],&quot;type&quot;:[&quot;ddr5&quot;]}">
+  <a class="pcard-main" href="#" data-pdp="Kingston FURY Renegade DDR5 CUDIMM">
+    <div class="pcard-img"><img src="assets/sp/kingston-fury-renegade-ddr5-cudimm.jpg" alt="" width="600" height="600" loading="lazy"></div>
+    <h3 class="pcard-name">Kingston FURY Renegade DDR5 CUDIMM</h3>
+    
+  </a>
+  <p class="release is-stage"><span class="stage stage--unsold">Chưa bán</span></p>
+</article><article class="pcard" data-fold-item data-order="5" data-brand="Kingston" data-attrs="{&quot;brand&quot;:[&quot;Kingston&quot;],&quot;type&quot;:[&quot;ddr5&quot;]}">
+  <a class="pcard-main" href="#" data-pdp="Kingston FURY Renegade DDR5 RGB Limited Edition">
+    <div class="pcard-img pcard-img--blank"><b>Kingston</b><small>Chưa có ảnh chính thức</small></div>
+    <h3 class="pcard-name">Kingston FURY Renegade DDR5 RGB Limited Edition</h3>
+    
+  </a>
+  <p class="release is-stage"><span class="stage stage--unsold">Chưa bán</span></p>
+</article><article class="pcard" data-fold-item data-order="6" data-brand="Kingston" data-attrs="{&quot;brand&quot;:[&quot;Kingston&quot;],&quot;type&quot;:[&quot;ddr4&quot;]}">
+  <a class="pcard-main" href="#" data-pdp="Kingston FURY Renegade DDR4">
+    <div class="pcard-img"><img src="assets/sp/kingston-fury-renegade-ddr4.jpg" alt="" width="600" height="600" loading="lazy"></div>
+    <h3 class="pcard-name">Kingston FURY Renegade DDR4</h3>
+    
+  </a>
+  <p class="release is-stage"><span class="stage stage--unsold">Chưa bán</span></p>
+</article><article class="pcard" data-fold-item data-order="7" data-brand="Kingston" data-attrs="{&quot;brand&quot;:[&quot;Kingston&quot;],&quot;type&quot;:[&quot;ddr4&quot;]}">
+  <a class="pcard-main" href="#" data-pdp="Kingston FURY Renegade DDR4 RGB">
+    <div class="pcard-img pcard-img--blank"><b>Kingston</b><small>Chưa có ảnh chính thức</small></div>
+    <h3 class="pcard-name">Kingston FURY Renegade DDR4 RGB</h3>
+    
+  </a>
+  <p class="release is-stage"><span class="stage stage--unsold">Chưa bán</span></p>
+</article><article class="pcard" data-fold-item data-order="8" data-brand="Kingston" data-attrs="{&quot;brand&quot;:[&quot;Kingston&quot;],&quot;type&quot;:[&quot;ddr5&quot;]}">
+  <a class="pcard-main" href="#" data-pdp="Kingston FURY Beast DDR5">
+    <div class="pcard-img"><img src="assets/sp/kingston-fury-beast-ddr5.jpg" alt="" width="600" height="600" loading="lazy"></div>
+    <h3 class="pcard-name">Kingston FURY Beast DDR5</h3>
+    
+  </a>
+  <p class="release is-stage"><span class="stage stage--unsold">Chưa bán</span></p>
+</article><article class="pcard" data-fold-item data-order="9" data-brand="Kingston" data-attrs="{&quot;brand&quot;:[&quot;Kingston&quot;],&quot;type&quot;:[&quot;ddr4&quot;]}">
+  <a class="pcard-main" href="#" data-pdp="Kingston FURY Beast DDR4 RGB Special Edition">
+    <div class="pcard-img pcard-img--blank"><b>Kingston</b><small>Chưa có ảnh chính thức</small></div>
+    <h3 class="pcard-name">Kingston FURY Beast DDR4 RGB Special Edition</h3>
+    
+  </a>
+  <p class="release is-stage"><span class="stage stage--unsold">Chưa bán</span></p>
+</article><article class="pcard" data-fold-item data-order="10" data-brand="Kingston" data-attrs="{&quot;brand&quot;:[&quot;Kingston&quot;],&quot;type&quot;:[&quot;ddr5&quot;]}">
+  <a class="pcard-main" href="#" data-pdp="Kingston FURY Beast DDR5 RGB">
+    <div class="pcard-img"><img src="assets/sp/kingston-fury-beast-ddr5-rgb.jpg" alt="" width="600" height="600" loading="lazy"></div>
+    <h3 class="pcard-name">Kingston FURY Beast DDR5 RGB</h3>
+    
+  </a>
+  <p class="release is-stage"><span class="stage stage--unsold">Chưa bán</span></p>
+</article><article class="pcard" data-fold-item data-order="11" data-brand="Kingston" data-attrs="{&quot;brand&quot;:[&quot;Kingston&quot;],&quot;type&quot;:[&quot;ddr5&quot;]}">
+  <a class="pcard-main" href="#" data-pdp="Kingston FURY Beast DDR5 White">
+    <div class="pcard-img"><img src="assets/sp/kingston-fury-beast-ddr5-white.jpg" alt="" width="600" height="600" loading="lazy"></div>
+    <h3 class="pcard-name">Kingston FURY Beast DDR5 White</h3>
+    
+  </a>
+  <p class="release is-stage"><span class="stage stage--unsold">Chưa bán</span></p>
+</article><article class="pcard" data-fold-item data-order="12" data-brand="Kingston" data-attrs="{&quot;brand&quot;:[&quot;Kingston&quot;],&quot;type&quot;:[&quot;ddr5&quot;]}">
+  <a class="pcard-main" href="#" data-pdp="Kingston FURY Beast DDR5 RGB White">
+    <div class="pcard-img pcard-img--blank"><b>Kingston</b><small>Chưa có ảnh chính thức</small></div>
+    <h3 class="pcard-name">Kingston FURY Beast DDR5 RGB White</h3>
+    
+  </a>
+  <p class="release is-stage"><span class="stage stage--unsold">Chưa bán</span></p>
+</article><article class="pcard" data-fold-item data-order="13" data-brand="Kingston" data-attrs="{&quot;brand&quot;:[&quot;Kingston&quot;],&quot;type&quot;:[&quot;ddr4&quot;]}">
+  <a class="pcard-main" href="#" data-pdp="Kingston FURY Beast DDR4">
+    <div class="pcard-img"><img src="assets/sp/kingston-fury-beast-ddr4.jpg" alt="" width="600" height="600" loading="lazy"></div>
+    <h3 class="pcard-name">Kingston FURY Beast DDR4</h3>
+    
+  </a>
+  <p class="release is-stage"><span class="stage stage--unsold">Chưa bán</span></p>
+</article></div><button type="button" class="btn-more" data-more hidden>Xem thêm <span data-more-count></span> sản phẩm<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button><p class="empty" hidden>Không có sản phẩm phù hợp. <button type="button" class="link-btn" data-reset-filter>Bỏ chọn</button></p></section>
+<div class="promo-wrap"><section class="panel promo" id="dang-ban--hang-chua-kd" aria-labelledby="pb-title--hang-chua-kd">
+  <div class="pb-head"><h2 id="pb-title--hang-chua-kd">Máy tính để bàn đang bán</h2>
+    <a class="pb-all" href="https://www.thegioididong.com/may-tinh-de-ban" target="_blank" rel="noopener">Xem tất cả<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></div>
+  <ol class="pb-list"><li><a class="pb-card" href="https://www.thegioididong.com/may-tinh-de-ban/singpc-r53a595sf-w-r5-3400g-16gb-512gb-ban-phim-chuot-win11pro" target="_blank" rel="noopener">
+    <img src="https://cdnv2.tgdd.vn/mwg-static/tgdd/Products/Images/5698/366558/singpc-r53a595sf-w-r5-3400g-16gb-512gb-ban-phim-chuot-win11pro-thumb-639135979078237227-600x600.jpg" alt="" width="600" height="600" loading="lazy">
+    <span class="pb-tags"><span class="pb-tag">Trả chậm 0% trả trước 0đ</span></span>
+    <span class="pb-name">SingPC R53A595SF-W R5 3400G</span>
+    <span class="pb-price">10.990.000đ</span><span class="pb-old"><s>12.700.000đ</s><b>-13%</b></span><span class="pb-rate"><span class="pb-star" aria-hidden="true">★</span>4.9<span aria-hidden="true">•</span>Đã bán 272</span></a></li><li><a class="pb-card" href="https://www.thegioididong.com/may-tinh-de-ban/asus-aio-v440va-core-5-210h-23-8-inch-v440vak-wpc407w" target="_blank" rel="noopener">
+    <img src="https://cdnv2.tgdd.vn/mwg-static/tgdd/Products/Images/5698/364499/asus-aio-v440va-core-5-210h-23-8-inch-v440vak-wpc407w-thumb-639104902741473034-600x600.jpg" alt="" width="600" height="600" loading="lazy">
+    <span class="pb-tags"><span class="pb-tag">Trả chậm 0% trả trước 0đ</span></span>
+    <span class="pb-name">ASUS AIO V440VA Core 5 210H 23.8 inch (V440VAK-WPC407W)</span>
+    <span class="pb-price">24.990.000đ</span><span class="pb-old"><s>31.990.000đ</s><b>-22%</b></span><span class="pb-rate"><span class="pb-star" aria-hidden="true">★</span>5<span aria-hidden="true">•</span>Đã bán 62</span></a></li><li><a class="pb-card" href="https://www.thegioididong.com/may-tinh-de-ban/rosa-crystal-a10-ryzen-3-3200g-8gb-256gb-win11" target="_blank" rel="noopener">
+    <img src="https://cdnv2.tgdd.vn/mwg-static/tgdd/Products/Images/5698/329465/rosa-crystal-a10-ryzen-3-3200g-8gb-256gb-win11-thumb-1-638622765391038718-600x600.jpg" alt="" width="600" height="600" loading="lazy">
+    <span class="pb-tags"><span class="pb-tag">Trả chậm 0% trả trước 0đ</span></span>
+    <span class="pb-name">ROSA Crystal A10 Ryzen 3 3200G</span>
+    <span class="pb-price">8.190.000đ</span><span class="pb-old"><s>9.490.000đ</s><b>-14%</b></span><span class="pb-rate"><span class="pb-star" aria-hidden="true">★</span>5<span aria-hidden="true">•</span>Đã bán 943</span></a></li><li><a class="pb-card" href="https://www.thegioididong.com/may-tinh-de-ban/hp-aio-cr2012d-ultra-5-225u-23-8-inch-c20cbpa" target="_blank" rel="noopener">
+    <img src="https://cdnv2.tgdd.vn/mwg-static/tgdd/Products/Images/5698/365957/hp-aio-cr2012d-ultra-5-225u-23-8-inch-c20cbpa-thumb-639123662749490512-600x600.jpg" alt="" width="600" height="600" loading="lazy">
+    <span class="pb-tags"><span class="pb-tag">Trả chậm 0% trả trước 0đ</span></span>
+    <span class="pb-name">HP AIO cr2012d Ultra 5 225U 23.8 inch (C20CBPA)</span>
+    <span class="pb-price">31.590.000đ</span><span class="pb-old"><s>32.590.000đ</s><b>-3%</b></span><span class="pb-rate"><span class="pb-star" aria-hidden="true">★</span>5<span aria-hidden="true">•</span>Đã bán 14</span></a></li><li><a class="pb-card" href="https://www.thegioididong.com/may-tinh-de-ban/singpc-i512h682sf-w-i5-12450h" target="_blank" rel="noopener">
+    <img src="https://cdnv2.tgdd.vn/mwg-static/tgdd/Products/Images/5698/330873/singpc-i512h682sf-w-i5-12450h-thumb-32-638681407136680091-600x600.jpg" alt="" width="600" height="600" loading="lazy">
+    <span class="pb-tags"><span class="pb-tag">Trả chậm 0% trả trước 0đ</span></span>
+    <span class="pb-name">SingPC i512H682SF-W i5 12450H</span>
+    <span class="pb-price">11.990.000đ</span><span class="pb-old"><s>13.300.000đ</s><b>-10%</b></span><span class="pb-rate"><span class="pb-star" aria-hidden="true">★</span>5<span aria-hidden="true">•</span>Đã bán 1,4k</span></a></li></ol>
+</section></div>
+<section class="panel infobox db-seo" id="thong-tin--hang-chua-kd" aria-label="Thông tin RAM Kingston"><div class="ib-main"><div class="ib-article" id="ib-article--hang-chua-kd">
+<h2>RAM Kingston gồm dòng FURY cho người chơi game, ép xung và dòng ValueRAM cho máy văn phòng.</h2>
+<h3>1. Kingston có những dòng RAM nào?</h3>
+<p>Các dòng trên trang: Kingston FURY Renegade, Kingston FURY Beast. FURY Beast là dòng phổ thông, FURY Renegade nhắm máy chơi game cấu hình
+cao.</p>
+<div class="ib-table"><table><thead><tr><th scope="col">Sản phẩm</th><th scope="col">Dòng</th><th scope="col">Thông số chính</th><th scope="col">Ra mắt</th><th scope="col">Nguồn</th></tr></thead><tbody><tr><td>Kingston FURY Renegade DDR5 9600 RGB</td><td>Kingston FURY Renegade</td><td>—</td><td>Dự kiến 2027</td><td><a href="" target="_blank" rel="noopener nofollow">Trang hãng</a></td></tr><tr><td>Kingston FURY Renegade DDR5</td><td>Kingston FURY Renegade</td><td>Tới 6400 MT/s, CL32, Intel XMP 3.0</td><td>07/2022</td><td><a href="https://kingston.com/en/company/press/article/66918" target="_blank" rel="noopener nofollow">Trang hãng</a></td></tr><tr><td>Kingston FURY Beast DDR5 8400 RGB</td><td>Kingston FURY Beast</td><td>—</td><td>Dự kiến 2027</td><td><a href="" target="_blank" rel="noopener nofollow">Trang hãng</a></td></tr><tr><td>Kingston FURY Renegade DDR5 RGB</td><td>Kingston FURY Renegade</td><td>Tới 6400 MT/s, CL32, Intel XMP 3.0</td><td>07/2022</td><td><a href="https://kingston.com/en/company/press/article/66918" target="_blank" rel="noopener nofollow">Trang hãng</a></td></tr><tr><td>Kingston FURY Renegade DDR5 CUDIMM</td><td>Kingston FURY Renegade</td><td>8400 MT/s, CUDIMM, 24GB / kit 48GB</td><td>10/2024</td><td><a href="https://www.kingston.com/en/company/press/article/74306" target="_blank" rel="noopener nofollow">Trang hãng</a></td></tr><tr><td>Kingston FURY Renegade DDR5 RGB Limited Edition</td><td>Kingston FURY Renegade</td><td>8000 MT/s, Kit 48GB (2 thanh), Intel XMP 3.0</td><td>06/2024</td><td><a href="https://www.kingston.com/en/company/press/article/73434" target="_blank" rel="noopener nofollow">Trang hãng</a></td></tr><tr><td>Kingston FURY Renegade DDR4</td><td>Kingston FURY Renegade</td><td>Tới 5333 MHz, CL13-CL20</td><td>07/2021</td><td><a href="https://www.kingston.com/en/company/press/article/63738" target="_blank" rel="noopener nofollow">Trang hãng</a></td></tr><tr><td>Kingston FURY Renegade DDR4 RGB</td><td>Kingston FURY Renegade</td><td>Tới 4600 MHz, CL15-CL19</td><td>07/2021</td><td><a href="https://www.kingston.com/en/company/press/article/63738" target="_blank" rel="noopener nofollow">Trang hãng</a></td></tr><tr><td>Kingston FURY Beast DDR5</td><td>Kingston FURY Beast</td><td>DDR5 4800 MHz, Intel XMP 3.0</td><td>11/2021</td><td><a href="https://www.kingston.com/en/company/press/article/64924" target="_blank" rel="noopener nofollow">Trang hãng</a></td></tr><tr><td>Kingston FURY Beast DDR4 RGB Special Edition</td><td>Kingston FURY Beast</td><td>Tản nhiệt màu trắng, Thanh 8GB / 16GB, Intel XMP</td><td>09/2022</td><td><a href="https://www.kingston.com/en/company/press/article/67419" target="_blank" rel="noopener nofollow">Trang hãng</a></td></tr><tr><td>Kingston FURY Beast DDR5 RGB</td><td>Kingston FURY Beast</td><td>Tới 6000 MT/s, Intel XMP 3.0, Thanh 8/16/32GB</td><td>05/2022</td><td><a href="https://kingston.com/en/company/press/article/66451" target="_blank" rel="noopener nofollow">Trang hãng</a></td></tr><tr><td>Kingston FURY Beast DDR5 White</td><td>Kingston FURY Beast</td><td>Tản nhiệt màu trắng, Plug N Play 4800MT/s, XMP 3.0 / AMD EXPO</td><td>03/2023</td><td><a href="https://www.kingston.com/en/company/press/article/68648" target="_blank" rel="noopener nofollow">Trang hãng</a></td></tr><tr><td>Kingston FURY Beast DDR5 RGB White</td><td>Kingston FURY Beast</td><td>Tản nhiệt màu trắng, 18 hiệu ứng RGB</td><td>03/2023</td><td><a href="https://www.kingston.com/en/company/press/article/68648" target="_blank" rel="noopener nofollow">Trang hãng</a></td></tr><tr><td>Kingston FURY Beast DDR4</td><td>Kingston FURY Beast</td><td>Tới 3733 MHz, CL15-CL19</td><td>07/2021</td><td><a href="https://www.kingston.com/en/company/press/article/63738" target="_blank" rel="noopener nofollow">Trang hãng</a></td></tr></tbody></table></div>
+<h3>2. Sản phẩm Kingston đang bán tại Thế Giới Di Động</h3>
+<p>Thế Giới Di Động đang bán ổ cứng di động, thẻ nhớ và USB Kingston chính hãng. Cần PC lắp sẵn thì xem
+<a href="https://www.thegioididong.com/may-tinh-de-ban-pc-gaming" target="_blank" rel="noopener">pc gaming</a>.</p>
+</div><button type="button" class="ib-toggle" data-ib-toggle aria-controls="ib-article--hang-chua-kd" aria-expanded="true" hidden><span>Xem thêm</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button></div></section>
+<div class="db-slot"><div class="db-variant" data-mode="du"><div class="panel db-block"><section class="rb" aria-labelledby="rb-title--hang-chua-kd-du"><div class="rb-head"><h3 id="rb-title--hang-chua-kd-du">Bài viết về RAM Kingston</h3><a class="rb-all" href="../../chu-de-trang-chu/chu-de/index.html" title="Trang chủ đề của Tag này (demo dùng trang mẫu iPhone 18 Pro Max)">Xem tất cả ›</a></div><ol class="rb-list"><li><a class="rb-item" href="https://www.thegioididong.com/hoi-dap/huong-dan-cach-choi-co-vua-co-ban-don-gian-cho-nguoi-moi-1305566" target="_blank" rel="noopener"><img src="https://cdn.tgdd.vn/hoi-dap/1305566/Thumbnail/thum.jpg" alt="" width="96" height="54" loading="lazy"><span class="rb-body"><span class="rb-title">Hướng dẫn cách chơi cờ vua cơ bản, đơn giản cho người mới bắt đầu</span><span class="rb-meta">Hỏi Đáp&nbsp;&nbsp;13/11/2026</span></span></a></li><li><a class="rb-item" href="https://www.thegioididong.com/hoi-dap/deep-learning-la-gi-dong-vai-tro-gi-trong-cong-nghe-ai-1324507" target="_blank" rel="noopener"><img src="https://cdn.tgdd.vn/hoi-dap/1324507/Thumbnail/deep-learning-la-gi-dong-vai-tro-gi-trong-cong-nghe-ai-thumbfix.jpg" alt="" width="96" height="54" loading="lazy"><span class="rb-body"><span class="rb-title">Deep Learning là gì? Đóng vai trò gì trong công nghệ AI?</span><span class="rb-meta">Hỏi Đáp&nbsp;&nbsp;13/11/2026</span></span></a></li><li><a class="rb-item" href="https://www.thegioididong.com/hoi-dap/idm-la-gi-cach-khac-phuc-mot-so-loi-thuong-xay-ra-voi-idm-1347290" target="_blank" rel="noopener"><img src="https://cdn.tgdd.vn/hoi-dap/1347290/Thumbnail/idm-la-gi-cach-khac-phuc-mot-so-loi-thuong-xay-ra-voi-idmthumb2211.jpg" alt="" width="96" height="54" loading="lazy"><span class="rb-body"><span class="rb-title">IDM là gì? Cách khắc phục một số lỗi thường xảy ra với IDM nhanh chóng</span><span class="rb-meta">Hỏi Đáp&nbsp;&nbsp;13/11/2026</span></span></a></li><li><a class="rb-item" href="https://www.thegioididong.com/hoi-dap/duckduckgo-la-gi-uu-nhuoc-diem-co-nen-su-dung-thay-the-1334259" target="_blank" rel="noopener"><img src="https://cdn.tgdd.vn/hoi-dap/1334259/Thumbnail/duckduckgo-la-gi-uu-nhuoc-diem-co-nen-su-dung-thay-the-00.jpg" alt="" width="96" height="54" loading="lazy"><span class="rb-body"><span class="rb-title">Duckduckgo là gì? Ưu, nhược điểm? Có nên sử dụng thay thế Google?</span><span class="rb-meta">Hỏi Đáp&nbsp;&nbsp;13/11/2026</span></span></a></li><li><a class="rb-item" href="https://www.thegioididong.com/hoi-dap/bass-la-gi-nhung-dieu-ban-can-biet-ve-am-tram-trong-am-nhac-1336363" target="_blank" rel="noopener"><img src="https://cdn.tgdd.vn/hoi-dap/1336363/Thumbnail/bass-la-gi-nhung-dieu-ban-can-biet-ve-am-tram-trong-am-nhac-6.jpg" alt="" width="96" height="54" loading="lazy"><span class="rb-body"><span class="rb-title">Bass là gì? Những điều bạn cần biết về âm trầm trong âm nhạc</span><span class="rb-meta">Hỏi Đáp&nbsp;&nbsp;13/11/2026</span></span></a></li></ol></section></div><div class="db-note" role="note"><button type="button" class="db-note-x" aria-label="Tắt ghi chú">&times;</button><p><b>Ghi chú cho IT (B3, B4)</b></p><p>Ca này: Tag của Hãng có từ 5 bài, lấy 5 bài mới nhất, không cần lấy thêm.</p><p>Thứ tự lấy bài, bài mới trước trong mỗi cấp, bài trùng chỉ hiện 1 lần:<br>1. Tag của Hãng (chính trang) <code>laptop</code>, khai tay để minh hoạ ca này (mặc định sẽ là <code>ram máy tính kingston</code>): có 22 bài, lấy 5 bài.</p><p>Nút Xem tất cả: /blog/chu-de/laptop (trang chủ đề của Tag <code>laptop</code>).</p><p>Vị trí khối: cuối trang, ngay dưới bài viết SEO của trang. Bấm “Bài viết SEO: Không” để xem trang chưa có bài viết SEO: khối nằm cuối nội dung chính, trên chân trang.</p></div></div><div class="db-variant" data-mode="thieu" hidden><div class="panel db-block"><section class="rb" aria-labelledby="rb-title--hang-chua-kd-thieu"><div class="rb-head"><h3 id="rb-title--hang-chua-kd-thieu">Bài viết về RAM Kingston</h3><a class="rb-all" href="../../chu-de-trang-chu/chu-de/index.html" title="Trang chủ đề của Tag này (demo dùng trang mẫu iPhone 18 Pro Max)">Xem tất cả ›</a></div><ol class="rb-list"><li><a class="rb-item" href="https://www.thegioididong.com/tin-tuc/kingston-ra-mat-bo-nho-ram-ddr-5-non-binary-1532278" target="_blank" rel="noopener"><img src="https://cdn.tgdd.vn/Files/2023/05/31/1532278/thumb-310523-103404-600x400.jpg" alt="" width="96" height="54" loading="lazy"><span class="rb-body"><span class="rb-title">Kingston ra mắt bộ nhớ RAM DDR5 non-binary và SSD ngoài XS1000</span><span class="rb-meta">Tin tức&nbsp;&nbsp;31/05/2023</span></span></a></li><li><a class="rb-item" href="https://www.thegioididong.com/hoi-dap/huong-dan-kiem-tra-o-cung-ssd-kingston-chinh-hang-1236131" target="_blank" rel="noopener"><img src="https://cdn.tgdd.vn/hoi-dap/1236131/Thumbnail/huong-dan-kiem-tra-o-cung-ssd-kingston-chinh-hang-thumb1.jpg" alt="" width="96" height="54" loading="lazy"><span class="rb-body"><span class="rb-title">Hướng dẫn kiểm tra ổ cứng SSD Kingston chính hãng</span><span class="rb-meta">Hỏi Đáp&nbsp;&nbsp;02/03/2020</span></span></a></li><li><a class="rb-item" href="https://www.thegioididong.com/tin-tuc/kingston-dong-cua-van-phong-dai-dien-tai-viet-nam-955191" target="_blank" rel="noopener"><img src="https://cdn.tgdd.vn/Files/2017/02/27/955191/kingstonvietnamq_800x450-600x400.jpg" alt="" width="96" height="54" loading="lazy"><span class="rb-body"><span class="rb-title">Kingston đóng cửa văn phòng đại diện tại Việt Nam</span><span class="rb-meta">Tin tức&nbsp;&nbsp;27/02/2017</span></span></a></li><li><a class="rb-item" href="https://www.thegioididong.com/tin-tuc/ces-2017--kingston-trinh-lang-chiec-usb-voi-dung-luong-khung-nhat-tren-thi-truong-933904" target="_blank" rel="noopener"><img src="https://cdn.tgdd.vn/Files/2017/01/04/933904/rsz_dtgtimage_highres_800x450-600x400.jpg" alt="" width="96" height="54" loading="lazy"><span class="rb-body"><span class="rb-title">Chiếc USB có dung lượng &quot;khổng lồ&quot; đầu tiên trên thị trường</span><span class="rb-meta">Tin tức&nbsp;&nbsp;04/01/2017</span></span></a></li><li><a class="rb-item" href="https://www.thegioididong.com/hoi-dap/can-luu-y-gi-khi-nang-cap-ram-cho-may-tinh-1215096" target="_blank" rel="noopener"><img src="https://cdn.tgdd.vn/hoi-dap/1215096/Thumbnail/can-luu-y-gi-khi-nang-cap-ram-cho-may-tinh-thumbb.jpg" alt="" width="96" height="54" loading="lazy"><span class="rb-body"><span class="rb-title">Cần lưu ý gì khi nâng cấp RAM cho máy tính</span><span class="rb-meta">Hỏi Đáp&nbsp;&nbsp;05/11/2019</span></span></a></li></ol></section></div><div class="db-note" role="note"><button type="button" class="db-note-x" aria-label="Tắt ghi chú">&times;</button><p><b>Ghi chú cho IT (B3, B4)</b></p><p>Ca này: Tag của Hãng chưa đủ 5 bài, lấy thêm theo Tag của Ngành hàng cho đủ 5. Bài của Hãng đứng trước, bài của Ngành hàng đứng sau.</p><p>Thứ tự lấy bài, bài mới trước trong mỗi cấp, bài trùng chỉ hiện 1 lần:<br>1. Tag của Hãng (chính trang) <code>kingston</code>, khai tay để minh hoạ ca này (mặc định sẽ là <code>ram máy tính kingston</code>): có 4 bài, lấy 4 bài.<br>2. Tag của Ngành hàng (cấp trên) <code>ram máy tính</code>, mặc định: có 1 bài, lấy 1 bài.</p><p>Nút Xem tất cả: /blog/chu-de/kingston (trang chủ đề của Tag <code>kingston</code>).</p><p>Vị trí khối: cuối trang, ngay dưới bài viết SEO của trang. Bấm “Bài viết SEO: Không” để xem trang chưa có bài viết SEO: khối nằm cuối nội dung chính, trên chân trang.</p></div></div><div class="db-variant" data-mode="khong" hidden><div class="db-note" role="note"><button type="button" class="db-note-x" aria-label="Tắt ghi chú">&times;</button><p><b>Ghi chú cho IT (B3, B4)</b></p><p>Ca này: cả Tag của Hãng và Tag của Ngành hàng đều chưa có bài, ẩn cả khối, không để khung trống.</p><p>Thứ tự lấy bài, bài mới trước trong mỗi cấp, bài trùng chỉ hiện 1 lần:<br>1. Tag của Hãng (chính trang): giả định chưa có bài nào mang Tag này.<br>2. Tag của Ngành hàng (cấp trên): giả định chưa có bài nào mang Tag này.</p><p>Không hiện nút Xem tất cả vì khối ẩn.</p><p>Vị trí khối: cuối trang, ngay dưới bài viết SEO của trang. Bấm “Bài viết SEO: Không” để xem trang chưa có bài viết SEO: khối nằm cuối nội dung chính, trên chân trang.</p></div></div></div>
+</main></div>
+<div class="db-pane" data-pane="ngung-kd" hidden><nav class="container breadcrumb" aria-label="Breadcrumb"><ol><li><a href="https://www.thegioididong.com/laptop">Laptop</a><svg class="sep" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></li><li><h1 id="h1--hang-ngung-kd" aria-current="page"><span class="h1-count" data-visible-count>6</span> Laptop Samsung</h1></li></ol></nav>
+<main class="container">
+<section class="panel listing" aria-label="Danh sách sản phẩm"><div class="filter filter-top">
+    <div class="filter-anchor">
+      <button type="button" class="btn-filter has-filter" data-open-filter aria-haspopup="dialog" aria-expanded="false" aria-controls="fpanel--hang-ngung-kd"><span class="filter-ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 3H2l8 9.46V19l4 2v-8.54L22 3z"/></svg></span>Lọc</button>
+      <div class="fpanel" id="fpanel--hang-ngung-kd" data-filter-modal role="dialog" aria-modal="true" aria-labelledby="mf-title--hang-ngung-kd" hidden>
+        <div class="fpanel-head"><h2 id="mf-title--hang-ngung-kd">Tất cả bộ lọc</h2>
+          <button type="button" class="modal-close" data-close-filter><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>Đóng</button></div>
+        <div class="fpanel-body"><div class="fpicked"><b>Đã chọn:</b><a class="picked" href="https://www.thegioididong.com/laptop" aria-label="Bỏ lọc Samsung">Samsung<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></a><a class="clear-all-link" href="https://www.thegioididong.com/laptop">Xóa tất cả</a></div><fieldset class="fgroup"><legend>Hệ điều hành</legend><div class="opts opts--type"><button type="button" class="opt" data-g="type" data-v="chromebook" data-label="Chrome OS" aria-pressed="false">Chrome OS</button><button type="button" class="opt" data-g="type" data-v="windows" data-label="Windows" aria-pressed="false">Windows</button></div></fieldset></div>
+        <div class="fpanel-foot"><button type="button" class="btn btn-outline-red" data-clear-draft>Bỏ chọn</button>
+          <button type="button" class="btn btn-primary" data-apply-filter><span>Xem <span data-result-count>6</span> kết quả</span></button></div>
+      </div>
+    </div>
+    <a class="picked" href="https://www.thegioididong.com/laptop" aria-label="Bỏ lọc Samsung">Samsung<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></a><a class="clear-all-link" href="https://www.thegioididong.com/laptop">Xóa tất cả</a><span class="picked-dyn"></span>
+  </div><div class="sort-row"><p class="cnkd-note"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg><span>Laptop Samsung mới đã ngừng kinh doanh, vẫn còn máy cũ giá rẻ. <a href="#may-cu--hang-ngung-kd">Xem laptop Samsung cũ<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></span></p></div><div class="grid" data-grid data-fold-grid><article class="pcard" data-fold-item data-order="0" data-brand="Samsung" data-attrs="{&quot;brand&quot;:[&quot;Samsung&quot;],&quot;type&quot;:[&quot;chromebook&quot;]}">
+  <a class="pcard-main" href="https://www.thegioididong.com/laptop/samsung-galaxy-chromebook-go-xe310xda-n4500" target="_blank" rel="noopener">
+    <div class="pcard-img"><img src="https://cdnv2.tgdd.vn/mwg-static/tgdd/Products/Images/44/328599/samsung-galaxy-chromebook-go-xe310xda-n4500-thumb-638754875374951003-600x600.jpg" alt="" width="600" height="600" loading="lazy"></div>
+    <h3 class="pcard-name">Samsung Galaxy Chromebook Go XE310XDA N4500</h3>
+    <span class="lv-specs"><span class="lv-spec">RAM 8 GB</span><span class="lv-spec">SSD 512 GB</span></span>
+  </a>
+  <p class="release is-stopped"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>Ngừng kinh doanh</p>
+</article><article class="pcard" data-fold-item data-order="1" data-brand="Samsung" data-attrs="{&quot;brand&quot;:[&quot;Samsung&quot;],&quot;type&quot;:[&quot;chromebook&quot;]}">
+  <a class="pcard-main" href="https://www.thegioididong.com/laptop/samsung-galaxy-chromebook-go-xe310xda-ka1vn-n4500" target="_blank" rel="noopener">
+    <div class="pcard-img"><img src="https://cdnv2.tgdd.vn/mwg-static/tgdd/Products/Images/44/362627/samsung-galaxy-chromebook-go-xe310xda-ka1vn-n4500-thumb-2-639062309952859973-600x600.jpg" alt="" width="600" height="600" loading="lazy"></div>
+    <h3 class="pcard-name">Samsung Galaxy Chromebook Go XE310XDA-KA1VN N4500</h3>
+    <span class="lv-specs"><span class="lv-spec">RAM 4 GB</span><span class="lv-spec">SSD 32 GB</span></span>
+  </a>
+  <p class="release is-stopped"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>Ngừng kinh doanh</p>
+</article><article class="pcard" data-fold-item data-order="2" data-brand="Samsung" data-attrs="{&quot;brand&quot;:[&quot;Samsung&quot;],&quot;type&quot;:[&quot;chromebook&quot;]}">
+  <a class="pcard-main" href="https://www.thegioididong.com/laptop/samsung-galaxy-chromebook-go-xe340xda-n4500" target="_blank" rel="noopener">
+    <div class="pcard-img"><img src="https://cdnv2.tgdd.vn/mwg-static/tgdd/Products/Images/44/328598/samsung-galaxy-chromebook-go-xe340xda-n4500-thumb-638754875185657229-600x600.jpg" alt="" width="600" height="600" loading="lazy"></div>
+    <h3 class="pcard-name">Samsung Galaxy Chromebook Go XE340XDA N4500</h3>
+    <span class="lv-specs"><span class="lv-spec">RAM 8 GB</span><span class="lv-spec">SSD 512 GB</span></span>
+  </a>
+  <p class="release is-stopped"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>Ngừng kinh doanh</p>
+</article><article class="pcard" data-fold-item data-order="3" data-brand="Samsung" data-attrs="{&quot;brand&quot;:[&quot;Samsung&quot;],&quot;type&quot;:[&quot;chromebook&quot;]}">
+  <a class="pcard-main" href="https://www.thegioididong.com/laptop/samsung-galaxy-chromebook-go-xe340xda-ka1vn-n4500" target="_blank" rel="noopener">
+    <div class="pcard-img"><img src="https://cdnv2.tgdd.vn/mwg-static/dmx/Products/Images/44/362628/samsung-galaxy-chromebook-go-xe340xda-ka1vn-n4500-thumb-639060645740561537-450x300.jpg" alt="" width="600" height="600" loading="lazy"></div>
+    <h3 class="pcard-name">Samsung Galaxy Chromebook Go XE340XDA-KA1VN N4500</h3>
+    <span class="lv-specs"><span class="lv-spec">RAM 4 GB</span><span class="lv-spec">SSD 32 GB</span></span>
+  </a>
+  <p class="release is-stopped"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>Ngừng kinh doanh</p>
+</article><article class="pcard" data-fold-item data-order="4" data-brand="Samsung" data-attrs="{&quot;brand&quot;:[&quot;Samsung&quot;],&quot;type&quot;:[&quot;windows&quot;]}">
+  <a class="pcard-main" href="https://www.thegioididong.com/laptop/samsung-notebook-9-156-inch" target="_blank" rel="noopener">
+    <div class="pcard-img"><img src="https://cdn.tgdd.vn/Products/Images/44/75652/samsung-notebook-9-156-inch-300x300.jpg" alt="" width="600" height="600" loading="lazy"></div>
+    <h3 class="pcard-name">Samsung Notebook 9 15.6 inch</h3>
+    <span class="lv-specs"><span class="lv-spec">RAM 8 GB</span><span class="lv-spec">SSD 512 GB</span></span>
+  </a>
+  <p class="release is-stopped"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>Ngừng kinh doanh</p>
+</article><article class="pcard" data-fold-item data-order="5" data-brand="Samsung" data-attrs="{&quot;brand&quot;:[&quot;Samsung&quot;],&quot;type&quot;:[&quot;windows&quot;]}">
+  <a class="pcard-main" href="https://www.thegioididong.com/laptop/samsung-nc108-a02vn" target="_blank" rel="noopener">
+    <div class="pcard-img"><img src="https://cdn.tgdd.vn/Products/Images/44/48388/Samsung-nc108-185.jpg" alt="" width="600" height="600" loading="lazy"></div>
+    <h3 class="pcard-name">Samsung NC108 A02VN</h3>
+    <span class="lv-specs"><span class="lv-spec">RAM 8 GB</span><span class="lv-spec">SSD 512 GB</span></span>
+  </a>
+  <p class="release is-stopped"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>Ngừng kinh doanh</p>
+</article></div><button type="button" class="btn-more" data-more hidden>Xem thêm <span data-more-count></span> sản phẩm<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button><p class="empty" hidden>Không có sản phẩm phù hợp. <button type="button" class="link-btn" data-reset-filter>Bỏ chọn</button></p></section>
+<div class="promo-wrap has-used"><section class="panel promo" id="dang-ban--hang-ngung-kd" aria-labelledby="pb-title--hang-ngung-kd">
+  <div class="pb-head"><h2 id="pb-title--hang-ngung-kd">Laptop đang bán</h2>
+    <a class="pb-all" href="https://www.thegioididong.com/laptop" target="_blank" rel="noopener">Xem tất cả<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></div>
+  <ol class="pb-list"><li><a class="pb-card" href="https://www.thegioididong.com/laptop/hp-240r-g10-core-5-120u-c3ru7at" target="_blank" rel="noopener">
+    <img src="https://cdnv2.tgdd.vn/mwg-static/tgdd/Products/Images/44/355729/hp-240r-g10-core-5-120u-c3ru7at-thumb01-639144570820332386-600x600.jpg" alt="" width="600" height="600" loading="lazy">
+    <span class="pb-tags"><span class="pb-tag">Trả chậm 0% trả trước 0đ</span></span>
+    <span class="pb-name">HP 240R G10 Core 5 120U (C3RU7AT)</span>
+    <span class="pb-price">22.990.000đ</span><span class="pb-old"><s>29.090.000đ</s><b>-21%</b></span><span class="pb-gift">Quà 100.000₫</span><span class="pb-rate"><span class="pb-star" aria-hidden="true">★</span>4.9<span aria-hidden="true">•</span>Đã bán 5,3k</span></a></li><li><a class="pb-card" href="https://www.thegioididong.com/laptop/asus-vivobook-s14-s3407va-core-5-210h-ly146w" target="_blank" rel="noopener">
+    <img src="https://cdnv2.tgdd.vn/mwg-static/tgdd/Products/Images/44/358132/asus-vivobook-s14-s3407va-core-5-210h-ly146w-thumb-638965583427975379-600x600.jpg" alt="" width="600" height="600" loading="lazy">
+    <span class="pb-tags"><span class="pb-tag">Trả chậm 0% trả trước 0đ</span></span>
+    <span class="pb-name">Asus Vivobook S14 S3407VA Core 5 210H (LY146W)</span>
+    <span class="pb-price">21.890.000đ</span><span class="pb-old"><s>22.990.000đ</s><b>-5%</b></span><span class="pb-gift">Quà 100.000₫</span><span class="pb-rate"><span class="pb-star" aria-hidden="true">★</span>5<span aria-hidden="true">•</span>Đã bán 2,9k</span></a></li><li><a class="pb-card" href="https://www.thegioididong.com/laptop/dell-15-dc15255-r5-7530u-dc5r5973w1-2y" target="_blank" rel="noopener">
+    <img src="https://cdnv2.tgdd.vn/mwg-static/tgdd/Products/Images/44/368556/dell-15-dc15255-r5-7530u-dc5r5973w1-2y-thumb-639180726788114595-600x600.jpg" alt="" width="600" height="600" loading="lazy">
+    <span class="pb-tags"><span class="pb-tag">Trả chậm 0% trả trước 0đ</span></span>
+    <span class="pb-name">Dell 15 DC15255 R5 7530U (DC5R5973W1-2Y)</span>
+    <span class="pb-price">23.990.000đ</span><span class="pb-old"><s>25.690.000đ</s><b>-7%</b></span><span class="pb-gift">Quà 100.000₫</span><span class="pb-rate"><span class="pb-star" aria-hidden="true">★</span>5<span aria-hidden="true">•</span>Đã bán 445</span></a></li><li><a class="pb-card" href="https://www.thegioididong.com/laptop/lenovo-ideapad-slim-3-15iph11-ultra-5-322-83ur00a4vn" target="_blank" rel="noopener">
+    <img src="https://cdnv2.tgdd.vn/mwg-static/tgdd/Products/Images/44/367016/lenovo-ideapad-slim-3-15iph11-ultra-5-322-83ur00a4vn-thumb-639144382848821483-600x600.jpg" alt="" width="600" height="600" loading="lazy">
+    <span class="pb-tags"><span class="pb-tag">Trả chậm 0%</span></span>
+    <span class="pb-name">Lenovo IdeaPad Slim 3 15IPH11 Ultra 5 322 (83UR00A4VN)</span>
+    <span class="pb-price">24.990.000đ</span><span class="pb-old"><s>31.990.000đ</s><b>-22%</b></span><span class="pb-gift">Quà 100.000₫</span><span class="pb-rate"><span class="pb-star" aria-hidden="true">★</span>5<span aria-hidden="true">•</span>Đã bán 2,5k</span></a></li><li><a class="pb-card" href="https://www.thegioididong.com/laptop/hp-15-fc0023au-r5-7520u-d0bh1pa" target="_blank" rel="noopener">
+    <img src="https://cdnv2.tgdd.vn/mwg-static/tgdd/Products/Images/44/361311/hp-15-fc0023au-r5-7520u-d0bh1pa-thumb-639030592238863081-600x600.jpg" alt="" width="600" height="600" loading="lazy">
+    <span class="pb-tags"><span class="pb-tag">Trả chậm 0% trả trước 0đ</span></span>
+    <span class="pb-name">HP 15 fc0023AU R5 7520U (D0BH1PA)</span>
+    <span class="pb-price">21.990.000đ</span><span class="pb-old"><s>24.690.000đ</s><b>-11%</b></span><span class="pb-gift">Quà 100.000₫</span><span class="pb-rate"><span class="pb-star" aria-hidden="true">★</span>4.9<span aria-hidden="true">•</span>Đã bán 7,7k</span></a></li></ol>
+</section><section class="panel promo promo--used" id="may-cu--hang-ngung-kd" aria-labelledby="pu-title--hang-ngung-kd">
+  <div class="pb-head"><h2 id="pu-title--hang-ngung-kd">Laptop Samsung cũ giá rẻ</h2>
+    <a class="pb-all" href="https://www.thegioididong.com/may-doi-tra/laptop-samsung" target="_blank" rel="noopener">Xem tất cả<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></div>
+  <ol class="pb-list"><li><a class="pb-card" href="https://www.thegioididong.com/may-doi-tra/laptop/samsung-galaxy-chromebook-go-xe340xda-n4500?pid=328598&amp;isimei=1" target="_blank" rel="noopener">
+    <img src="https://cdnv2.tgdd.vn/mwg-static/tgdd/Products/Images/44/328598/samsung-galaxy-chromebook-go-xe340xda-n4500-thumb-638754875185657229-600x600.jpg" alt="" width="600" height="600" loading="lazy">
+    <span class="pb-tags"><span class="pb-tag">Trả chậm 0%</span></span>
+    <span class="pb-name">Samsung XE340XDA-KA1VN (N4500, 4GB, 32GB, HD, ChromeOS)</span>
+    <span class="pb-price"><small class="pb-from">Từ</small> 5.350.000đ</span><span class="pb-old"><span>Mới <s>11.790.000đ</s></span><b>-55%</b></span><span class="pb-status">Còn 1 máy</span></a></li><li><a class="pb-card" href="https://www.thegioididong.com/may-doi-tra/laptop/samsung-galaxy-chromebook-go-xe310xda-n4500?pid=328599&amp;isimei=1" target="_blank" rel="noopener">
+    <img src="https://cdnv2.tgdd.vn/mwg-static/tgdd/Products/Images/44/328599/samsung-galaxy-chromebook-go-xe310xda-n4500-thumb-638754875374951003-600x600.jpg" alt="" width="600" height="600" loading="lazy">
+    <span class="pb-tags"><span class="pb-tag">Trả chậm 0%</span></span>
+    <span class="pb-name">Samsung XE310XDA-KA1VN (N4500, 4GB, 32GB, HD, ChromeOS)</span>
+    <span class="pb-price"><small class="pb-from">Từ</small> 4.490.000đ</span><span class="pb-old"><span>Mới <s>9.890.000đ</s></span><b>-55%</b></span><span class="pb-status">Còn 1 máy</span></a></li><li><a class="pb-card" href="https://www.thegioididong.com/may-doi-tra/laptop/samsung-galaxy-chromebook-go-xe340xda-ka1vn-n4500?pid=362628&amp;isimei=1" target="_blank" rel="noopener">
+    <img src="https://cdnv2.tgdd.vn/mwg-static/dmx/Products/Images/44/362628/samsung-galaxy-chromebook-go-xe340xda-ka1vn-n4500-thumb-639060645740561537-600x600.jpg" alt="" width="600" height="600" loading="lazy">
+    <span class="pb-tags"><span class="pb-tag">Trả chậm 0%</span></span>
+    <span class="pb-name">Samsung Galaxy Chromebook Go XE340XDA-KA1VN (N4500, 4GB, 32GB, HD, Win 11 Pro)</span>
+    <span class="pb-price"><small class="pb-from">Từ</small> 3.750.000đ</span><span class="pb-old"><span>Mới <s>7.990.000đ</s></span><b>-53%</b></span><span class="pb-status">Còn 9 máy</span></a></li><li><a class="pb-card" href="https://www.thegioididong.com/may-doi-tra/laptop/samsung-galaxy-chromebook-go-xe310xda-ka1vn-n4500?pid=362627&amp;isimei=1" target="_blank" rel="noopener">
+    <img src="https://cdnv2.tgdd.vn/mwg-static/tgdd/Products/Images/44/362627/samsung-galaxy-chromebook-go-xe310xda-ka1vn-n4500-thumb-2-639062309952859973-600x600.jpg" alt="" width="600" height="600" loading="lazy">
+    <span class="pb-tags"><span class="pb-tag">Trả chậm 0%</span></span>
+    <span class="pb-name">Samsung Galaxy Chromebook Go XE310XDA-KA1VN (N4500, 4GB, 32GB, HD, Win11 Pro)</span>
+    <span class="pb-price"><small class="pb-from">Từ</small> 3.260.000đ</span><span class="pb-old"><span>Mới <s>6.990.000đ</s></span><b>-53%</b></span><span class="pb-status">Còn 5 máy</span></a></li></ol>
+</section></div>
+<section class="panel infobox db-seo" id="thong-tin--hang-ngung-kd" aria-label="Thông tin laptop Samsung"><div class="ib-main"><div class="ib-article" id="ib-article--hang-ngung-kd">
+<h2>Laptop Samsung tại Thế Giới Di Động chủ yếu là dòng Galaxy Chromebook Go, máy nhỏ gọn chạy Chrome OS cho học sinh và
+nhu cầu cơ bản. Các mẫu này nay đã ngừng kinh doanh; trang giữ lại thông tin để bạn tham khảo và chọn máy thay thế.</h2>
+<h3>1. Chromebook khác laptop Windows thế nào?</h3>
+<p>Chromebook chạy Chrome OS, dùng ứng dụng web và Google Play, máy nhẹ và rẻ nhưng không cài được phần mềm Windows.
+Cần Word, Excel bản cài hay phần mềm học tập trên Windows thì nên chọn laptop Windows.</p>
+<h3>2. Các mẫu laptop Samsung từng bán tại Thế Giới Di Động</h3>
+<p>Mỗi mẫu vẫn còn trang sản phẩm riêng để xem cấu hình, đánh giá và hỏi đáp.</p>
+<div class="ib-table"><table><thead><tr><th scope="col">Sản phẩm</th><th scope="col">Thông số chính</th><th scope="col">Ra mắt</th><th scope="col">Trang sản phẩm</th></tr></thead><tbody><tr><td>Samsung Galaxy Chromebook Go XE310XDA N4500</td><td>Celeron N4500, Chrome OS</td><td>Không ghi</td><td><a href="https://www.thegioididong.com/laptop/samsung-galaxy-chromebook-go-xe310xda-n4500" target="_blank" rel="noopener">Xem trang</a></td></tr><tr><td>Samsung Galaxy Chromebook Go XE310XDA-KA1VN N4500</td><td>Celeron N4500, 4 GB, 32 GB</td><td>Không ghi</td><td><a href="https://www.thegioididong.com/laptop/samsung-galaxy-chromebook-go-xe310xda-ka1vn-n4500" target="_blank" rel="noopener">Xem trang</a></td></tr><tr><td>Samsung Galaxy Chromebook Go XE340XDA N4500</td><td>Celeron N4500, Chrome OS</td><td>Không ghi</td><td><a href="https://www.thegioididong.com/laptop/samsung-galaxy-chromebook-go-xe340xda-n4500" target="_blank" rel="noopener">Xem trang</a></td></tr><tr><td>Samsung Galaxy Chromebook Go XE340XDA-KA1VN N4500</td><td>Celeron N4500, 4 GB, 32 GB</td><td>Không ghi</td><td><a href="https://www.thegioididong.com/laptop/samsung-galaxy-chromebook-go-xe340xda-ka1vn-n4500" target="_blank" rel="noopener">Xem trang</a></td></tr><tr><td>Samsung Notebook 9 15.6 inch</td><td>15.6 inch</td><td>Không ghi</td><td><a href="https://www.thegioididong.com/laptop/samsung-notebook-9-156-inch" target="_blank" rel="noopener">Xem trang</a></td></tr><tr><td>Samsung NC108 A02VN</td><td>Netbook</td><td>Không ghi</td><td><a href="https://www.thegioididong.com/laptop/samsung-nc108-a02vn" target="_blank" rel="noopener">Xem trang</a></td></tr></tbody></table></div>
+<h3>3. Chọn máy thay thế đang bán</h3>
+<p>Cần máy học tập, làm việc văn phòng thì xem <a href="https://www.thegioididong.com/laptop-hoc-tap-van-phong" target="_blank"
+rel="noopener">laptop học tập, văn phòng</a> đang bán: có bảo hành chính hãng và trả chậm 0%.</p>
+</div><button type="button" class="ib-toggle" data-ib-toggle aria-controls="ib-article--hang-ngung-kd" aria-expanded="true" hidden><span>Xem thêm</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button></div></section>
+<div class="db-slot"><div class="db-variant" data-mode="du"><div class="panel db-block"><section class="rb" aria-labelledby="rb-title--hang-ngung-kd-du"><div class="rb-head"><h3 id="rb-title--hang-ngung-kd-du">Bài viết về Laptop Samsung</h3><a class="rb-all" href="../../chu-de-trang-chu/chu-de/index.html" title="Trang chủ đề của Tag này (demo dùng trang mẫu iPhone 18 Pro Max)">Xem tất cả ›</a></div><ol class="rb-list"><li><a class="rb-item" href="https://www.thegioididong.com/hoi-dap/huong-dan-cach-choi-co-vua-co-ban-don-gian-cho-nguoi-moi-1305566" target="_blank" rel="noopener"><img src="https://cdn.tgdd.vn/hoi-dap/1305566/Thumbnail/thum.jpg" alt="" width="96" height="54" loading="lazy"><span class="rb-body"><span class="rb-title">Hướng dẫn cách chơi cờ vua cơ bản, đơn giản cho người mới bắt đầu</span><span class="rb-meta">Hỏi Đáp&nbsp;&nbsp;13/11/2026</span></span></a></li><li><a class="rb-item" href="https://www.thegioididong.com/hoi-dap/deep-learning-la-gi-dong-vai-tro-gi-trong-cong-nghe-ai-1324507" target="_blank" rel="noopener"><img src="https://cdn.tgdd.vn/hoi-dap/1324507/Thumbnail/deep-learning-la-gi-dong-vai-tro-gi-trong-cong-nghe-ai-thumbfix.jpg" alt="" width="96" height="54" loading="lazy"><span class="rb-body"><span class="rb-title">Deep Learning là gì? Đóng vai trò gì trong công nghệ AI?</span><span class="rb-meta">Hỏi Đáp&nbsp;&nbsp;13/11/2026</span></span></a></li><li><a class="rb-item" href="https://www.thegioididong.com/hoi-dap/idm-la-gi-cach-khac-phuc-mot-so-loi-thuong-xay-ra-voi-idm-1347290" target="_blank" rel="noopener"><img src="https://cdn.tgdd.vn/hoi-dap/1347290/Thumbnail/idm-la-gi-cach-khac-phuc-mot-so-loi-thuong-xay-ra-voi-idmthumb2211.jpg" alt="" width="96" height="54" loading="lazy"><span class="rb-body"><span class="rb-title">IDM là gì? Cách khắc phục một số lỗi thường xảy ra với IDM nhanh chóng</span><span class="rb-meta">Hỏi Đáp&nbsp;&nbsp;13/11/2026</span></span></a></li><li><a class="rb-item" href="https://www.thegioididong.com/hoi-dap/duckduckgo-la-gi-uu-nhuoc-diem-co-nen-su-dung-thay-the-1334259" target="_blank" rel="noopener"><img src="https://cdn.tgdd.vn/hoi-dap/1334259/Thumbnail/duckduckgo-la-gi-uu-nhuoc-diem-co-nen-su-dung-thay-the-00.jpg" alt="" width="96" height="54" loading="lazy"><span class="rb-body"><span class="rb-title">Duckduckgo là gì? Ưu, nhược điểm? Có nên sử dụng thay thế Google?</span><span class="rb-meta">Hỏi Đáp&nbsp;&nbsp;13/11/2026</span></span></a></li><li><a class="rb-item" href="https://www.thegioididong.com/hoi-dap/bass-la-gi-nhung-dieu-ban-can-biet-ve-am-tram-trong-am-nhac-1336363" target="_blank" rel="noopener"><img src="https://cdn.tgdd.vn/hoi-dap/1336363/Thumbnail/bass-la-gi-nhung-dieu-ban-can-biet-ve-am-tram-trong-am-nhac-6.jpg" alt="" width="96" height="54" loading="lazy"><span class="rb-body"><span class="rb-title">Bass là gì? Những điều bạn cần biết về âm trầm trong âm nhạc</span><span class="rb-meta">Hỏi Đáp&nbsp;&nbsp;13/11/2026</span></span></a></li></ol></section></div><div class="db-note" role="note"><button type="button" class="db-note-x" aria-label="Tắt ghi chú">&times;</button><p><b>Ghi chú cho IT (B3, B4)</b></p><p>Ca này: Tag của Hãng có từ 5 bài, lấy 5 bài mới nhất, không cần lấy thêm.</p><p>Thứ tự lấy bài, bài mới trước trong mỗi cấp, bài trùng chỉ hiện 1 lần:<br>1. Tag của Hãng (chính trang) <code>laptop</code>, khai tay để minh hoạ ca này (mặc định sẽ là <code>laptop samsung</code>): có 22 bài, lấy 5 bài.</p><p>Nút Xem tất cả: /blog/chu-de/laptop (trang chủ đề của Tag <code>laptop</code>).</p><p>Vị trí khối: cuối trang, ngay dưới bài viết SEO của trang. Bấm “Bài viết SEO: Không” để xem trang chưa có bài viết SEO: khối nằm cuối nội dung chính, trên chân trang.</p></div></div><div class="db-variant" data-mode="thieu" hidden><div class="panel db-block"><section class="rb" aria-labelledby="rb-title--hang-ngung-kd-thieu"><div class="rb-head"><h3 id="rb-title--hang-ngung-kd-thieu">Bài viết về Laptop Samsung</h3><a class="rb-all" href="../../chu-de-trang-chu/chu-de/index.html" title="Trang chủ đề của Tag này (demo dùng trang mẫu iPhone 18 Pro Max)">Xem tất cả ›</a></div><ol class="rb-list"><li><a class="rb-item" href="https://www.thegioididong.com/tin-tuc/lo-cau-hinh-khung-khiep-cua-samsung-galaxy-book-4-ultra-1556672" target="_blank" rel="noopener"><img src="https://cdn.tgdd.vn/News/Thumb/1556672/1-1200x675.jpg" alt="" width="96" height="54" loading="lazy"><span class="rb-body"><span class="rb-title">Cấu hình &#x27;khủng khiếp&#x27; của Galaxy Book 4 Ultra, mẫu laptop AI đầu tiên</span><span class="rb-meta">Tin tức&nbsp;&nbsp;04/12/2023</span></span></a></li><li><a class="rb-item" href="https://www.thegioididong.com/tin-tuc/co-nen-mua-galaxy-book3-series-1507185" target="_blank" rel="noopener"><img src="https://cdn.tgdd.vn/Files/2023/02/04/1507185/thumb-050223-164455-600x400.jpg" alt="" width="96" height="54" loading="lazy"><span class="rb-body"><span class="rb-title">Với nhiều cải tiến đáng giá, có nên mua Galaxy Book3 series không?</span><span class="rb-meta">Tin tức&nbsp;&nbsp;04/02/2023</span></span></a></li><li><a class="rb-item" href="https://www.thegioididong.com/tin-tuc/samsung-galaxy-chromebook-2-ra-mat-1318830" target="_blank" rel="noopener"><img src="https://cdn.tgdd.vn/Files/2021/01/08/1318830/samsung-galaxy-chromebook-2-0_800x450-600x400.jpg" alt="" width="96" height="54" loading="lazy"><span class="rb-body"><span class="rb-title">Galaxy Chromebook 2 ra mắt: Chromebook đầu tiên có màn hình QLED</span><span class="rb-meta">Tin tức&nbsp;&nbsp;08/01/2021</span></span></a></li><li><a class="rb-item" href="https://www.thegioididong.com/hoi-dap/huong-dan-cach-choi-co-vua-co-ban-don-gian-cho-nguoi-moi-1305566" target="_blank" rel="noopener"><img src="https://cdn.tgdd.vn/hoi-dap/1305566/Thumbnail/thum.jpg" alt="" width="96" height="54" loading="lazy"><span class="rb-body"><span class="rb-title">Hướng dẫn cách chơi cờ vua cơ bản, đơn giản cho người mới bắt đầu</span><span class="rb-meta">Hỏi Đáp&nbsp;&nbsp;13/11/2026</span></span></a></li><li><a class="rb-item" href="https://www.thegioididong.com/hoi-dap/deep-learning-la-gi-dong-vai-tro-gi-trong-cong-nghe-ai-1324507" target="_blank" rel="noopener"><img src="https://cdn.tgdd.vn/hoi-dap/1324507/Thumbnail/deep-learning-la-gi-dong-vai-tro-gi-trong-cong-nghe-ai-thumbfix.jpg" alt="" width="96" height="54" loading="lazy"><span class="rb-body"><span class="rb-title">Deep Learning là gì? Đóng vai trò gì trong công nghệ AI?</span><span class="rb-meta">Hỏi Đáp&nbsp;&nbsp;13/11/2026</span></span></a></li></ol></section></div><div class="db-note" role="note"><button type="button" class="db-note-x" aria-label="Tắt ghi chú">&times;</button><p><b>Ghi chú cho IT (B3, B4)</b></p><p>Ca này: Tag của Hãng chưa đủ 5 bài, lấy thêm theo Tag của Ngành hàng cho đủ 5. Bài của Hãng đứng trước, bài của Ngành hàng đứng sau.</p><p>Thứ tự lấy bài, bài mới trước trong mỗi cấp, bài trùng chỉ hiện 1 lần:<br>1. Tag của Hãng (chính trang) <code>laptop samsung</code>, mặc định: có 3 bài, lấy 3 bài.<br>2. Tag của Ngành hàng (cấp trên) <code>laptop</code>, mặc định: có 22 bài, lấy 2 bài.</p><p>Nút Xem tất cả: /blog/chu-de/laptop-samsung (trang chủ đề của Tag <code>laptop samsung</code>).</p><p>Vị trí khối: cuối trang, ngay dưới bài viết SEO của trang. Bấm “Bài viết SEO: Không” để xem trang chưa có bài viết SEO: khối nằm cuối nội dung chính, trên chân trang.</p></div></div><div class="db-variant" data-mode="khong" hidden><div class="db-note" role="note"><button type="button" class="db-note-x" aria-label="Tắt ghi chú">&times;</button><p><b>Ghi chú cho IT (B3, B4)</b></p><p>Ca này: cả Tag của Hãng và Tag của Ngành hàng đều chưa có bài, ẩn cả khối, không để khung trống.</p><p>Thứ tự lấy bài, bài mới trước trong mỗi cấp, bài trùng chỉ hiện 1 lần:<br>1. Tag của Hãng (chính trang): giả định chưa có bài nào mang Tag này.<br>2. Tag của Ngành hàng (cấp trên): giả định chưa có bài nào mang Tag này.</p><p>Không hiện nút Xem tất cả vì khối ẩn.</p><p>Vị trí khối: cuối trang, ngay dưới bài viết SEO của trang. Bấm “Bài viết SEO: Không” để xem trang chưa có bài viết SEO: khối nằm cuối nội dung chính, trên chân trang.</p></div></div></div>
+</main></div>
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div><h3>Tổng đài hỗ trợ</h3><p>Gọi mua: <a href="#">1900 232 460</a> (8:00 - 21:30)</p>
+      <p>Khiếu nại: <a href="#">1800.1062</a> (8:00 - 21:30)</p></div>
+    <div><h3>Về công ty</h3><p><a href="#">Giới thiệu công ty</a></p><p><a href="#">Tuyển dụng</a></p></div>
+    <div><h3>Thông tin khác</h3><p><a href="#">Tích điểm Quà tặng VIP</a></p><p><a href="#">Lịch sử mua hàng</a></p></div>
+  </div>
+  <div class="container footer-legal">© 2018. Công Ty Cổ Phần Đầu Tư Điện Máy Xanh.</div>
+</footer>
+<div class="toast" role="status" aria-live="polite" hidden></div>
+<script src="assets/demo-blog.js" defer></script>
+</body>
+</html>
