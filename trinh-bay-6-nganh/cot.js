@@ -42,7 +42,35 @@
   const IMG = src => `<div class="w-full h-auto overflow-hidden relative" style="height: 40px; width: 40px;"><img width="40" height="40" alt="" loading="lazy" class="object-contain" src="${src}" style="width: 40px; height: 40px;"></div>`;
   const ghi = id => TB.chip[id];
   const nhomByTen = Object.fromEntries(TB.nhom.map((g, i) => [g.ten, i]));
-  function decorate() {
+  let maLoc = null;                                     // mã luật đang lọc (bấm ở bảng luật trang ngoài)
+  function decorate() { decorate0(); applyMa(); }
+  const maCua = id => ((ghi(id) || {}).ma || []);
+  function applyMa(cuon) {                              // tô mọi giá trị, khung, bộ lọc có mã luật đang lọc
+    const b = pbody(); if (!b) return;
+    $$('.tb-ma-on,.tb-ma-in,.tb-ma-g', b).forEach(x => x.classList.remove('tb-ma-on', 'tb-ma-in', 'tb-ma-g'));
+    root.classList.toggle('tb-ma-loc', !!maLoc && notesOn);
+    if (!maLoc || !notesOn) return;
+    let nut = 0, an = 0, bo = 0;
+    for (const id of Object.keys(TB.chip)) {
+      if (!maCua(id).includes(maLoc)) continue;
+      nut++;
+      const el = $(`[data-tbid="${CSS.escape(id)}"]`, b);
+      if (el) { el.classList.add('tb-ma-on'); continue; }
+      an++;                                             // nằm trong khung ▾ đang đóng: viền nét đứt ở khung chứa nó
+      for (let c = N[id] && N[id].cha; c; c = N[c] && N[c].cha) {
+        const p = $(`[data-tbid="${CSS.escape(c)}"]`, b); if (p) { p.classList.add('tb-ma-in'); break; }
+      }
+    }
+    for (const bl of $$('[data-tbg]', b)) {
+      const g = bl.dataset.tbg === 'th' ? { ma: ['A5', 'E1'] } : (TB.nhom[+bl.dataset.tbg] || {});
+      if ((g.ma || []).includes(maLoc)) { bl.classList.add('tb-ma-g'); bo++; }
+    }
+    if (!cuon) return;
+    post({ type: 'ma-dem', ma: maLoc, nut, an, bo_loc: bo });
+    const dau = $('.tb-ma-g > p, .tb-ma-on, .tb-ma-in', b);
+    if (dau) b.scrollTo({ top: Math.max(0, dau.getBoundingClientRect().top - b.getBoundingClientRect().top + b.scrollTop - 40), behavior: 'smooth' });
+  }
+  function decorate0() {
     const b = pbody(); if (!b) return;
     for (const el of $$('[data-pnode],[data-pexp]', b)) {
       if (el.dataset.tbid || el.title === 'Bỏ chọn') continue;      // hàng "Đã chọn" giữ đúng như demo
@@ -242,10 +270,11 @@
     }
     else if (m.type === 'pop') { root.style.setProperty('--popw', m.w + 'px'); fit(); placePin(); }
     else if (m.type === 'moc') root.classList.toggle('tb-moc', !!m.on);
-    else if (m.type === 'ghi-chu') { notesOn = !!m.on; root.classList.toggle('tb-on', notesOn); if (!notesOn) { hideHover(); } applySel(); placePin(); }
+    else if (m.type === 'ghi-chu') { notesOn = !!m.on; root.classList.toggle('tb-on', notesOn); if (!notesOn) { hideHover(); } applySel(); applyMa(); placePin(); }
     else if (m.type === 'chon') onChon(m);
     else if (m.type === 'nhom') onNhom(m);
     else if (m.type === 'bo') clearSel();
+    else if (m.type === 'ma') { maLoc = m.ma || null; ensureOpen(); decorate0(); applyMa(true); }
   });
   addEventListener('resize', () => { fit(); placePin(); });
 

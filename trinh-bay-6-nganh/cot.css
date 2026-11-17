@@ -34,3 +34,7 @@ html.tb-on [data-tbm="nh"] { background: #eff8ff !important; border-color: #2e90
 html.tb-on [data-tbm="nh"] .tb-ma { border-color: #2e90fa; color: #175cd3; }
 html.tb-on [data-tbh] { position: relative; overflow: visible !important; }
 [data-tbh] .tb-ma { top: -9px; right: 3px; }
+html.tb-on .tb-ma-on { outline: 3px solid #f79009 !important; outline-offset: 2px; background-color: #fffaeb !important; z-index: 4; }
+html.tb-on .tb-ma-in { outline: 2px dashed #f79009 !important; outline-offset: 2px; }
+html.tb-on [data-tbg].tb-ma-g > p { background: #fef0c7; box-shadow: 0 0 0 4px #fef0c7; border-radius: 4px; color: #93370d; }
+html.tb-on.tb-ma-loc [data-tbid]:not(.tb-ma-on):not(.tb-ma-in) { opacity: .3; }
