@@ -24,11 +24,11 @@
     });
   });
   var hide = $('[data-notes-hide]'); if (hide) hide.addEventListener('click', function () { st.notes = '0'; apply(); });
-  // Trang đang bán: đổi dung lượng, màu chỉ đổi tên, giá, dòng ghi chú biến thể; khối Bài viết về giữ nguyên (B1)
+  // Trang đang bán: đổi dung lượng, màu chỉ đổi tên, giá, dòng ghi chú biến thể; khối Bài viết về giữ nguyên (biến thể dùng chung Tag của model)
   var v = $('[data-variant]'), ver = '256GB', url = '/dtdd/iphone-18-pro-max', color = '';
   function variant() {
     var h1 = $('#h1'); if (h1) h1.textContent = 'iPhone 18 Pro Max ' + ver;
-    if (v) v.textContent = 'Biến thể (B1): đang xem ' + ver + (color ? ', màu ' + color : '') + ' (' + url +
+    if (v) v.textContent = 'Biến thể: đang xem ' + ver + (color ? ', màu ' + color : '') + ' (' + url +
       '). Mọi biến thể của iPhone 18 Pro Max dùng chung Tag của model "iphone 18 pro max", nên khối Bài viết về không đổi.';
   }
   all('[data-ver]').forEach(function (b) { b.addEventListener('click', function () {

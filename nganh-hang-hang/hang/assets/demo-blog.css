@@ -50,15 +50,34 @@ body.hide-notes .db-note { display: none; }
 }
 
 /* khối dùng chung shared/related_block.py */
+.tt-list{list-style:none;margin:0;padding:0}
+.tt-li{border-bottom:1px solid #EEE}
+.tt-li:last-child{border-bottom:0}
+.tt-card{display:flex;gap:16px;padding:16px 0;color:#333;text-decoration:none}
+.tt-card:hover{text-decoration:none}
+.tt-card:hover .tt-title{color:#288AD6}
+.tt-thumb{flex:none;display:block;border-radius:8px;overflow:hidden;background:#EEE}
+.tt-thumb img{display:block;width:100%;height:100%;object-fit:cover}
+.tt-lg .tt-thumb{width:250px;height:140px}
+.tt-sm .tt-thumb{width:120px;height:68px;border-radius:6px}
+.tt-sm{gap:12px;padding:12px 0}
+.tt-body{display:flex;flex-direction:column;gap:6px;min-width:0}
+.tt-title{font-weight:700;color:#333;line-height:1.4;display:-webkit-box;-webkit-box-orient:vertical;overflow:hidden}
+.tt-lg .tt-title{font-size:20px;-webkit-line-clamp:3}
+.tt-sm .tt-title{font-size:15px;-webkit-line-clamp:3}
+.tt-meta{display:flex;flex-wrap:wrap;gap:10px;font-size:12px;color:#999;line-height:1.4}
+@media (max-width:767px){
+ .tt-card,.tt-sm{gap:12px;padding:12px 0}
+ .tt-lg .tt-thumb,.tt-sm .tt-thumb{width:100px;height:56px;border-radius:6px}
+ .tt-lg .tt-title,.tt-sm .tt-title{font-size:15px;font-weight:400;-webkit-line-clamp:3}
+ .tt-meta{font-size:13px}
+}
+
 .rb{margin:16px 0;padding:0}
 .rb-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin:0 0 4px}
 .rb-head h3{margin:0;font-size:16px;font-weight:700;color:#1D2939;line-height:1.3}
 .rb-all{font-size:13px;color:#2A83E9;white-space:nowrap;text-decoration:none}
-.rb-list{list-style:none;margin:0;padding:0}
-.rb-list li{border-top:1px solid #E5E7EB}.rb-list li:first-child{border-top:0}
-.rb-item{display:flex;gap:10px;padding:10px 0;color:#252A31;text-decoration:none}
-.rb-item img{flex:none;width:96px;height:54px;object-fit:cover;border-radius:6px;background:#E5E7EB}
-.rb-body{display:flex;flex-direction:column;gap:2px;min-width:0}
-.rb-title{font-size:14px;font-weight:600;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.rb-meta{font-size:12px;color:#667085}
-@media (min-width:900px){.rb-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));column-gap:24px}.rb-list li:nth-child(2){border-top:0}}
+/* Viền giữa các bài: mỗi bài kẻ viền trên, đẩy lên 1px và cắt phần thừa để hàng đầu không có viền, dù 1 hay 2 cột */
+.rb .tt-list{overflow:hidden}
+.rb .tt-li{border-bottom:0;border-top:1px solid #EEE;margin-top:-1px}
+@media (min-width:900px){.rb .tt-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));column-gap:24px}}
