@@ -170,15 +170,6 @@ img { display: block; max-width: 100%; }
 .list > [hidden] { display: none; }
 .region-more { min-height: 22px; margin-top: -40px; }
 
-/* Phân trang */
-.pager { display: flex; justify-content: center; align-items: center; gap: 6px; margin-top: 8px; }
-.pager a, .pager span { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; height: 44px;
-  border-radius: 22px; font-weight: 600; font-size: 15px; }
-.pager a { border: 1px solid var(--line); color: #555; }
-.pager a:hover { border-color: var(--blue); color: var(--blue); }
-.pg-cur { background: var(--blue); color: #fff; }
-.pg-gap { color: var(--muted); min-width: 24px !important; }
-
 /* Tìm kiếm */
 .found { margin: 4px 0 16px; color: #555; font-size: 15px; }
 .found b { color: var(--text); }
