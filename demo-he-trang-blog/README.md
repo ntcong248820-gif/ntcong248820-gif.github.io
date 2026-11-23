@@ -1,3 +1,3 @@
-# Demo hệ trang /blog và khối Bài viết liên quan
+# Demo hệ trang /blog
 
-Bản mẫu nội bộ để IT xem cùng Doc mô tả. Bài viết và giao diện lấy từ Thế Giới Di Động. Mọi trang `noindex, nofollow`, `robots.txt` chặn toàn bộ.
+Bản mẫu để PM duyệt cùng Doc mô tả. Bài viết lấy từ Thế Giới Di Động. Mọi trang `noindex, nofollow`.
