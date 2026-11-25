@@ -22,16 +22,10 @@ img { display: block; max-width: 100%; }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .wrap { max-width: 1200px; margin: 0 auto; padding: 0 16px; }
 
-/* Đầu trang vàng */
-.topbar { background: var(--yellow); }
-.topbar-in { display: flex; align-items: center; gap: 24px; height: 60px; }
-.logo { display: flex; align-items: center; gap: 8px; flex-shrink: 0; color: #111; }
-.logo:hover { color: #111; }
-.logo-mark { background: #111; color: var(--yellow); font-weight: 700; font-size: 14px; border-radius: 6px; padding: 4px 7px; }
-.logo-text { font-weight: 700; font-size: 18px; letter-spacing: -.3px; }
-.logo-text span { font-weight: 500; }
-.topsearch { flex: 1; max-width: 520px; display: flex; align-items: center; gap: 8px; height: 40px; padding: 0 14px;
-  background: #fff; border-radius: 20px; color: var(--muted); font-size: 14px; }
+/* Vỏ web gốc (banner, header, menu, footer) nằm trong shadow DOM; máy tính từ 1240px, nhỏ hơn dùng bản điện thoại */
+.vo-mb { display: none; }
+.vo-dinh { position: sticky; top: 0; z-index: 101; }
+@media (max-width: 1239px) { .vo-pc { display: none; } .vo-mb { display: block; } }
 
 /* Khung trang */
 .page { padding-top: 12px; padding-bottom: 48px; }
@@ -187,7 +181,7 @@ img { display: block; max-width: 100%; }
 .toc-item:hover { border-color: var(--blue); }
 
 /* Chân trang */
-.foot { border-top: 1px solid var(--line); background: var(--bg-soft); padding: 20px 0 80px; font-size: 13px; color: var(--muted); }
+.foot { background: var(--bg-soft); padding: 10px 0 16px; font-size: 12px; color: var(--muted); }
 .foot a { color: var(--blue-2); }
 
 /* Ghi chú cho PM: nút "i" nhỏ ở góc phải trên của vùng, di chuột / chạm mới hiện nội dung */
@@ -213,9 +207,6 @@ img { display: block; max-width: 100%; }
 /* Điện thoại */
 @media (max-width: 640px) {
   .wrap { padding: 0 12px; }
-  .topbar-in { gap: 12px; height: 56px; }
-  .logo-text { display: none; }
-  .topsearch { height: 38px; }
   .h1 { font-size: 22px; }
   .headrow { flex-direction: column; align-items: stretch; gap: 10px; }
   .searchbox { width: 100%; }
