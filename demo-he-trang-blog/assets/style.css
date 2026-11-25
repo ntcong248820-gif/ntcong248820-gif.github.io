@@ -25,6 +25,7 @@ img { display: block; max-width: 100%; }
 /* Vỏ web gốc (banner, header, menu, footer) nằm trong shadow DOM; máy tính từ 1240px, nhỏ hơn dùng bản điện thoại */
 .vo-mb { display: none; }
 .vo-dinh { position: sticky; top: 0; z-index: 101; }
+.region-campaign { margin: 12px 0 0; }
 @media (max-width: 1239px) { .vo-pc { display: none; } .vo-mb { display: block; } }
 
 /* Khung trang */
