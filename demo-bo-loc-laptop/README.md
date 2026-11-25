@@ -2,6 +2,7 @@
 
 Bản demo nội bộ của team SEO: giao diện trang /laptop của Thế Giới Di Động với bộ lọc đề xuất.
 
+- `khai-bao-cap-1/`: bộ lọc Laptop khai báo ngay, 1 cấp (25/11): 2 cột web hiện tại và bản khai báo, kèm bảng order khai báo.
 - `trinh-bay-6-nganh/`: trang trình bày kiểu web thật cho 6 ngành hàng: mỗi ngành 2 cột (bộ lọc hiện tại và sau khi áp luật Quy_Trình 15/11 + chốt họp 16/11) chép giao diện trang danh mục, kèm tổng quan, luật, khoảng giá, quy trình order, thử order.
 - `nhieu-nganh/`: bộ lọc 6 ngành hàng (Laptop, Điện thoại, Đồng hồ thời trang, Tai nghe, Adapter sạc, Camera giám sát) theo quy trình bản 15/11: cùng cách lọc từ khoá, mỗi ngành 1 mốc lượt tìm riêng, không xét số sản phẩm. Chọn ngành ở thanh trên cùng.
 - `3-cap/`: bản 2 cấp, thay bản 3 cấp cũ, giữ đường dẫn cũ. Chip có dấu ▾ (Intel ▾, Card rời ▾) bấm là lọc cả nhóm và mở các lựa chọn chi tiết bên dưới; chọn nhiều thì đổi trang theo đúng cách web hiện tại làm, thanh vàng đầu trang ghi địa chỉ tương ứng trên web.
