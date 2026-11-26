@@ -108,12 +108,42 @@ img { display: block; max-width: 100%; }
 .list-2col { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 24px; }
 .list-2col > .card { grid-template-columns: 200px minmax(0, 1fr); }
 .list-2col > .card:nth-child(2) { padding-top: 0; }
+.list-gap { margin-top: 16px; }
 
 /* Tiêu điểm: 1 bài lớn bên trái, 4 bài bên phải */
 .featured { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 20px; }
 .feat-big .sys { margin-top: 12px; }
 .feat-title { margin: 0; font-size: 20px; line-height: 30px; font-weight: 700; color: var(--title); }
 .feat-list { display: flex; flex-direction: column; gap: 12px; }
+
+/* Trang chủ đề: đầu trang có dòng phụ, bài nổi bật to hơn Tiêu điểm của /blog */
+.topic-head { margin-bottom: 16px; padding-right: 28px; }
+.topic-sub { margin: 0; color: var(--sub); }
+.featured-lg { grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr); gap: 24px; }
+.featured-lg .feat-title { font-size: 24px; line-height: 36px; }
+.featured-lg .feat-big .sys { margin-top: 16px; }
+.featured-lg .feat-list { gap: 0; }
+.featured-lg .card-sm { flex: 1; align-items: center; grid-template-columns: 150px minmax(0, 1fr); padding: 0 0 16px; }
+.featured-lg .card-sm + .card-sm { padding: 16px 0; border-top: 1px solid var(--line); }
+.featured-lg .card-sm:last-child { padding-bottom: 0; }
+.featured-lg .card-sm .card-title { font-size: 16px; line-height: 24px; font-weight: 500; }
+
+/* Sản phẩm của chủ đề: thẻ viền xám, ảnh vuông, tên, giá đỏ */
+.prod-row { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; overflow: visible; }
+.prod { display: flex; flex-direction: column; gap: 4px; padding: 12px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--white); }
+.prod:hover { border-color: var(--blue); color: inherit; }
+.prod-img { display: block; padding: 8px 24px 12px; }
+.prod-img img { width: 100%; aspect-ratio: 1 / 1; height: auto; object-fit: contain; }
+.prod-name { font-weight: 500; color: var(--title); }
+.prod-price { font-weight: 700; color: #FD475A; }
+
+/* Câu hỏi thường gặp: chỉ chữ, 2 cột */
+.faq { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 24px; }
+.faq li { border-bottom: 1px solid var(--line); }
+.faq a { display: flex; align-items: flex-start; gap: 10px; padding: 12px 0; }
+.faq-ic { flex-shrink: 0; display: inline-flex; margin-top: 0; color: var(--hoi-dap); }
+.faq-tx { color: var(--title); }
+.faq a:hover .faq-tx { color: var(--blue); }
 
 /* Dải theo hệ, Khuyến mãi, Chủ đề nổi bật: 4 thẻ ảnh trên chữ dưới như vùng tin ở trang chủ */
 .strip-row, .promo-row { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; overflow: visible; }
@@ -126,6 +156,7 @@ img { display: block; max-width: 100%; }
   overflow: hidden; min-height: 51px; }
 .promo-card:hover .promo-title { color: var(--blue); }
 .tiles { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px 10px; overflow: visible; }
+.tiles-6 { grid-template-columns: repeat(6, minmax(0, 1fr)); }
 .tile { display: flex; flex-direction: column; }
 .tile-tx { padding-top: 8px; }
 .tile-tx b { display: block; font-weight: 600; color: var(--title); }
@@ -179,9 +210,10 @@ img { display: block; max-width: 100%; }
   .wrap { padding: 0 16px; }
 }
 @media (max-width: 1024px) {
-  .strip-row, .promo-row, .tiles { display: flex; overflow-x: auto; }
-  .strip-row > .card-v, .promo-card { flex: 0 0 31%; }
+  .strip-row, .promo-row, .tiles, .prod-row { display: flex; overflow-x: auto; }
+  .strip-row > .card-v, .promo-card, .prod { flex: 0 0 31%; }
   .tile { flex: 0 0 31%; }
+  .faq { grid-template-columns: minmax(0, 1fr); }
   .list-2col { grid-template-columns: minmax(0, 1fr); }
   .list-2col > .card:nth-child(2) { padding-top: 16px; }
 }
@@ -211,6 +243,11 @@ img { display: block; max-width: 100%; }
   .card-title, .card-sm .card-title { font-size: 14px; line-height: 21px; }
   .list > .card { padding: 12px 0; }
   .strip-row > .card-v, .promo-card { flex: 0 0 62%; }
+  .prod { flex: 0 0 56%; }
+  .topic-head { padding-right: 24px; margin-bottom: 12px; }
+  .featured-lg .feat-title { font-size: 18px; line-height: 27px; }
+  .featured-lg .card-sm { grid-template-columns: 120px minmax(0, 1fr); }
+  .featured-lg .card-sm .card-title { font-size: 14px; line-height: 21px; }
   .strip + .strip { margin-top: 8px; }
   .tile { flex: 0 0 44%; }
   .tab { padding: 0 10px; }
